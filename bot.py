@@ -12,7 +12,7 @@ def handle(msg):
     print 'Got command: %s' % command
     
     if command.split()[0] == "/bash":
-        bot.sendMessage(chat_id, bash(command))
+        bash(command)
     if command == '/hei':
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
 
@@ -20,7 +20,6 @@ def bash(command):
     args = shlex.split(command[1:])
     print(args)
     process = subprocess.Popen(args, stdout=subprocess.PIPE)
-    return process.stdout().decode('utf-8')
             
 
 bot = telepot.Bot('555366873:AAG6ZRWJjmSFwuYFEweQDZCfiSqtECvpt9M')
