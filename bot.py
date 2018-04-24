@@ -5,7 +5,7 @@ import datetime
 import telepot
 import subprocess
 import shlex
-from numericStringParcer import NumericStringParcer
+from nsp import Nsp
 
 def handle(msg):
     chat_id = msg['chat']['id']
@@ -29,7 +29,7 @@ def bash(args):
     return str
 
 def math(args):
-    nsp = NumericStringParser()
+    nsp = Nsp()
     result = nsp.eval('2^4')
     print result
     
