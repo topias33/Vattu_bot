@@ -13,7 +13,7 @@ def handle(msg):
     print 'Got command: %s' % command
     
     if command.split()[0] == "/bash":
-        bash(command)
+        bot.sendMessage(chat_id, bash(command))
     if command == '/hei':
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
 
@@ -23,7 +23,7 @@ def bash(command):
     print args
     str = subprocess.check_output(args, stderr=subprocess.STDOUT)
     print str
-    #return str
+    return str
             
 
 bot = telepot.Bot('555366873:AAG6ZRWJjmSFwuYFEweQDZCfiSqtECvpt9M')
@@ -35,10 +35,4 @@ while 1:
      time.sleep(10)
         
 #https://docs.python.org/3/library/subprocess.html
-#import shlex, subprocess
-#command_line = input()
-#/bin/vikings -input eggs.txt -output "spam spam.txt" -cmd "echo '$MONEY'"
-#args = shlex.split(command_line)
-#print(args)
-#['/bin/vikings', '-input', 'eggs.txt', '-output', 'spam spam.txt', '-cmd', "echo '$MONEY'"]
-#p = subprocess.Popen(args) # Success!
+#https://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
