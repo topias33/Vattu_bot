@@ -3,7 +3,7 @@ import time
 import random
 import datetime
 import telepot
-import shlex, subprocess
+import subprocess
 
 def handle(msg):
     chat_id = msg['chat']['id']
@@ -17,7 +17,7 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
 
 def bash(command):
-    args = shlex.split(command[1:])
+    args = command[1:].split()
     print(args)
     process = subprocess.Popen(args, stdout=subprocess.PIPE)
             
