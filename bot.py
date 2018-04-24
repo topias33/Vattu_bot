@@ -11,7 +11,7 @@ def handle(msg):
     print 'Got command: %s' % command
 
     if command == '/hei':
-       bot.sendMessage(chat_id, 'Hello World from github')
+       bot.sendMessage(chat_id, 'Hello World from githubbbb')
 
 bot = telepot.Bot('555366873:AAG6ZRWJjmSFwuYFEweQDZCfiSqtECvpt9M')
 bot.message_loop(handle)
