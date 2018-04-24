@@ -22,7 +22,9 @@ def bash(command):
     args.pop(0) # .pop(0) removes '/bash'
     print args
     process = subprocess.Popen(args, stdout=subprocess.PIPE, shell=True)
-    print process.stdout.read()
+    str = process.stdout.decode('utf-8')
+    print str
+    #return str
             
 
 bot = telepot.Bot('555366873:AAG6ZRWJjmSFwuYFEweQDZCfiSqtECvpt9M')
