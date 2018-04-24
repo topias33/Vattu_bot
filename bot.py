@@ -4,6 +4,7 @@ import random
 import datetime
 import telepot
 import subprocess
+import shlex
 
 def handle(msg):
     chat_id = msg['chat']['id']
