@@ -16,7 +16,7 @@ more easily in other places.
 '''
 
 
-class NumericStringParser(object):
+class Nsp(object):
     '''
     Most of this code comes from the fourFn.py pyparsing example
 
