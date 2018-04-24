@@ -5,7 +5,7 @@ import datetime
 import telepot
 import subprocess
 import shlex
-from vattu import NumericStringParcer
+from folder import NumericStringParcer
 
 def handle(msg):
     chat_id = msg['chat']['id']
