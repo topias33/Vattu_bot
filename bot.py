@@ -14,7 +14,7 @@ def handle(msg):
     print 'Got command: %s' % command
     
     if command.split()[0] == "/bash":
-        unicodedata.normalize('NFKD', command).encode('ascii','ignore')
+        unicodedata.normalize('NFKD', command).encode('utf-8','ignore')
         bot.sendMessage(chat_id, bash(command))
     if command == '/hei':
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
