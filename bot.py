@@ -20,8 +20,9 @@ def handle(msg):
 def bash(command):
     args = shlex.split(command)
     args.pop(0) # .pop(0) removes '/bash'
-    print(args)
+    print args
     process = subprocess.Popen(args, stdout=subprocess.PIPE, shell=True)
+    print process.stdout.read()
             
 
 bot = telepot.Bot('555366873:AAG6ZRWJjmSFwuYFEweQDZCfiSqtECvpt9M')
