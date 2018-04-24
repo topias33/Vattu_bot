@@ -32,6 +32,7 @@ def math(args):
     nsp = Nsp()
     result = nsp.eval('2^4')
     print result
+    return result
     
 def arguments(command):
     args = shlex.split(command)
