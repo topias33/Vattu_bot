@@ -30,7 +30,7 @@ def bash(args):
 
 def math(args):
     nsp = Nsp()
-    result = nsp.eval('2^4')
+    result = nsp.eval(''.join(args))
     print result
     return result
     
