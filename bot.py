@@ -13,12 +13,12 @@ def handle(msg):
     print 'Got command: %s' % command
     
     if command.split()[0] == "/bash":
-        bash(command)
+        bash(command.pop(0)) # .pop(0) removes '/bash'
     if command == '/hei':
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
 
 def bash(command):
-    args = shlex.split(command[2:])
+    args = shlex.split(command)
     print(args)
     process = subprocess.Popen(args, stdout=subprocess.PIPE)
             
