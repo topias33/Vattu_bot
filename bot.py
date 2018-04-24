@@ -28,7 +28,9 @@ def bash(args):
     return str
 
 def math(args):
-    print "working on it"
+    nsp = NumericStringParser()
+    result = nsp.eval('2^4')
+    print result
     
 def arguments(command):
     args = shlex.split(command)
@@ -47,3 +49,5 @@ while 1:
         
 #https://docs.python.org/3/library/subprocess.html
 #https://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
+
+#https://stackoverflow.com/questions/2371436/evaluating-a-mathematical-expression-in-a-string
