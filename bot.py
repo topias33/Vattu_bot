@@ -21,8 +21,7 @@ def bash(command):
     args = shlex.split(command)
     args.pop(0) # .pop(0) removes '/bash'
     print args
-    process = subprocess.Popen(args, stdout=subprocess.PIPE, shell=True)
-    str = process.stdout.decode('utf-8')
+    str = subprocess.check_output(args, stderr=subprocess.STDOUT)
     print str
     #return str
             
