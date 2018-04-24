@@ -22,8 +22,14 @@ def bash(command):
     args = shlex.split(command)
     args.pop(0) # .pop(0) removes '/bash'
     print args
-    str = subprocess.check_output(args, stderr=subprocess.STDOUT)
-    print str
+    try:
+        str = subprocess.check_output(string_command, stderr=subprocess.STDOUT)
+        print str
+    except subprocess.CalledProcessError as e:
+        print e.output
+        print 'Error running command: ' + '"' + e.cmd + '"' + ' see above shell error'
+        print 'Return code: ' + str(e.returncode)
+        #return e.cmd
     #return str
             
 
