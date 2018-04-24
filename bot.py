@@ -21,7 +21,7 @@ def bash(command):
     args = shlex.split(command)
     args.pop(0) # .pop(0) removes '/bash'
     print(args)
-    process = subprocess.Popen(args, stdout=subprocess.PIPE)
+    process = subprocess.Popen(args, stdout=subprocess.PIPE, shell=True)
             
 
 bot = telepot.Bot('555366873:AAG6ZRWJjmSFwuYFEweQDZCfiSqtECvpt9M')
