@@ -17,7 +17,7 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
 
 def bash(command):
-    args = command[1:].split()
+    args = shlex.split(command[2:])
     print(args)
     process = subprocess.Popen(args, stdout=subprocess.PIPE)
             
