@@ -18,7 +18,7 @@ def handle(msg):
     
     if tag == "/bash":
         bot.sendMessage(chat_id, bash(args))
-    elif tag == "/bash":
+    elif tag == "/math":
         bot.sendMessage(chat_id, math(args))
     elif tag == "/hei":
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
@@ -32,7 +32,6 @@ def math(args):
     nsp = Nsp()
     result = nsp.eval('2^4')
     print result
-    print 'ntpkissakavelee'
     
 def arguments(command):
     args = shlex.split(command)
