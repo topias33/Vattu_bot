@@ -38,9 +38,4 @@ while 1:
         
 #https://docs.python.org/3/library/subprocess.html
 #https://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
-
 #https://stackoverflow.com/questions/1207457/convert-a-unicode-string-to-a-string-in-python-containing-extra-symbols
-#title = u"Klüft skräms inför på fédéral électoral große"
-#import unicodedata
-#unicodedata.normalize('NFKD', title).encode('ascii','ignore')
-#'Kluft skrams infor pa federal electoral groe'
