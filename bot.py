@@ -5,7 +5,6 @@ import datetime
 import telepot
 import subprocess
 import shlex
-import unicodedata
 
 def handle(msg):
     chat_id = msg['chat']['id']
@@ -14,8 +13,8 @@ def handle(msg):
     print 'Got command: %s' % command
     
     if command.split()[0] == "/bash":
-        unicodedata.normalize('NFKD', command).encode('utf-8','ignore')
-        bot.sendMessage(chat_id, bash(command))
+        bash(command)
+        #bot.sendMessage(chat_id, bash(command))
     if command == '/hei':
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
 
@@ -25,7 +24,7 @@ def bash(command):
     print args
     str = subprocess.check_output(args, stderr=subprocess.STDOUT)
     print str
-    return str
+    #return str
             
 
 bot = telepot.Bot('555366873:AAG6ZRWJjmSFwuYFEweQDZCfiSqtECvpt9M')
@@ -38,4 +37,3 @@ while 1:
         
 #https://docs.python.org/3/library/subprocess.html
 #https://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
-#https://stackoverflow.com/questions/1207457/convert-a-unicode-string-to-a-string-in-python-containing-extra-symbols
