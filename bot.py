@@ -5,10 +5,13 @@ import datetime
 import telepot
 import subprocess
 import shlex
+import unicodedata
 
 def handle(msg):
     chat_id = msg['chat']['id']
-    command = msg['text'].encode("utf-8")
+    command = msg['text']
+    
+    unicodedata.normalize('NFKD', command).encode('ascii','ignore')
 
     print 'Got command: %s' % command
     
