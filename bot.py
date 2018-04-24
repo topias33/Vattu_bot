@@ -8,7 +8,7 @@ import shlex
 
 def handle(msg):
     chat_id = msg['chat']['id']
-    command = msg['text']
+    command = msg['text'].encode("utf-8")
 
     print 'Got command: %s' % command
     
@@ -22,14 +22,8 @@ def bash(command):
     args = shlex.split(command)
     args.pop(0) # .pop(0) removes '/bash'
     print args
-    try:
-        str = subprocess.check_output(args, stderr=subprocess.STDOUT)
-        print str
-    except subprocess.CalledProcessError as e:
-        print e.output
-        print 'Error running command: ' + '"' + e.cmd + '"' + ' see above shell error'
-        print 'Return code: ' + str(e.returncode)
-        #return e.cmd
+    str = subprocess.check_output(args, stderr=subprocess.STDOUT)
+    print str
     #return str
             
 
