@@ -5,7 +5,7 @@ import datetime
 import telepot
 import subprocess
 import shlex
-from numericstringparcer import NumericStringParcer
+from numericStringParcer import NumericStringParcer
 
 def handle(msg):
     chat_id = msg['chat']['id']
