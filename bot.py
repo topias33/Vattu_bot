@@ -23,7 +23,7 @@ def bash(command):
     args.pop(0) # .pop(0) removes '/bash'
     print args
     try:
-        str = subprocess.check_output(string_command, stderr=subprocess.STDOUT)
+        str = subprocess.check_output(command, stderr=subprocess.STDOUT)
         print str
     except subprocess.CalledProcessError as e:
         print e.output
