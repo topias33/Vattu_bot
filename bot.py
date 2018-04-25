@@ -32,7 +32,7 @@ def bash(args):
     if type(args) is list:
         args = ' '.join(args)
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
-    print("Output: %s" % output)
+    print("Output: %s" % output[2:-1])
     if output:
         return output
     return "Done"    
