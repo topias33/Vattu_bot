@@ -47,7 +47,7 @@ bot.message_loop(handle)
 print 'I am listening...'
 
 while 1:
-     time.sleep(10)
+     time.sleep(3)
         
 #https://docs.python.org/3/library/subprocess.html
 #https://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
