@@ -33,7 +33,7 @@ def bash(args):
         args = ' '.join(args)
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
     if output:
-        print("Output: %s" % output.encode('utf8'))
+        print("Output: %s" % str(output, 'utf-8'))
         return output
     return "Done"    
 
