@@ -44,7 +44,7 @@ def arguments(command):
 bot = telepot.Bot('555366873:AAG6ZRWJjmSFwuYFEweQDZCfiSqtECvpt9M')
 bot.message_loop(handle)
 
-print 'I am listening...'
+print ('I am listening...')
 
 while 1:
      time.sleep(3)
