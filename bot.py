@@ -14,7 +14,7 @@ def handle(msg):
     if command[0] is not '/':
         return
     
-    print ('Command: %s' % command)
+    print ('\nCommand: %s' % command)
     
     tag = command.split()[0]
     args = arguments(command)
