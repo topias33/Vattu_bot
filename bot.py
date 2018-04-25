@@ -11,7 +11,7 @@ def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
 
-    print 'Got command: %s' % command
+    print ('Got command: %s') % command
     
     tag = command.split()[0]
     args = arguments(command)
@@ -25,19 +25,19 @@ def handle(msg):
 
 def bash(args):
     str = subprocess.check_output(args, stderr=subprocess.STDOUT)
-    print str
+    print (str)
     return str
 
 def math(args):
     nsp = Nsp()
     result = nsp.eval(''.join(args))
-    print result
+    print (result)
     return result
     
 def arguments(command):
     args = shlex.split(command)
     args.pop(0) # .pop(0) removes ex. '/bash'
-    print args
+    print (args)
     return args
             
 
