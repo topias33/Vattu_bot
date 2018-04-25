@@ -31,7 +31,7 @@ def bash(args):
     return a
 
 def run_command(command):
-    p = subprocess.check_outout(command)
+    p = subprocess.check_output(command)
     if (p):
         return p
     return "no p"
