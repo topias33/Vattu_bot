@@ -27,13 +27,14 @@ def bash(args):
     #print (str)
     #return str
     a = run_command(args)
-    for line in a:
-        print(line)
+    print (a)
     return a
 
 def run_command(command):
-    p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    return iter(p.stdout.readline, b'')
+    p = subprocess.check_outout(command)
+    if (p):
+        return p
+    return "no p"
 
 def math(args):
     nsp = Nsp()
