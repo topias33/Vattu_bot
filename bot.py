@@ -26,13 +26,15 @@ def handle(msg):
     elif tag == "/hei":
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
     else:
-        bot.sendMessage(chat_id, help())
+        bot.sendMessage(chat_id, bash("cat help"))
 
 def bash(args):
-    str = subprocess.check_output(' '.join(args), stderr=subprocess.STDOUT, shell=True)
-    print(str)
-    if str:
-        return str
+    if Type(args) is list:
+        args = ' '.join(args)
+    output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
+    print(output)
+    if output:
+        return output
     return "Done"    
 
 def math(args):
@@ -46,11 +48,6 @@ def arguments(command):
     args.pop(0) # .pop(0) removes ex. '/bash'
     print ("Args: %s" % args)
     return args
-
-def help():
-    return "/bash - run commands in Raspberry Pi and show the output.\n"
-            + "/math - calculate stuff.\n"
-            + "..."
             
 
 bot = telepot.Bot('555366873:AAG6ZRWJjmSFwuYFEweQDZCfiSqtECvpt9M')
