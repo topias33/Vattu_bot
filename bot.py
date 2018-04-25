@@ -14,10 +14,11 @@ def handle(msg):
     if command[0] is not '/':
         return
     
-    print ('\nCommand: %s' % command)
-    
     tag = command.split()[0]
     args = arguments(command)
+    
+    print ('\nCommand: %s' % tag)
+    print ("Args: %s" % args)
     
     if tag in ["/bash","/b"]:
         bot.sendMessage(chat_id, bash(args))
@@ -29,17 +30,15 @@ def handle(msg):
         bot.sendMessage(chat_id, bash("cat help"))
 
 def bash(args):
-    if type(args) is list:
-        args = ' '.join(args)
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
     if output:
-        print("Output: %s" % str(output, 'utf-8'))
+        print("Output: %s" % str(output.replace('\n','\n\t'), 'utf-8'))
         return output
     return "Done"    
 
 def math(args):
     nsp = Nsp()
-    args = ''.join(args)
+    args = args.replace(' ','')
     result = nsp.eval(args)
     result = "{0:s} = {1:g}".format(args,result)
     print (result)
@@ -48,7 +47,7 @@ def math(args):
 def arguments(command):
     args = shlex.split(command)
     args.pop(0) # .pop(0) removes ex. '/bash'
-    print ("Args: %s" % args)
+    args = ' '.join(args)
     return args
             
 
