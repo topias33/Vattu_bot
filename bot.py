@@ -4,7 +4,6 @@ import random
 import datetime
 import telepot
 import subprocess
-import shlex
 from nsp import Nsp
 
 def handle(msg):
@@ -17,19 +16,18 @@ def handle(msg):
     args = arguments(command)
     
     if tag in ["/bash","/b"]:
-        bash(args)
-        #bot.sendMessage(chat_id, bash(args))
+        bot.sendMessage(chat_id, bash(args))
     elif tag in ["/math","/m"]:
         bot.sendMessage(chat_id, math(args))
     elif tag == "/hei":
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
 
 def bash(args):
-    #str = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
-    #print (str)
-    #return str
-    for line in run_command(args):
-        print(line)
+    str = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
+    print (str)
+    return str
+    #for line in run_command(args):
+    #    print(line)
 
 def run_command(command):
     p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
