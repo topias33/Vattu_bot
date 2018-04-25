@@ -16,9 +16,9 @@ def handle(msg):
     tag = command.split()[0]
     args = arguments(command)
     
-    if tag == "/bash":
+    if tag in ["/bash","/b"]:
         bot.sendMessage(chat_id, bash(args))
-    elif tag == "/math":
+    elif tag in ["/math","/m"]:
         bot.sendMessage(chat_id, math(args))
     elif tag == "/hei":
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
