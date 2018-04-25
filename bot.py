@@ -17,8 +17,8 @@ def handle(msg):
     tag = command.split()[0]
     args = arguments(command)
     
-    print ('\nCommand: %s' % tag)
-    print ("Args: %s" % args)
+    print ('\nCommand:\t%s' % tag)
+    print ("Args:\t\t%s" % args)
     
     if tag in ["/bash","/b"]:
         bot.sendMessage(chat_id, bash(args))
