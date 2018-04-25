@@ -11,7 +11,7 @@ def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
 
-    print ('Got command: %s' % command)
+    print ('Command: %s' % command)
     
     tag = command.split()[0]
     args = arguments(command)
@@ -24,7 +24,7 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
 
 def bash(args):
-    str = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True, executable='/bin/bash')
+    str = subprocess.check_output(' '.join(args), stderr=subprocess.STDOUT, shell=True)
     print(str)
     if str is not None:
         return str
