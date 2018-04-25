@@ -26,9 +26,9 @@ def handle(msg):
 def bash(args):
     str = subprocess.check_output(' '.join(args), stderr=subprocess.STDOUT, shell=True)
     print(str)
-    if str is not None:
+    if str:
         return str
-    return "none"    
+    return "Done"    
 
 def math(args):
     nsp = Nsp()
