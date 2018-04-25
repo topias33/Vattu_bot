@@ -24,7 +24,7 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
 
 def bash(args):
-    str = subprocess.check_output(args, stderr=subprocess.STDOUT)
+    str = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
     print (str)
     return str
 
