@@ -29,7 +29,7 @@ def handle(msg):
         bot.sendMessage(chat_id, bash("cat help"))
 
 def bash(args):
-    if Type(args) is list:
+    if type(args) is list:
         args = ' '.join(args)
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
     print(output)
