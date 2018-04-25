@@ -17,16 +17,23 @@ def handle(msg):
     args = arguments(command)
     
     if tag in ["/bash","/b"]:
-        bot.sendMessage(chat_id, bash(args))
+        bash(args)
+        #bot.sendMessage(chat_id, bash(args))
     elif tag in ["/math","/m"]:
         bot.sendMessage(chat_id, math(args))
     elif tag == "/hei":
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
 
 def bash(args):
-    str = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
-    print (str)
-    return str
+    #str = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
+    #print (str)
+    #return str
+    for line in run_command(args):
+        print(line)
+
+def run_command(command):
+    p = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    return iter(p.stdout.readline, b'')
 
 def math(args):
     nsp = Nsp()
