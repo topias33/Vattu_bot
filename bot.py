@@ -32,15 +32,16 @@ def bash(args):
     if type(args) is list:
         args = ' '.join(args)
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
-    print(output)
+    print("Output: %s" % output)
     if output:
         return output
     return "Done"    
 
 def math(args):
     nsp = Nsp()
-    result = nsp.eval(''.join(args))
-    print (result)
+    args = ''.join(args)
+    result = nsp.eval(args)
+    print ("%s = %g" % args,result)
     return result
     
 def arguments(command):
