@@ -26,6 +26,8 @@ def handle(msg):
         bot.sendMessage(chat_id, math(args))
     elif tag == "/hei":
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
+    elif tag == "/moi":
+        bot.sendMessage(chat_id, 'Miten menee?')
     else:
         bot.sendMessage(chat_id, bash("cat help"))
 
