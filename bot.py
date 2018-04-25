@@ -10,7 +10,10 @@ from nsp import Nsp
 def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
-
+    
+    if command[0] is not '/':
+        return
+    
     print ('Command: %s' % command)
     
     tag = command.split()[0]
