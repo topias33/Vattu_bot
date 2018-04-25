@@ -11,7 +11,7 @@ def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
 
-    print ('Got command: %s') % command
+    print ('Got command: %s') % str(command)
     
     tag = command.split()[0]
     args = arguments(command)
