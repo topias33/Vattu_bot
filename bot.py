@@ -32,7 +32,8 @@ def handle(msg):
 def bash(args):
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
     if output:
-        print("Output: %s" % str(output.replace('\n','\n\t'), 'utf-8'))
+        output2 = output.replace('\n','\n\t')
+        print("Output: %s" % str(output2, 'utf-8'))
         return output
     return "Done"    
 
