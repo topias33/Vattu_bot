@@ -7,7 +7,8 @@ import subprocess
 import shlex
 from nsp import Nsp
 
-TOKEN = '555366873:AAG6ZRWJjmSFwuYFEweQDZCfiSqtECvpt9M'
+#when running pass in the token as the first parameter e.g. python file.py token
+TOKEN = sys.argv[1] 
 
 def handle(msg):
     chat_id = msg['chat']['id']
