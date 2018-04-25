@@ -7,6 +7,8 @@ import subprocess
 import shlex
 from nsp import Nsp
 
+TOKEN = '555366873:AAG6ZRWJjmSFwuYFEweQDZCfiSqtECvpt9M'
+
 def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
@@ -54,7 +56,7 @@ def arguments(command):
     return args
             
 
-bot = telepot.Bot('555366873:AAG6ZRWJjmSFwuYFEweQDZCfiSqtECvpt9M')
+bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
 
 print ('I am listening...')
