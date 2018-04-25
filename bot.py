@@ -23,18 +23,11 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
 
 def bash(args):
-    #str = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
-    #print (str)
-    #return str
-    a = run_command(args)
-    print (a)
-    return a
-
-def run_command(command):
-    p = subprocess.check_output(command)
-    if (p):
-        return p
-    return "no p"
+    str = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True, executable='/bin/bash')
+    print(str)
+    if (str != null):
+        return str
+    return "no str"    
 
 def math(args):
     nsp = Nsp()
