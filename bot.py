@@ -32,8 +32,8 @@ def bash(args):
     if type(args) is list:
         args = ' '.join(args)
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
-    print("Output: %s" % output[2:-1])
     if output:
+        print("Output: %s" % output[2:-1])
         return output
     return "Done"    
 
