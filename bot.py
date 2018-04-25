@@ -4,6 +4,7 @@ import random
 import datetime
 import telepot
 import subprocess
+import shlex
 from nsp import Nsp
 
 def handle(msg):
@@ -36,7 +37,7 @@ def math(args):
     return result
     
 def arguments(command):
-    args = command.split()
+    args = shlex.split(command)
     args.pop(0) # .pop(0) removes ex. '/bash'
     print ("Args: %s" % args)
     return args
