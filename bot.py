@@ -41,7 +41,8 @@ def math(args):
     nsp = Nsp()
     args = ''.join(args)
     result = nsp.eval(args)
-    print ("%s = %g" % args,result)
+    result = "{0:s} = {1:g}".format(args,result)
+    print (result)
     return result
     
 def arguments(command):
