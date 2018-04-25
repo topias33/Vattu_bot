@@ -37,7 +37,7 @@ def math(args):
 def arguments(command):
     args = shlex.split(command)
     args.pop(0) # .pop(0) removes ex. '/bash'
-    print (args)
+    print ("Args: %s" % args)
     return args
             
 
