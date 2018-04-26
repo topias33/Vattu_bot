@@ -6,6 +6,7 @@ import telepot
 import subprocess
 import shlex
 from nsp import Nsp
+import re
 
 #when running pass in the token as the first parameter e.g. python file.py token
 TOKEN = sys.argv[1] 
@@ -35,6 +36,8 @@ def handle(msg):
         bot.sendMessage(chat_id, bash("date"))
     elif tag in ["/joke", "/j"]:
         bot.sendMessage(chat_id, joke(args))
+    #elif tag in ["/wiki", "/wikipedia"]:
+        #bot.sendMessage(chat_id, wiki(args))
     else:
         bot.sendMessage(chat_id, bash("cat help"))
 
@@ -56,6 +59,8 @@ def joke(args):
     else:
         command = "echo {0} > ./jokes/{1}".format(' '.join(args[1:]), args[0])
     return bash(command)
+#def wiki(args):
+    
 
 def math(args):
     nsp = Nsp()
