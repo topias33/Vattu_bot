@@ -38,7 +38,8 @@ def handle(msg):
     elif tag in ["/joke", "/j"]:
         bot.sendMessage(chat_id, joke(args))
     elif tag in ["/wiki", "/wikipedia"]:
-        bot.sendMessage(chat_id, wiki(args))
+        wiki(args)
+        #bot.sendMessage(chat_id, wiki(args))
     else:
         bot.sendMessage(chat_id, bash("cat help"))
 
@@ -70,10 +71,7 @@ def wiki(args):
     soup = BeautifulSoup(content, "html.parser")
     text = soup.p.get_text()
     print(url)
-    if text:
-        print (text)
-        return text
-    return url
+    print(text)
 
 
 def math(args):
