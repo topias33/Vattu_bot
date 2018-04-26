@@ -61,8 +61,29 @@ def joke(args):
         command = "echo {0} > ./jokes/{1}".format(' '.join(args[1:]), args[0])
     return bash(command)
 
-def wiki(args,lines=1):
-    url = "https://en.wikipedia.org/wiki/%s" % args
+def wiki(args):
+    if args:
+        args = args.split()
+    else:
+        return "Use /wiki .(en,fi,ru etc.) +(number of lines) search\ne.g. /wiki .fi +2 raspberry pi"
+    
+    i = 0
+    
+    if args[i][0]=='.':
+        language = args[i]
+        i++
+    else:
+        language = "en"
+    
+    if args[i][0]=='+':
+        lines = int(args[i])
+        i++
+    else:
+        lines = 1
+        
+    search = '_'.join(args[i:])
+    
+    url = "https://{0:s}.wikipedia.org/wiki/{1:s}".format(language, search)
 
     fp = urllib.request.urlopen(url)
     mybytes = fp.read()
@@ -70,26 +91,19 @@ def wiki(args,lines=1):
     fp.close()
 
     soup = BeautifulSoup(content, "html.parser")
-
     text = soup.find("div",{"class": "mw-parser-output"})
-
     text = text.findAll("p")
-
     text = [x.get_text() for x in text]
-
     text = '\n'.join(text)
-
     text = text.split('\n')
-
     text = [x for x in text if x]
-
     text = text[:lines]
-
     text = '\n'.join(text)
-
-    print(text)
     
-    return text
+    if text:
+        print(text)
+        return text
+    return "I Could not find anything from {0:s}".format(url)
 
 
 def math(args):
