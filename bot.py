@@ -69,9 +69,9 @@ def wiki(args):
     content = mybytes.decode("utf8")
     fp.close()
     soup = BeautifulSoup(content, "html.parser")
-    text = soup.p.get_text()
+    
     print(url)
-    print(text)
+    print(soup.p.get_text())
 
 
 def math(args):
