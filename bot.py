@@ -82,8 +82,7 @@ def wiki(args):
         lines = 1
         
     search = '_'.join(args[i:])
-    
-    url = "https://{0:s}.wikipedia.org/wiki/{1:s}".format(language, search)
+    url = "https://{0:s}.wikipedia.org/w/index.php?search={1:s}".format(language, search)
     print(url)
 
     fp = urllib.request.urlopen(url)
