@@ -33,7 +33,7 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Miten menee?')
     elif tag in ["/addjoke", "/aj"]:
         args = args.split()
-        bot.sendMessage(chat_id, bash("echo {0:s} > ./jokes/{1:s}".format(args[1:], args[0])))
+        bot.sendMessage(chat_id, bash("echo {0} > ./jokes/{1}".format(''.join(args[1:]), args[0])))
     elif tag in ["/joke", "/j"]:
         if not args:
             args = "joke0" #random joke
