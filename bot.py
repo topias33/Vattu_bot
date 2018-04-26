@@ -70,7 +70,7 @@ def wiki(args):
     i = 0
     
     if args[i][0]=='.':
-        language = args[i]
+        language = args[i][1:]
         i += 1
     else:
         language = "en"
