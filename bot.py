@@ -50,7 +50,7 @@ def joke(args):
         return bash("cat ./jokes/{0}".format(args))
     args = args.split()
     if len(args) == 1:
-        command = "cat ./jokes/{0}".format(args)
+        command = "cat ./jokes/{0}".format(args[0])
     else:
         command = "echo {0} > ./jokes/{1}".format(' '.join(args[1:]), args[0])
     return bash(command)
