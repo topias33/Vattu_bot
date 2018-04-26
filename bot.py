@@ -65,7 +65,7 @@ def wiki(args):
     if args:
         args = args.split()
     else:
-        return "Use /wiki .(en,fi,ru etc.) +(number of lines) search\ne.g. /wiki .fi +2 raspberry pi"
+        return "Use /wiki .(en,fi,ru etc.) +(number of lines) Your search\ne.g. /wiki .fi +2 one punch man"
     
     i = 0
     
