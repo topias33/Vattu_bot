@@ -62,16 +62,35 @@ def joke(args):
         command = "echo {0} > ./jokes/{1}".format(' '.join(args[1:]), args[0])
     return bash(command)
 
-def wiki(args):
-    url = "https://en.wikipedia.org/wiki/{0}".format(args)
+def wiki(args,lines=1):
+    url = "https://en.wikipedia.org/wiki/%s" % args
+
     fp = urllib.request.urlopen(url)
     mybytes = fp.read()
     content = mybytes.decode("utf8")
     fp.close()
+
     soup = BeautifulSoup(content, "html.parser")
+
+    text = soup.find("div",{"class": "mw-parser-output"})
+
+    text = text.findAll("p")
+
+    text = [x.get_text() for x in text]
+
+    text = '\n'.join(text)
+
+    text = text.split('\n')
+
+    text = [x for x in text if x]
+
+    text = text[:lines]
+
+    text = '\n'.join(text)
+
+    print(text)
     
-    print(url)
-    print(soup.p.get_text())
+    return text
 
 
 def math(args):
