@@ -61,7 +61,7 @@ def joke(args):
         command = "echo {0} > ./jokes/{1}".format(' '.join(args[1:]), args[0])
     return bash(command)
 
- def wiki(args):
+def wiki(args):
     if args:
         args = args.split()
     else:
