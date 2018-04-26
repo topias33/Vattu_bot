@@ -69,7 +69,6 @@ def handle(msg):
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
 def jokeee(jokeList):
-    
     jokeName=jokeList[0]
     jokeJoke=jokeList[1]
     jokeAwnser=jokeList[2]
@@ -88,6 +87,7 @@ def jokeee(jokeList):
         joke=jokeName+'\n'+jokeJoke
         time.sleep(sleeping)
         bot.sendMessage(chat_id,jokeAwnser)
+        
 def bash(args):
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
     if output:
@@ -154,8 +154,8 @@ bot.message_loop(handle)
 
 print ('I am listening...')
 
-#while 1:
-     #time.sleep(3)
+while 1:
+     time.sleep(10)
         
 #https://docs.python.org/3/library/subprocess.html
 #https://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
