@@ -65,7 +65,7 @@ def wiki(args):
     if args:
         args = args.split()
     else:
-        return "Use /wiki .(en,fi,ru etc.) +(number of lines) Your search\ne.g. /wiki .fi +2 one punch man"
+        return "Use /wiki .( en, fi, ru etc. ) +( paragraphs ) Your search\ne.g. /wiki .fi +2 one punch man"
     
     i = 0
     
@@ -76,10 +76,10 @@ def wiki(args):
         language = "en"
     
     if args[i][0]=='+':
-        lines = int(args[i])
+        paragraphs = int(args[i])
         i += 1
     else:
-        lines = 1
+        paragraphs = 1
         
     search = '_'.join(args[i:])
     url = "https://{0:s}.wikipedia.org/w/index.php?search={1:s}".format(language, search)
@@ -97,12 +97,12 @@ def wiki(args):
     text = '\n'.join(text)
     text = text.split('\n')
     text = [x for x in text if x]
-    text = text[:lines]
-    text = '\n'.join(text)
+    text = text[:paragraphs]
+    text = '\n\n'.join(text)
     
     if text:
         print(text)
-        return text
+        return '"' + url + '"\n' + text
     return "I Could not find anything from {0:s}".format(url)
 
 
