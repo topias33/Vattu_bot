@@ -20,8 +20,8 @@ def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
     
-    if quiz_bool:
-        print("Quiz is on")
+    #if quiz_bool:
+    #    print("Quiz is on")
     
     if command[0] is not '/':
         return
@@ -48,8 +48,8 @@ def handle(msg):
         bot.sendMessage(chat_id, wiki(args))
     #elif tag == "/mc":
         #print("Hello World!", file=conn.modules.sys.stdout)
-    elif tag == "/quiz":
-        quiz()
+    #elif tag == "/quiz":
+        #quiz()
     else:
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
@@ -92,11 +92,11 @@ def wiki(args):
     print("URL: " + url)
     return url
 
-def quiz():
-    q = ['1+1=2','When you mix blue and yellow you get?=Green']
-    
-    if not quiz_bool:
-        quiz_bool = True
+#def quiz():
+#    q = ['1+1=2','When you mix blue and yellow you get?=Green']
+#    
+#    if not quiz_bool:
+#        quiz_bool = True
     
 
 def math(args):
