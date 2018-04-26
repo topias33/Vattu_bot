@@ -9,7 +9,7 @@ from nsp import Nsp
 import joke
 
 #when running pass in the token as the first parameter e.g. python file.py token
-TOKEN = sys.argv[0] 
+TOKEN = sys.argv[1] 
 
 def handle(msg):
     time_a = msg['date']
