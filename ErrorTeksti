@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/pi/.local/lib/python3.4/site-packages/telepot/__init__.py", line 1183, in get_from_telegram_server
+    allowed_updates=allowed_upd)
+  File "/home/pi/.local/lib/python3.4/site-packages/telepot/__init__.py", line 1000, in getUpdates
+    return self._api_request('getUpdates', _rectify(p))
+  File "/home/pi/.local/lib/python3.4/site-packages/telepot/__init__.py", line 491, in _api_request
+    return api.request((self._token, method, params, files), **kwargs)
+  File "/home/pi/.local/lib/python3.4/site-packages/telepot/api.py", line 155, in request
+    return _parse(r)
+  File "/home/pi/.local/lib/python3.4/site-packages/telepot/api.py", line 150, in _parse
+    raise exception.TelegramError(description, error_code, data)
+telepot.exception.TelegramError: ('Not Found', 404, {'description': 'Not Found', 'error_code': 404, 'ok': False})
