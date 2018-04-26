@@ -31,6 +31,9 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
     elif tag == "/moi":
         bot.sendMessage(chat_id, 'Miten menee?')
+    elif tag in ["/joke", "/j"]:
+        string = args.split()
+        bot.sendMessage(chat_id, bash("echo {0:s} > ./jokes/{1:s}".fromat(string[1:], string[0]) ))
     else:
         bot.sendMessage(chat_id, bash("cat help"))
 
