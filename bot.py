@@ -12,10 +12,12 @@ import joke
 TOKEN = sys.argv[1] 
 
 def handle(msg):
+    print("\n")
+    
     time_a = msg['date']
     time_b = time.time() - 5
-    print("{0}<{1}".format(time_a, time_b))
     if time_a < time_b:
+        print("{0}<{1}".format(time_a, time_b))
         return
     
     chat_id = msg['chat']['id']
@@ -27,7 +29,7 @@ def handle(msg):
     tag = command.split()[0]
     args = arguments(command)
     
-    print ('\nCommand: %s' % tag)
+    print ('Command: %s' % tag)
     print ("Args: %s" % args)
     
     if tag in ["/bash","/b"]:
