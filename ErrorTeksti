@@ -10,3 +10,35 @@ Traceback (most recent call last):
   File "/home/pi/.local/lib/python3.4/site-packages/telepot/api.py", line 150, in _parse
     raise exception.TelegramError(description, error_code, data)
 telepot.exception.TelegramError: ('Not Found', 404, {'description': 'Not Found', 'error_code': 404, 'ok': False})
+
+
+
+
+
+def     allowed_updates=allowed_updget_from_telegram_server():
+            offset = None  # running offset
+            allowed_upd = allowed_updates
+            while 1:
+                try:
+                    result = self.getUpdates(offset=offset,
+                                             timeout=timeout,
+                                             allowed_updates=allowed_upd)
+
+                    # Once passed, this parameter is no longer needed.
+                    allowed_upd = None
+
+                    if len(result) > 0:
+                        # No sort. Trust server to give messages in correct order.
+                        # Update offset to max(update_id) + 1
+                        offset = max([relay_to_collector(update) for update in result]) + 1
+
+                except exception.BadHTTPResponse as e:
+                    traceback.print_exc()
+
+                    # Servers probably down. Wait longer.
+                    if e.status == 502:
+                        time.sleep(30)
+                except:
+                    traceback.print_exc()
+                finally:
+                    time.sleep(relax)
