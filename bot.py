@@ -84,6 +84,7 @@ def wiki(args):
     search = '_'.join(args[i:])
     
     url = "https://{0:s}.wikipedia.org/wiki/{1:s}".format(language, search)
+    print(url)
 
     fp = urllib.request.urlopen(url)
     mybytes = fp.read()
