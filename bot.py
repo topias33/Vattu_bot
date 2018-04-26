@@ -13,7 +13,7 @@ TOKEN = sys.argv[1]
 
 def handle(msg):
     time_a = msg['date']
-    time_b = time.time()
+    time_b = time.time() - 5
     print("{0}<{1}".format(time_a, time_b))
     if time_a < time_b:
         return
