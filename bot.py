@@ -151,11 +151,11 @@ def arguments(command):
 
 bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
-time.sleep(30)
+
 print ('I am listening...')
 
-while 1:
-     time.sleep(3)
+#while 1:
+     #time.sleep(3)
         
 #https://docs.python.org/3/library/subprocess.html
 #https://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
