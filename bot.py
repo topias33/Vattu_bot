@@ -61,7 +61,28 @@ def joke(args):
         command = "echo {0} > ./jokes/{1}".format(' '.join(args[1:]), args[0])
     return bash(command)
 
-def wiki(args):
+ def wiki(args):
+    if args:
+        args = args.split()
+    else:
+        return "Use /wiki .( en, fi, ru etc. ) Your search\ne.g. /wiki .fi one punch man"
+    
+    i = 0
+    
+    if args[i][0]=='.':
+        language = args[i][1:]
+        i += 1
+    else:
+        language = "en"
+        
+    search = '_'.join(args[i:])
+    
+    url = "https://{0:s}.wikipedia.org/w/index.php?search={1:s}".format(language, search)
+    print(url)
+    return url
+
+ """
+ def wiki(args):
     if args:
         args = args.split()
     else:
@@ -102,8 +123,9 @@ def wiki(args):
     
     if text:
         print(text)
-        return '"' + url + '"\n' + text
+        return text
     return "I Could not find anything from {0:s}".format(url)
+    """
 
 
 def math(args):
