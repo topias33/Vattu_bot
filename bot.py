@@ -7,7 +7,6 @@ import subprocess
 import shlex
 from nsp import Nsp
 import joke
-import time
 #import rpyc
 
 #when running pass in the token as the first parameter e.g. python file.py token
@@ -19,6 +18,12 @@ TOKEN = sys.argv[0]
 #minidom = conn.modules["xml.dom.minidom"]
 
 def handle(msg):
+    time_a = msg['date']
+    time_b = time.time()
+    print("{0}<{1}".format(time_a, time_b))
+    if time_a < time_b:
+        return
+    
     chat_id = msg['chat']['id']
     command = msg['text']
     
