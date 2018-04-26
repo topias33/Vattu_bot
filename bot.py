@@ -31,13 +31,8 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
     elif tag == "/moi":
         bot.sendMessage(chat_id, 'Miten menee?')
-    elif tag in ["/addjoke", "/aj"]:
-        args = args.split()
-        bot.sendMessage(chat_id, bash("echo {0} > ./jokes/{1}".format(''.join(args[1:]), args[0])))
     elif tag in ["/joke", "/j"]:
-        if not args:
-            args = "joke0" #random joke
-        bot.sendMessage(chat_id, bash("cat ./jokes/{0}".format(args)))
+        bot.sendMessage(chat_id, joke(args))
     else:
         bot.sendMessage(chat_id, bash("cat help"))
 
@@ -48,6 +43,17 @@ def bash(args):
         print("Output: %s" % output.replace('\n','\n\t'))
         return output
     return "Done"    
+
+def joke(args):
+    if not args:
+        args = "joke0" #random joke
+        return bash("cat ./jokes/{0}".format(args))
+    args = args.split()
+    if len(args) == 1:
+        command = "cat ./jokes/{0}".format(args)
+    else:
+        command = "echo {0} > ./jokes/{1}".format(' '.join(args[1:]), args[0])
+    return bash(command)
 
 def math(args):
     nsp = Nsp()
