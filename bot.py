@@ -31,7 +31,7 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
     elif tag == "/moi":
         bot.sendMessage(chat_id, 'Miten menee?')
-    elif tag == "What's the time?":
+    elif tag == "/What's the time?":
         bot.sendMessage(chat_id, bash("date"))
     elif tag in ["/joke", "/j"]:
         bot.sendMessage(chat_id, joke(args))
