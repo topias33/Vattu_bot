@@ -62,14 +62,17 @@ def joke(args):
     return bash(command)
 
 def wiki(args):
-    fp = urllib.request.urlopen("https://en.wikipedia.org/wiki/{0}".format(args))
+    url = "https://en.wikipedia.org/wiki/{0}".format(args)
+    fp = urllib.request.urlopen(url)
     mybytes = fp.read()
     content = mybytes.decode("utf8")
     fp.close()
     soup = BeautifulSoup(content, "html.parser")
     text = soup.p.get_text()
-    print (text)
-    return text
+    if text:
+        print (text)
+        return text
+    return url
 
 
 def math(args):
