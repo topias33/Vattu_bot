@@ -6,11 +6,15 @@ import telepot
 import subprocess
 import shlex
 from nsp import Nsp
-from bs4 import BeautifulSoup
-import urllib.request
+import rpyc
 
 #when running pass in the token as the first parameter e.g. python file.py token
 TOKEN = sys.argv[1] 
+
+#connect to mc server using rpyc http://rpyc.readthedocs.io/en/latest/tutorial/tut1.html
+conn = rpyc.classic.connect("localhost", port=25565)
+rsys = conn.modules.sys
+minidom = conn.modules["xml.dom.minidom"]
 
 def handle(msg):
     chat_id = msg['chat']['id']
@@ -39,6 +43,8 @@ def handle(msg):
         bot.sendMessage(chat_id, joke(args))
     elif tag in ["/wiki", "/wikipedia"]:
         bot.sendMessage(chat_id, wiki(args))
+    elif tag == "/mc":
+        print("Hello World!", file=conn.modules.sys.stdout)
     else:
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
