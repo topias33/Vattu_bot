@@ -6,29 +6,15 @@ import telepot
 import subprocess
 import shlex
 from nsp import Nsp
-import joke
-#import rpyc
+from bs4 import BeautifulSoup
+import urllib.request
 
 #when running pass in the token as the first parameter e.g. python file.py token
-TOKEN = sys.argv[0] 
-
-#connect to mc server using rpyc http://rpyc.readthedocs.io/en/latest/tutorial/tut1.html
-#conn = rpyc.classic.connect('localhost', port=25565)
-#rsys = conn.modules.sys
-#minidom = conn.modules["xml.dom.minidom"]
+TOKEN = sys.argv[1] 
 
 def handle(msg):
-    time_a = msg['date']
-    time_b = time.time()
-    print("{0}<{1}".format(time_a, time_b))
-    if time_a < time_b:
-        return
-    
     chat_id = msg['chat']['id']
     command = msg['text']
-    
-    #if quiz_bool:
-    #    print("Quiz is on")
     
     if command[0] is not '/':
         return
@@ -49,45 +35,13 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Miten menee?')
     elif tag == "/time":
         bot.sendMessage(chat_id, bash("date"))
-    elif tag in ["/joke", "/j","/addjoke","/aj","/givejoke",'/gj']:
-        if tag == '/joke' or tag =='/j':
-            jokeee(joke.readrandomJoke())
-        elif tag == '/addjoke' or tag == '/aj':
-            jokeList=joke.makeJoke(args)
-            joke.addJoke(jokeList[1],jokeList[0])
-            bot.sendMessage(chat_id,'Joke has been added')
-        elif tag == '/givejoke' or tag == '/gj':
-            jokeList=joke.readSpecificJoke(args)
-            jokeee(jokeList)
+    elif tag in ["/joke", "/j"]:
+        bot.sendMessage(chat_id, joke(args))
     elif tag in ["/wiki", "/wikipedia"]:
         bot.sendMessage(chat_id, wiki(args))
-    #elif tag == "/mc":
-        #print("Hello World!", file=conn.modules.sys.stdout)
-    #elif tag == "/quiz":
-        #quiz()
     else:
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
-def jokeee(jokeList):
-    jokeName=jokeList[0]
-    jokeJoke=jokeList[1]
-    jokeAwnser=jokeList[2]
-    sleeping=5
-    if jokeName==' ' or jokeName=='noName' or jokeAwnser==None:
-        if jokeName==' ' or jokeName=='noName':
-            bot.sendMessage(chat_id,jokeJoke)
-            time.sleep(sleeping)
-            bot.sendMessage(chat_id,jokeAwnser)
-        elif jokeAwnser==None:
-            joke=jokeName+'\n'+jokeJoke
-            bot.sendMessage(chat_id,joke)
-        else:
-            bot.sendMessage(chat_id,jokeJoke)
-    else:      
-        joke=jokeName+'\n'+jokeJoke
-        time.sleep(sleeping)
-        bot.sendMessage(chat_id,jokeAwnser)
-        
 def bash(args):
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
     if output:
@@ -127,13 +81,6 @@ def wiki(args):
     print("URL: " + url)
     return url
 
-#def quiz():
-#    q = ['1+1=2','When you mix blue and yellow you get?=Green']
-#    
-#    if not quiz_bool:
-#        quiz_bool = True
-    
-
 def math(args):
     nsp = Nsp()
     args = args.replace(' ','')
@@ -155,7 +102,7 @@ bot.message_loop(handle)
 print ('I am listening...')
 
 while 1:
-     time.sleep(10)
+     time.sleep(3)
         
 #https://docs.python.org/3/library/subprocess.html
 #https://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
