@@ -12,7 +12,7 @@ import rpyc
 TOKEN = sys.argv[0] 
 
 #connect to mc server using rpyc http://rpyc.readthedocs.io/en/latest/tutorial/tut1.html
-conn = rpyc.classic.connect("localhost", port=25565)
+conn = rpyc.classic.connect(192.168.1.83, port=25565)
 rsys = conn.modules.sys
 minidom = conn.modules["xml.dom.minidom"]
 
