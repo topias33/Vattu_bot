@@ -6,7 +6,8 @@ import telepot
 import subprocess
 import shlex
 from nsp import Nsp
-import re
+from bs4 import BeautifulSoup
+import urllib.request
 
 #when running pass in the token as the first parameter e.g. python file.py token
 TOKEN = sys.argv[1] 
@@ -36,8 +37,8 @@ def handle(msg):
         bot.sendMessage(chat_id, bash("date"))
     elif tag in ["/joke", "/j"]:
         bot.sendMessage(chat_id, joke(args))
-    #elif tag in ["/wiki", "/wikipedia"]:
-        #bot.sendMessage(chat_id, wiki(args))
+    elif tag in ["/wiki", "/wikipedia"]:
+        bot.sendMessage(chat_id, wiki(args))
     else:
         bot.sendMessage(chat_id, bash("cat help"))
 
@@ -59,8 +60,17 @@ def joke(args):
     else:
         command = "echo {0} > ./jokes/{1}".format(' '.join(args[1:]), args[0])
     return bash(command)
-#def wiki(args):
-    
+
+def wiki(args):
+    fp = urllib.request.urlopen("https://en.wikipedia.org/wiki/{0}".format(args))
+    mybytes = fp.read()
+    content = mybytes.decode("utf8")
+    fp.close()
+    soup = BeautifulSoup(content, "html.parser")
+    text = soup.p.get_text()
+    print (text)
+    return text
+
 
 def math(args):
     nsp = Nsp()
