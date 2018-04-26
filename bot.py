@@ -71,13 +71,13 @@ def wiki(args):
     
     if args[i][0]=='.':
         language = args[i]
-        i++
+        i += 1
     else:
         language = "en"
     
     if args[i][0]=='+':
         lines = int(args[i])
-        i++
+        i += 1
     else:
         lines = 1
         
