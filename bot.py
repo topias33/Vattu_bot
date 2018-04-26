@@ -69,6 +69,7 @@ def wiki(args):
     fp.close()
     soup = BeautifulSoup(content, "html.parser")
     text = soup.p.get_text()
+    print(url)
     if text:
         print (text)
         return text
