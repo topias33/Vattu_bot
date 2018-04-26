@@ -38,8 +38,7 @@ def handle(msg):
     elif tag in ["/joke", "/j"]:
         bot.sendMessage(chat_id, joke(args))
     elif tag in ["/wiki", "/wikipedia"]:
-        wiki(args)
-        #bot.sendMessage(chat_id, wiki(args))
+        bot.sendMessage(chat_id, wiki(args))
     else:
         bot.sendMessage(chat_id, bash("cat help"))
 
