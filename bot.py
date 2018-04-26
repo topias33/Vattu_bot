@@ -40,7 +40,7 @@ def handle(msg):
     elif tag in ["/wiki", "/wikipedia"]:
         bot.sendMessage(chat_id, wiki(args))
     else:
-        bot.sendMessage(chat_id, bash("cat help"))
+        bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
 def bash(args):
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
@@ -65,7 +65,7 @@ def wiki(args):
     if args:
         args = args.split()
     else:
-        return "Use /wiki .( en, fi, ru etc. ) Your search\ne.g. /wiki .fi one punch man"
+        return "Use /wiki ( .en, .fi, .ru etc. ) Your search\ne.g. /wiki .fi one punch man"
     
     i = 0
     
@@ -78,7 +78,7 @@ def wiki(args):
     search = '_'.join(args[i:])
     
     url = "https://{0:s}.wikipedia.org/w/index.php?search={1:s}".format(language, search)
-    print(url)
+    print("URL: " + url)
     return url
 
 def math(args):
