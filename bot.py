@@ -9,7 +9,7 @@ from nsp import Nsp
 import rpyc
 
 #when running pass in the token as the first parameter e.g. python file.py token
-TOKEN = sys.argv[1] 
+TOKEN = sys.argv[0] 
 
 #connect to mc server using rpyc http://rpyc.readthedocs.io/en/latest/tutorial/tut1.html
 conn = rpyc.classic.connect("localhost", port=25565)
