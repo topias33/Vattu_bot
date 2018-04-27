@@ -129,21 +129,21 @@ def bash_joke(args):
     files = file.split('\n')
     temp = args.partition(' . ')
     args = temp[0].upper()+temp[1]+temp[2]
-    args_list = args.split()
     joke = ''
     if not args:
         shuffle(files)
         joke = files[0]
     else:
+        name = args.split(' . ', 1)[0]
         for line in files:
-            if line.split(' . ', 1)[0] == args_list[0]:
+            if line.split(' . ', 1)[0] == name:
                 joke = line
                 break
-        if len(args_list) == 1:
+        if ' . ' not in args:
             if not joke:
                 return 'There is no joke of that name.', ''
         else:
-            if joke.split(' . ', 1)[0] == args_list[0]:
+            if joke.split(' . ', 1)[0] == name:
                 return 'Name is allready in use.', ''
             print(add_to_file('jokes.txt', [args]))
             return 'done', ''
