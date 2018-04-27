@@ -29,10 +29,10 @@ def handle(msg):
     global quiz_bool
     if quiz_bool and command[0] is not '/':
         if quiz.quiz_check(command):
-            bot.sendMessage(chat_id, command + 'is correct')
+            bot.sendMessage(chat_id, command + ' is correct')
             quiz_game(chat_id)
         else:
-            bot.sendMessage(chat_id, command + 'is wrong')
+            bot.sendMessage(chat_id, command + ' is wrong')
     
     if command[0] is not '/':
         return
@@ -69,6 +69,7 @@ def handle(msg):
         quiz_bool = not quiz_bool
         if quiz_bool:
             quiz.quiz_start(args)
+            time.sleep(3)
             quiz_game(chat_id)
     else:
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
