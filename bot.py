@@ -16,6 +16,8 @@ quiz_bool = False
 
 def handle(msg):
     print("\n")
+    jokeX=joke.readrandomJoke()
+    print(jokeX)
     
     chat_id = msg['chat']['id']
     command = msg['text']
