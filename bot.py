@@ -148,6 +148,7 @@ def arguments(command):
     return args
 
 def quiz_game(chat_id):
+    global quiz_bool
     next = quiz.quiz_next()
     if next:
         bot.sendMessage(chat_id, next)
