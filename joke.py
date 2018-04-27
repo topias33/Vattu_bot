@@ -121,7 +121,7 @@ def giveJoke(line):
 
 def readrandomJoke():
     try:
-        from bot import bash
+        import bot
         file=bash('cat ~/vattu/jokes.txt')
         filelist=file.split('\n')
         
