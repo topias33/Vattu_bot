@@ -162,6 +162,7 @@ def add_to_file(filename, content_list=[], path='~/vattu/', gap='\n'):
         file = gap.join(content_list)
         msg = 'New file created.'
     else:
+        bash('rm '+path+filename) #remove old file
         files = file.split(gap)
         files.append(content_list)
         file = gap.join(files)
