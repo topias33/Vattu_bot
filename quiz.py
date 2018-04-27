@@ -10,7 +10,7 @@ def quiz_start(amount = 1):
     global game_questions, i
     try:
         amount = int(amount)
-    expect:
+    expect e:
         amount = 1
     game_questions = questions[:amount]
     i = 0
