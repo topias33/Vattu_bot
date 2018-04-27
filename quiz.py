@@ -5,6 +5,7 @@ i = 0
 answer = ''
 
 def quiz_start(questions, amount = 1):
+    questions = questions.split('\n')
     shuffle(questions)
     global game_questions, i
     try:
