@@ -11,7 +11,7 @@ import joke
 #when running pass in the token as the first parameter e.g. python file.py token
 TOKEN = sys.argv[1] 
 
-quiz_pool = False
+quiz_bool = False
 
 def handle(msg):
     print("\n")
