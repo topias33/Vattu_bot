@@ -8,6 +8,7 @@ import shlex
 from nsp import Nsp
 import joke
 import quiz
+from random import shuffle
 
 #when running pass in the token as the first parameter e.g. python file.py token
 TOKEN = sys.argv[1] 
@@ -16,7 +17,6 @@ quiz_bool = False
 
 def handle(msg):
     print("\n")
-    
     
     chat_id = msg['chat']['id']
     command = msg['text']
@@ -54,6 +54,8 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Miten menee?')
     elif tag == "/time":
         bot.sendMessage(chat_id, bash("date"))
+    elif tag in ['/bashjoke','/bjoke','/bj']:
+        bot.sendMessage(chat_id, bash_joke(args))
     elif tag in ["/joke", "/j","/addjoke","/aj","/givejoke",'/gj']:
         if tag == '/joke' or tag =='/j':
             jokeX=joke.readrandomJoke()
@@ -117,16 +119,29 @@ def bash(args):
         return output
     return "Done"    
 
-def joke_bash(args):
+def bash_joke(args):
+    file = read_file('jokes.txt')
+    files = file.split('\n')
+    args_list = args.split()
+    joke = ''
     if not args:
-        args = "joke0" #random joke
-        return bash("cat ./jokes/{0}".format(args))
-    args = args.split()
-    if len(args) == 1:
-        command = "cat ./jokes/{0}".format(args[0])
+        shuffle(files)
+        joke = files[0]
     else:
-        command = "echo {0} > ./jokes/{1}".format(' '.join(args[1:]), args[0])
-    return bash(command)
+        for line in files:
+            if line.split(' . ', 1)[0] == args_list[0]:
+                joke = line
+                break
+        if len(args_list) == 1:
+            if not joke:
+                return 'There is no joke of that name.'
+        else:
+            if joke == args_list[0]:
+                return 'Name is allready in use.'
+            add_to_file('jokes.txt', args)
+            return 'done'
+    joke, answer = joke.sub('\n', ' . ', 1).rsplit(' : ', 1)
+    return joke, answer
 
 def read_file(filename, path='~/vattu/'):
     return bash('cat '+path+filename)
