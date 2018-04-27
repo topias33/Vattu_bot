@@ -78,7 +78,7 @@ def handle(msg):
         quiz_bool = not quiz_bool
         if quiz_bool:
             print('quiz starts')
-            quiz.quiz_start(args)
+            quiz.quiz_start(read_file('quiz_questions'), args)
             next = quiz.quiz_next()
             if next:
                 bot.sendMessage(chat_id, next)
