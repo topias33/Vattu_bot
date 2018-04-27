@@ -167,7 +167,7 @@ def add_to_file(filename, content_list=[], path='~/vattu/', gap='\n'):
         files.append(content_list)
         file = gap.join(files)
         msg = 'File modified.'
-    output = bash('echo '+file+' > '+path+filename, False)    
+    output = bash('echo "'+file+'" > '+path+filename, False)    
     return output, msg   
     
 def wiki(args):
