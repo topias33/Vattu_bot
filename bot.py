@@ -140,8 +140,11 @@ def bash_joke(args):
                 return 'Name is allready in use.'
             add_to_file('jokes.txt', args)
             return 'done'
-    joke, answer = joke.replace(' . ', '\n', 1).rsplit(' : ', 1)
-    return joke, answer
+    joke_list = joke.replace(' . ', '\n', 1).rsplit(' : ', 1)
+    joke = joke_list[0]
+    if len(joke_list) > 1:
+        return joke, joke_list[1]
+    return joke, ''
 
 def read_file(filename, path='~/vattu/'):
     return bash('cat '+path+filename)
