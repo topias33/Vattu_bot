@@ -7,7 +7,7 @@ save_path= 'C:/example/'
 def addJoke(joke,name='noName'):
     
     
-    file = open('jokes.txt','a')
+    file = open('~/vattu/jokes.txt','a')
     file.write('\n'+name+' . '+joke)
     
     file.close()
@@ -37,7 +37,7 @@ def removeSpace(string,position,seperator):
         kpl+=1
     return newS
 def readSpecificJoke(jokeName):
-    file=open('jokes.txt','r')
+    file=open('~/vattu/jokes.txt','r')
     filelist=file.read().split('\n')
     line=0
     for i in filelist:
@@ -85,7 +85,7 @@ def makeJoke(joke):
     listOfjoke=[nameJoke,shownJoke,jokeAnwser] 
     return listOfjoke    
 def giveJoke(line):
-    file=open('jokes.txt','r')
+    file=open('~/vattu/jokes.txt','r')
     filelist=file.read().split('\n')
     
     if not filelist[0]:
@@ -119,7 +119,7 @@ def giveJoke(line):
     return listOfjoke    
 def readrandomJoke():
     try:
-        file=open('jokes.txt','r')
+        file=open('~/vattu/jokes.txt','r')
         filelist=file.read().split('\n')
         
         if not filelist[0]:
@@ -133,7 +133,7 @@ def readrandomJoke():
             
             return listOfjoke
     except:
-        file=open('jokes.txt','a')
+        file=open('~/vattu/jokes.txt','a')
         file.close()
         print("There wasn't jokes.txt so I made it")
         
