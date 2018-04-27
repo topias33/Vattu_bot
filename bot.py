@@ -61,7 +61,7 @@ def handle(msg):
     elif tag in ["/wiki", "/wikipedia"]:
         bot.sendMessage(chat_id, wiki(args))
     elif tag == '/quiz':
-        quiz_bool = !quiz_bool
+        quiz_bool = not quiz_bool
     else:
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
