@@ -23,8 +23,10 @@ def handle(msg):
     
     global quiz_bool
     if quiz_bool and command[0] is not '/':
-        if quiz.quiz_check(command):
-            bot.sendMessage(chat_id, command + ' is correct')
+        skip = command.lower() in ['skip']
+        if quiz.quiz_check(command) or skip:
+            if not skip:
+                bot.sendMessage(chat_id, command + ' is correct')
             next = quiz.quiz_next()
             if next:
                 bot.sendMessage(chat_id, next)
@@ -32,7 +34,7 @@ def handle(msg):
                 quiz_bool = False
                 print('quiz ends')
                 bot.sendMessage(chat_id, 'Quiz has ended.')
-        else:
+       else:
             bot.sendMessage(chat_id, command + ' is Incorrect')
     
     if command[0] is not '/':
