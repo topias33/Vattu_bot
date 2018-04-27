@@ -32,7 +32,7 @@ def handle(msg):
             bot.sendMessage(chat_id, command + ' is correct')
             quiz_game(chat_id)
         else:
-            bot.sendMessage(chat_id, command + ' is wrong')
+            bot.sendMessage(chat_id, command + ' is Incorrect')
     
     if command[0] is not '/':
         return
