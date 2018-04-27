@@ -18,7 +18,7 @@ def handle(msg):
     print("\n")
     
     time_a = msg['date']
-    time_b = time.time() - 5
+    time_b = time.time() - 100
     if time_a < time_b:
         print("{0}<{1}".format(time_a, time_b))
         return
