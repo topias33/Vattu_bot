@@ -8,6 +8,10 @@ def quiz_start(amount = 1):
     questions = ['1 + 1=>2','What do you get when you mix blue and yellow?=>green'] #test
     shuffle(questions)
     global game_questions, i
+    try:
+        amount = int(amount)
+    expect:
+        amount = 1
     game_questions = questions[:amount]
     i = 0
 
