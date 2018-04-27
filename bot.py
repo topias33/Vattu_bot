@@ -145,7 +145,7 @@ def bash_joke(args):
         else:
             if joke.split(' . ', 1)[0] == args_list[0]:
                 return 'Name is allready in use.', ''
-            add_to_file('jokes.txt', args)
+            print(add_to_file('jokes.txt', [args]))
             return 'done', ''
     joke_list = joke.replace(' . ', '\n', 1).rsplit(' : ', 1)
     joke = joke_list[0]
@@ -159,15 +159,13 @@ def read_file(filename, path='~/vattu/'):
 def add_to_file(filename, content_list=[], path='~/vattu/', gap='\n'):
     file = read_file(filename, path=path)
     if not file:
-        file = gap.join(content_list)
+        content = gap.join(content_list)
         msg = 'New file created.'
+        output = bash('echo -n "'+content+'" > '+path+filename, False)
     else:
-        bash('rm '+path+filename) #remove old file
-        files = file.split(gap)
-        files.append(content_list)
-        file = gap.join(files)
+        content = gap.join(content_list)
         msg = 'File modified.'
-    output = bash('echo "'+file+'" > '+path+filename, False)    
+        output = bash('echo -n "'+content+'" >> '+path+filename, False)    
     return output, msg   
     
 def wiki(args):
