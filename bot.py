@@ -7,7 +7,7 @@ import subprocess
 import shlex
 from nsp import Nsp
 import joke
-import quiz_game
+import quiz
 
 #when running pass in the token as the first parameter e.g. python file.py token
 TOKEN = sys.argv[1] 
@@ -27,8 +27,17 @@ def handle(msg):
     command = msg['text']
     
     global quiz_bool
-    if quiz_bool:
-        print(command)
+    if quiz_bool and command[0] is not '/':
+        if quiz.quiz_check(command):
+            bot.sendMessage(chat_id, command + 'is correct')
+            next = quiz.quiz_next()
+            if next:
+                bot.sendMessage(chat_id, next)
+            else:
+                quiz_bool = False
+                bot.sendMessage(chat_id, 'Quiz has ended.')
+        else:
+            bot.sendMessage(chat_id, command + 'is wrong')
     
     if command[0] is not '/':
         return
@@ -63,7 +72,8 @@ def handle(msg):
         bot.sendMessage(chat_id, wiki(args))
     elif tag == '/quiz':
         quiz_bool = not quiz_bool
-        quiz_game.quiz()
+        if quiz_bool:
+            quiz.quiz_start(args)
     else:
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
@@ -147,7 +157,7 @@ bot.message_loop(handle)
 print ('I am listening...')
 
 while 1:
-     time.sleep(10)
+    time.sleep(10)
         
 #https://docs.python.org/3/library/subprocess.html
 #https://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
