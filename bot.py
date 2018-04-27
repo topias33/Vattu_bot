@@ -110,7 +110,7 @@ def bash(args):
         print("Output: %s" % output.replace('\n','\n\t'))
         return output
     return "Done"    
-    
+'''    
 def joke(args):
     if not args:
         args = "joke0" #random joke
@@ -121,7 +121,7 @@ def joke(args):
     else:
         command = "echo {0} > ./jokes/{1}".format(' '.join(args[1:]), args[0])
     return bash(command)
-
+'''
 def wiki(args):
     if args:
         args = args.split()
