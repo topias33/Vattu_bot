@@ -35,6 +35,7 @@ def handle(msg):
                 bot.sendMessage(chat_id, next)
             else:
                 quiz_bool = False
+                print('quiz ends')
                 bot.sendMessage(chat_id, 'Quiz has ended.')
         else:
             bot.sendMessage(chat_id, command + ' is Incorrect')
@@ -73,6 +74,7 @@ def handle(msg):
     elif tag == '/quiz':
         quiz_bool = not quiz_bool
         if quiz_bool:
+            print('quiz starts')
             quiz.quiz_start(args)
             next = quiz.quiz_next()
             if next:
@@ -80,7 +82,11 @@ def handle(msg):
             else:
                 quiz_bool = False
                 bot.sendMessage(chat_id, 'Quiz has ended.')
+         else:
+            print('quiz ends')
+            bot.sendMessage(chat_id, 'Quiz has ended.')
     else:
+        print('quiz ends')
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
 def jokeee(jokeList):
