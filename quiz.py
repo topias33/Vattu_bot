@@ -1,4 +1,5 @@
 from random import shuffle
+import string
 
 game_questions = []
 i = 0
@@ -20,7 +21,7 @@ def quiz_next():
     if i < len(game_questions):
         question, answer = game_questions[i].rsplit('?',1)
         i += 1
-        return question
+        return question+'?'
     return ''
 
 def quiz_check(guess):
