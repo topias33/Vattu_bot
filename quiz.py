@@ -1,11 +1,22 @@
 from random import shuffle
 
-def quiz_start(amount = 1):
-    q = ['1 + 1=2','What do you get when you mix blue and yellow?=green'] #test
-    
-    shuffle(q)
-    
-    q = q[:amount]
+game_questions = []
+i = 0
+answer = ''
 
-def quiz_game():
-    
+def quiz_start(amount = 1):
+    questions = ['1 + 1=>2','What do you get when you mix blue and yellow?=>green'] #test
+    shuffle(questions)
+    global game_questions, i
+    game_questions = questions[:amount]
+    i = 0
+
+def quiz_next():
+    global game_questions, i, answer
+    question, answer = game_guestions[i].rsplit('=>',1)
+    i += 1
+    return question
+
+def quiz_check(guess):
+    quess = quess.lower()
+    return quess == answer
