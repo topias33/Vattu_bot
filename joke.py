@@ -119,7 +119,7 @@ def giveJoke(line):
     return listOfjoke    
 def readrandomJoke():
     try:
-        file=open('~/vattu/jokes.txt','r')
+        file=bash('cat ~/vattu/jokes.txt')
         filelist=file.read().split('\n')
         
         if not filelist[0]:
