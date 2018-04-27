@@ -115,11 +115,12 @@ def jokeee(jokeList):
         time.sleep(sleeping)
         bot.sendMessage(chat_id,jokeAwnser)
         
-def bash(args):
+def bash(args, output_bool=True):
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
     if output:
         output = str(output, 'utf8')
-        print("Output: %s" % output.replace('\n','\n\t'))
+        if output_bool:
+            print("Output: %s" % output.replace('\n','\n\t'))
         return output
     return "Done"    
 
@@ -151,7 +152,7 @@ def bash_joke(args):
     return joke, ''
 
 def read_file(filename, path='~/vattu/'):
-    return bash('cat '+path+filename)
+    return bash('cat '+path+filename, False)
 
 def add_to_file(filename, content_list=[], path='~/vattu/', gap='\n'):
     file = read_file(filename, path=path)
@@ -163,7 +164,7 @@ def add_to_file(filename, content_list=[], path='~/vattu/', gap='\n'):
         files.append(content_list)
         file = gap.join(files)
         msg = 'File modified.'
-    output = bash('echo '+file+' > '+path+filename)    
+    output = bash('echo '+file+' > '+path+filename, False)    
     return output, msg   
     
 def wiki(args):
