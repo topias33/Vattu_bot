@@ -118,10 +118,11 @@ def giveJoke(line):
     
     listOfjoke=[nameJoke,shownJoke,jokeAnwser] 
     return listOfjoke    
+
 def readrandomJoke():
     try:
         file=bash('cat ~/vattu/jokes.txt')
-        filelist=file.read().split('\n')
+        filelist=file.split('\n')
         
         if not filelist[0]:
             filelist.pop(0)
