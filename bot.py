@@ -55,7 +55,9 @@ def handle(msg):
         bot.sendMessage(chat_id, bash("date"))
     elif tag in ["/joke", "/j","/addjoke","/aj","/givejoke",'/gj']:
         if tag == '/joke' or tag =='/j':
-            jokeee(joke.readrandomJoke())
+            jokeX=joke.readrandomJoke()
+            print(jokeX)
+            jokeee(jokeX)
         elif tag == '/addjoke' or tag == '/aj':
             jokeList=joke.makeJoke(args)
             joke.addJoke(jokeList[1],jokeList[0])
