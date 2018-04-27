@@ -25,7 +25,7 @@ def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
     
-    Global quiz_bool
+    global quiz_bool
     if quiz_bool:
         print(command)
     
