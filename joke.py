@@ -2,6 +2,7 @@
     
 #import os.path
 import random
+from bot import bash
 save_path= 'C:/example/'
 
 def addJoke(joke,name='noName'):
