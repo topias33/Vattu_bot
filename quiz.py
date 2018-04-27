@@ -18,11 +18,13 @@ def quiz_start(questions, amount = 1):
 def quiz_next():
     global game_questions, i, answer
     if i < len(game_questions):
-        question, answer = game_questions[i].rsplit('=>',1)
+        question, answer = game_questions[i].rsplit('?',1)
         i += 1
         return question
     return ''
 
 def quiz_check(guess):
-    guess = guess.lower()
+    whitelist = string.letters + string.digits + ' '
+    answer = ''.join(char for char in answer if char in whitelist).lower()
+    guess = ''.join(char for char in guess if char in whitelist).lower()
     return guess == answer
