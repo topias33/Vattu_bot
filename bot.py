@@ -116,8 +116,8 @@ def bash(args):
         print("Output: %s" % output.replace('\n','\n\t'))
         return output
     return "Done"    
-'''    
-def joke(args):
+
+def joke_bash(args):
     if not args:
         args = "joke0" #random joke
         return bash("cat ./jokes/{0}".format(args))
@@ -127,7 +127,23 @@ def joke(args):
     else:
         command = "echo {0} > ./jokes/{1}".format(' '.join(args[1:]), args[0])
     return bash(command)
-'''
+
+def read_file(filename, path='~/vattu/'):
+    return bash('cat '+path+filename)
+
+def add_to_file(filename, content_list=[], path='~/vattu/', gap='\n'):
+    file = read_file(filename, path=path)
+    if not file:
+        file = gap.join(content_list)
+        msg = 'New file created.'
+    else:
+        files = file.split(gap)
+        files.append(content_list)
+        file = gap.join(files)
+        msg = 'File modified.'
+    output = bash('echo '+file+' > '+path+filename)    
+    return output, msg   
+    
 def wiki(args):
     if args:
         args = args.split()
