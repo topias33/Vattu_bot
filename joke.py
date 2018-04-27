@@ -2,7 +2,7 @@
     
 #import os.path
 import random
-from bot import bash
+
 save_path= 'C:/example/'
 
 def addJoke(joke,name='noName'):
@@ -121,6 +121,7 @@ def giveJoke(line):
 
 def readrandomJoke():
     try:
+        from bot import bash
         file=bash('cat ~/vattu/jokes.txt')
         filelist=file.split('\n')
         
