@@ -1,14 +1,14 @@
-
-    
 #import os.path
 import random
+import os
 
+file_path=os.path.exists('jokes.txt')
 save_path= 'C:/example/'
 
 def addJoke(joke,name='noName'):
     
     
-    file = open('~/vattu/jokes.txt','a')
+    file = open(file_path,'a')
     file.write('\n'+name+' . '+joke)
     
     file.close()
@@ -38,7 +38,7 @@ def removeSpace(string,position,seperator):
         kpl+=1
     return newS
 def readSpecificJoke(jokeName):
-    file=open('~/vattu/jokes.txt','r')
+    file=open(file_path,'r')
     filelist=file.read().split('\n')
     line=0
     for i in filelist:
@@ -59,7 +59,6 @@ def readSpecificJoke(jokeName):
                 
         line+=1  
 def makeJoke(joke):
-    joke
     dotPosition=joke.find('.')
     jokeAnswer=False
     if joke.find(':')>0:
@@ -86,7 +85,7 @@ def makeJoke(joke):
     listOfjoke=[nameJoke,shownJoke,jokeAnwser] 
     return listOfjoke    
 def giveJoke(line):
-    file=open('~/vattu/jokes.txt','r')
+    file=open(file_path,'r')
     filelist=file.read().split('\n')
     
     if not filelist[0]:
@@ -118,12 +117,10 @@ def giveJoke(line):
     
     listOfjoke=[nameJoke,shownJoke,jokeAnwser] 
     return listOfjoke    
-
 def readrandomJoke():
     try:
-        import bot
-        file=bash('cat ~/vattu/jokes.txt')
-        filelist=file.split('\n')
+        file=open(file_path,'r')
+        filelist=file.read().split('\n')
         
         if not filelist[0]:
             filelist.pop(0)
@@ -136,7 +133,7 @@ def readrandomJoke():
             
             return listOfjoke
     except:
-        file=open('~/vattu/jokes.txt','a')
+        file=open('jokes.txt','a')
         file.close()
         print("There wasn't jokes.txt so I made it")
         
