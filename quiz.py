@@ -24,5 +24,5 @@ def quiz_next():
     return ''
 
 def quiz_check(guess):
-    quess = quess.lower()
-    return quess == answer
+    guess = guess.lower()
+    return guess == answer
