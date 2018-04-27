@@ -4,8 +4,7 @@ game_questions = []
 i = 0
 answer = ''
 
-def quiz_start(amount = 1):
-    questions = ['1 + 1=>2','What do you get when you mix blue and yellow?=>green'] #test
+def quiz_start(questions, amount = 1):
     shuffle(questions)
     global game_questions, i
     try:
