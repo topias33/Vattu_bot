@@ -7,6 +7,7 @@ import subprocess
 import shlex
 from nsp import Nsp
 import joke
+import random
 
 #when running pass in the token as the first parameter e.g. python file.py token
 TOKEN = sys.argv[1] 
@@ -61,7 +62,7 @@ def handle(msg):
     elif tag in ["/wiki", "/wikipedia"]:
         bot.sendMessage(chat_id, wiki(args))
     elif tag == '/quiz':
-        quiz_bool = not quiz_bool
+        quiz()
     else:
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
@@ -92,7 +93,7 @@ def bash(args):
         print("Output: %s" % output.replace('\n','\n\t'))
         return output
     return "Done"    
-
+    
 def joke(args):
     if not args:
         args = "joke0" #random joke
