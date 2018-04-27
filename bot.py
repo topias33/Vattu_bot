@@ -16,8 +16,7 @@ quiz_bool = False
 
 def handle(msg):
     print("\n")
-    jokeX=joke.readrandomJoke()
-    print(jokeX)
+    
     
     chat_id = msg['chat']['id']
     command = msg['text']
@@ -58,7 +57,7 @@ def handle(msg):
     elif tag in ["/joke", "/j","/addjoke","/aj","/givejoke",'/gj']:
         if tag == '/joke' or tag =='/j':
             jokeX=joke.readrandomJoke()
-            print(jokeX)
+            bot.sendMessage(chat_id,jokeX)
             jokeee(jokeX)
         elif tag == '/addjoke' or tag == '/aj':
             jokeList=joke.makeJoke(args)
