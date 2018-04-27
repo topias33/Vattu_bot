@@ -128,6 +128,8 @@ def bash_joke(args):
     file = read_file('jokes.txt')
     files = file.split('\n')
     args_list = args.split()
+    temp = args.partition(' . ', 1)
+    args = temp[0].upper()+temp[1]+temp[2]
     joke = ''
     if not args:
         shuffle(files)
@@ -139,12 +141,12 @@ def bash_joke(args):
                 break
         if len(args_list) == 1:
             if not joke:
-                return 'There is no joke of that name.'
+                return 'There is no joke of that name.', ''
         else:
-            if joke == args_list[0]:
-                return 'Name is allready in use.'
+            if joke.split(' . ', 1)[0] == args_list[0]:
+                return 'Name is allready in use.', ''
             add_to_file('jokes.txt', args)
-            return 'done'
+            return 'done', ''
     joke_list = joke.replace(' . ', '\n', 1).rsplit(' : ', 1)
     joke = joke_list[0]
     if len(joke_list) > 1:
