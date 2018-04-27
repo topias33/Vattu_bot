@@ -58,7 +58,7 @@ def handle(msg):
         joke, answer = bash_joke(args)
         bot.sendMessage(chat_id, joke)
         if answer:
-            time.sleep(10)
+            time.sleep(3)
             bot.sendMessage(chat_id, answer)
     elif tag in ["/joke", "/j","/addjoke","/aj","/givejoke",'/gj']:
         if tag == '/joke' or tag =='/j':
