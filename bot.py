@@ -84,6 +84,9 @@ def handle(msg):
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
 def jokeee(jokeList):
+    print(jokeList)
+    if not jokeList:
+        return
     jokeName=jokeList[0]
     jokeJoke=jokeList[1]
     jokeAwnser=jokeList[2]
