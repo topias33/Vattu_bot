@@ -30,12 +30,7 @@ def handle(msg):
     if quiz_bool and command[0] is not '/':
         if quiz.quiz_check(command):
             bot.sendMessage(chat_id, command + 'is correct')
-            next = quiz.quiz_next()
-            if next:
-                bot.sendMessage(chat_id, next)
-            else:
-                quiz_bool = False
-                bot.sendMessage(chat_id, 'Quiz has ended.')
+            quiz_game(chat_id)
         else:
             bot.sendMessage(chat_id, command + 'is wrong')
     
@@ -74,6 +69,7 @@ def handle(msg):
         quiz_bool = not quiz_bool
         if quiz_bool:
             quiz.quiz_start(args)
+            quiz_game(chat_id)
     else:
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
@@ -149,6 +145,14 @@ def arguments(command):
     args.pop(0) # .pop(0) removes ex. '/bash'
     args = ' '.join(args)
     return args
+
+def quiz_game(chat_id):
+    next = quiz.quiz_next()
+    if next:
+        bot.sendMessage(chat_id, next)
+    else:
+        quiz_bool = False
+        bot.sendMessage(chat_id, 'Quiz has ended.')
             
 
 bot = telepot.Bot(TOKEN)
