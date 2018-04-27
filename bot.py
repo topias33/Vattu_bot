@@ -127,9 +127,9 @@ def bash(args, output_bool=True):
 def bash_joke(args):
     file = read_file('jokes.txt')
     files = file.split('\n')
-    args_list = args.split()
     temp = args.partition(' . ', 1)
     args = temp[0].upper()+temp[1]+temp[2]
+    args_list = args.split()
     joke = ''
     if not args:
         shuffle(files)
