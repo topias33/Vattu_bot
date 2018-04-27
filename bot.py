@@ -55,7 +55,12 @@ def handle(msg):
     elif tag == "/time":
         bot.sendMessage(chat_id, bash("date"))
     elif tag in ['/bashjoke','/bjoke','/bj']:
-        bot.sendMessage(chat_id, bash_joke(args))
+        print(bash_joke(args))
+        '''
+        bot.sendMessage(chat_id, joke)
+        time.sleep(10)
+        bot.sendMessage(chat_id, answer)
+        '''
     elif tag in ["/joke", "/j","/addjoke","/aj","/givejoke",'/gj']:
         if tag == '/joke' or tag =='/j':
             jokeX=joke.readrandomJoke()
