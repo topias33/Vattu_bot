@@ -2,8 +2,8 @@
 import random
 import os
 
-file_path=os.path.exists('jokes.txt')
-save_path= 'C:/example/'
+file_path=os.path.exists('/home/pi/vattu/jokes.txt')
+
 
 def addJoke(joke,name='noName'):
     
@@ -133,7 +133,7 @@ def readrandomJoke():
             
             return listOfjoke
     except:
-        file=open('jokes.txt','a')
+        file=open(file_path,'a')
         file.close()
         print("There wasn't jokes.txt so I made it")
         
