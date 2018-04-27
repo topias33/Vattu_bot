@@ -7,7 +7,7 @@ import subprocess
 import shlex
 from nsp import Nsp
 import joke
-import random
+import quiz_game
 
 #when running pass in the token as the first parameter e.g. python file.py token
 TOKEN = sys.argv[1] 
@@ -62,7 +62,8 @@ def handle(msg):
     elif tag in ["/wiki", "/wikipedia"]:
         bot.sendMessage(chat_id, wiki(args))
     elif tag == '/quiz':
-        quiz()
+        quiz_bool = not quiz_bool
+        quiz_game.quiz()
     else:
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
