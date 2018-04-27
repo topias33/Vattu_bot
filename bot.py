@@ -88,8 +88,8 @@ def jokeee(jokeList):
     jokeJoke=jokeList[1]
     jokeAwnser=jokeList[2]
     sleeping=5
-    if jokeName==' ' or jokeName=='noName' or jokeAwnser==None:
-        if jokeName==' ' or jokeName=='noName':
+    if jokeName or jokeName=='noName' or jokeAwnser==None:
+        if jokeName or jokeName=='noName':
             bot.sendMessage(chat_id,jokeJoke)
             time.sleep(sleeping)
             bot.sendMessage(chat_id,jokeAwnser)
