@@ -76,7 +76,7 @@ def handle(msg):
             else:
                 quiz_bool = False
                 bot.sendMessage(chat_id, 'Quiz has ended.')
-         else:
+        else:
             print('quiz ends')
             bot.sendMessage(chat_id, 'Quiz has ended.')
     else:
