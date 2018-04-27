@@ -75,11 +75,11 @@ def handle(msg):
         if quiz_bool:
             quiz.quiz_start(args)
             next = quiz.quiz_next()
-        if next:
-            bot.sendMessage(chat_id, next)
-        else:
-            quiz_bool = False
-            bot.sendMessage(chat_id, 'Quiz has ended.')
+            if next:
+                bot.sendMessage(chat_id, next)
+            else:
+                quiz_bool = False
+                bot.sendMessage(chat_id, 'Quiz has ended.')
     else:
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
 
