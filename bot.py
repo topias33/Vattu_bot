@@ -10,7 +10,7 @@ import joke
 import quiz
 from random import shuffle
 
-#when running pass in the token as the first parameter e.g. python file.py token
+#when running pass in the token as the first parameter e.g. python3.4 file.py token
 TOKEN = sys.argv[1] 
 
 quiz_bool = False
@@ -140,7 +140,7 @@ def bash_joke(args):
                 return 'Name is allready in use.'
             add_to_file('jokes.txt', args)
             return 'done'
-    joke, answer = joke.sub('\n', ' . ', 1).rsplit(' : ', 1)
+    joke, answer = joke.replace(' . ', '\n', 1).rsplit(' : ', 1)
     return joke, answer
 
 def read_file(filename, path='~/vattu/'):
