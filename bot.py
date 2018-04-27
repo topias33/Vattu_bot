@@ -37,7 +37,7 @@ def handle(msg):
                 quiz_bool = False
                 print('quiz ends')
                 bot.sendMessage(chat_id, 'Quiz has ended.')
-       else:
+        else:
             quiz_guesses += 1
             bot.sendMessage(chat_id, command + ' is Incorrect.\nYou have '+3-quiz_guesses+' left.')
             
