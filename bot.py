@@ -14,6 +14,7 @@ from random import shuffle
 TOKEN = sys.argv[1] 
 
 quiz_bool = False
+quiz_guesses = 0
 
 def handle(msg):
     print("\n")
@@ -21,21 +22,25 @@ def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
     
-    global quiz_bool
+    global quiz_bool, quiz_guesses
+    
     if quiz_bool and command[0] is not '/':
-        skip = command.lower() in ['skip']
+        skip = command.lower() in ['skip'] or quiz_guesses >= 3
         if quiz.quiz_check(command) or skip:
             if not skip:
                 bot.sendMessage(chat_id, command + ' is correct')
             next = quiz.quiz_next()
             if next:
+                quiz_guesses = 0
                 bot.sendMessage(chat_id, next)
             else:
                 quiz_bool = False
                 print('quiz ends')
                 bot.sendMessage(chat_id, 'Quiz has ended.')
        else:
-            bot.sendMessage(chat_id, command + ' is Incorrect')
+            quiz_guesses += 1
+            bot.sendMessage(chat_id, command + ' is Incorrect.\nYou have '+3-quiz_guesses+' left.')
+            
     
     if command[0] is not '/':
         return
@@ -80,6 +85,7 @@ def handle(msg):
         quiz_bool = not quiz_bool
         if quiz_bool:
             print('quiz starts')
+            quiz_guesses = 0
             quiz.quiz_start(read_file('quiz_questions'), args)
             next = quiz.quiz_next()
             if next:
