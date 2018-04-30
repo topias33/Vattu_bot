@@ -194,9 +194,11 @@ def help(args):
         line_list = line.split(' . ', 1)
         if line_list[0] == name:
             content.append(line_list[1])
+            commands.append(line_list[0])
     if not content:
         return 'There is no command of that name.'
-    
+    if args == 'help':
+        return '\n'.join(content) + '\nCommands: ' + ', '.join(commands) 
     return '\n'.join(content)
 
 def read_file(filename, path='~/vattu/'):
