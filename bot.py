@@ -19,7 +19,7 @@ quiz_guesses = 0
 def handle(msg):
     print("\n")
     
-    print(msg['user'])
+    print(msg['from'])
     
     chat_id = msg['chat']['id']
     command = msg['text']
