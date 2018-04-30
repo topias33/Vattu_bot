@@ -37,51 +37,57 @@ for lineHeadline in range(len(titles)):
     lineHeadline+=1
 
 def flagDay(datee):
-    dot=datee.find('.')
-    x=int(datee[0:dot])
-    y=int(datee[dot+1:dot+3])
-    datee=(str(x)+'.'+str(y))
     flagDateList=[]
-    
-    if datee[-1]!='.':
-        datee=datee+'.'
-        
-    dateLine=0
-    
     flagD=None
     titleD=None
-    
-    for x in range(len(summaryList)-1):
+    try:
+        dot=datee.find('.')
+        x=int(datee[0:dot])
+        y=int(datee[dot+1:dot+3])
+        datee=(str(x)+'.'+str(y))
         
-        if datee in summaryList[x][0:len(datee)]:
-            flagD=summaryList[x]
-            #print(summaryList[x])
-            break;
+        
+        if datee[-1]!='.':
+            datee=datee+'.'
+            
+        dateLine=0
+        
+        for x in range(len(summaryList)-1):
+            
+            if datee in summaryList[x][0:len(datee)]:
+                flagD=summaryList[x]
+                #print(summaryList[x])
+                break;
+            else:
+                dateLine+=1
+                
+        if dateLine<(len(summaryList)-2):
+            if dateLine>=headlineAndLineNumber.get(titles[0]) and dateLine<headlineAndLineNumber.get(titles[1]):
+                titleD=titles[0]
+                
+            elif dateLine>=headlineAndLineNumber.get(titles[1]) and dateLine<headlineAndLineNumber.get(titles[2]):
+                titleD=titles[1]
+                
+            elif dateLine>=headlineAndLineNumber.get(titles[2]) and dateLine<headlineAndLineNumber.get(titles[3]):
+                titleD=titles[2]
+                
+            elif dateLine>=headlineAndLineNumber.get(titles[3]) and dateLine<headlineAndLineNumber.get(titles[4]):
+                titleD=titles[3]
+                
+            else:
+                titleD=titles[4]
+            print(titleD)
+            print(flagD)
+            flagDateList.append(titleD)
+            flagDateList.append(flagD)
+            return flagDateList
         else:
-            dateLine+=1
-            
-    if dateLine<(len(summaryList)-2):
-        if dateLine>=headlineAndLineNumber.get(titles[0]) and dateLine<headlineAndLineNumber.get(titles[1]):
-            titleD=titles[0]
-            
-        elif dateLine>=headlineAndLineNumber.get(titles[1]) and dateLine<headlineAndLineNumber.get(titles[2]):
-            titleD=titles[1]
-            
-        elif dateLine>=headlineAndLineNumber.get(titles[2]) and dateLine<headlineAndLineNumber.get(titles[3]):
-            titleD=titles[2]
-            
-        elif dateLine>=headlineAndLineNumber.get(titles[3]) and dateLine<headlineAndLineNumber.get(titles[4]):
-            titleD=titles[3]
-            
-        else:
-            titleD=titles[4]
-        print(titleD)
-        print(flagD)
-        flagDateList.append(titleD)
-        flagDateList.append(flagD)
-        return flagDateList
-    else:
-        #print("Couldn't find flag day")
+            #print("Couldn't find flag day")
+            flagDateList.append(titleD)
+            flagDateList.append(flagD)
+            return flagDateList
+    except:
+        
         flagDateList.append(titleD)
         flagDateList.append(flagD)
         return flagDateList
