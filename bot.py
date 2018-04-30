@@ -18,16 +18,16 @@ quiz_guesses = 0
 
 def handle(msg):
     print("\n")
-    print('User: '+msg['from']['username'])
     
-    user_id = msg['from']['id']
+    username = msg['from']['username']
     permissions = read_file('permissions', '~/Desktop/').split('\n')
     
-    if  str(user_id) in permissions:
+    if  str(username) in permissions:
         permission = True
     else:
         permission = False
         
+    print('User: '+usename)   
     print('Permission: '+str(permission))
     
     chat_id = msg['chat']['id']
@@ -65,12 +65,6 @@ def handle(msg):
     if tag in ["/bash","/b"]:
         if permission:
             bot.sendMessage(chat_id, bash(args))
-        else:
-            bot.sendMessage(chat_id, 'You do not have permission.')
-            
-    elif tag in ['/permission','/perm']:
-        if permission:
-            bot.sendMessage(chat_id, perm(args))
         else:
             bot.sendMessage(chat_id, 'You do not have permission.')
             
@@ -128,13 +122,6 @@ def handle(msg):
     else:
         print('quiz ends')
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
-        
-def perm(args):
-    if args:
-        id = int(args)
-        add_to_file('permissions', [str(id)], '~/Desktop/')
-    else:
-        return 'Give user id.'
 
 def jokeee(jokeList):
     print(jokeList)
