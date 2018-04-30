@@ -81,22 +81,23 @@ def handle(msg):
             flagday=flagDayyy.flagDay(todaydate)
             
             if flagday[0]==None:
-                fgString=flagday[1]
+                fdString=flagday[1]
             elif flagday[1]==None:
-                fgString="Today there is no flag day xD"
+                fdString="Today there is no flag day xD"
             else:
-                fgString=flagday[0]+'\n'+flagday[1]
+                fdString=flagday[0]+'\n'+flagday[1]
             
         else:
             flagday=flagDayyy(args)
             if flagday[0]==None:
-                fgString=flagday[1]
+                fdString=flagday[1]
             elif flagday[1]==None:
-                fgString="Today there is no flag day xD"
+                fdString="Today there is no flag day xD"
             else:
-                fgString=flagday[0]+'\n'+flagday[1] 
+                fdString=flagday[0]+'\n'+flagday[1] 
         
-        bot.sendMessage(chat_id,fgString)    
+        bot.sendMessage(chat_id,fdString) 
+       
     elif tag == "/hi":
         bot.sendMessage(chat_id, 'Miten menee?')
         
