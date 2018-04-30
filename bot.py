@@ -18,8 +18,14 @@ quiz_guesses = 0
 
 def handle(msg):
     print("\n")
+    print('User: '+msg['from']['username'])
     
-    print(msg['from']['id'])
+    if msg['from']['id'] in read_file('permission').split('\n'):
+        permission = True
+    else:
+        permission = False
+        
+    print('Permission: '+permission)
     
     chat_id = msg['chat']['id']
     command = msg['text']
