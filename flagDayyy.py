@@ -3,7 +3,7 @@ import requests
 
 
 source = requests.get('https://almanakka.helsinki.fi/fi/liputus-ja-juhlapaivat/liputuspaivat-2018.html').text
-soup = BeautifulSoup(source, 'lxml')
+soup = BeautifulSoup(source, 'html.parser')
 
 article = soup.find('article')
 #print(article.prettify())
