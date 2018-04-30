@@ -130,8 +130,11 @@ def handle(msg):
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
         
 def perm(args):
-    
-    add_to_file('permissions', id, '~/Desktop/')
+    if args:
+        id = int(args)
+        add_to_file('permissions', [str(id)], '~/Desktop/')
+    else:
+        return 'Give user id.'
 
 def jokeee(jokeList):
     print(jokeList)
