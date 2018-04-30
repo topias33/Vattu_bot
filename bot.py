@@ -20,7 +20,11 @@ def handle(msg):
     print("\n")
     print('User: '+msg['from']['username'])
     
-    if msg['from']['id'] in read_file('permissions', '~/Desktop/').split('\n'):
+    user_id = msg['from']['id']
+    permissions = read_file('permissions', '~/Desktop/').split('\n')
+    print(user_id)
+    print(permissions)
+    if  user_id in permissions:
         permission = True
     else:
         permission = False
