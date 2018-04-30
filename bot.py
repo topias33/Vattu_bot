@@ -198,7 +198,7 @@ def help(args):
     if not content:
         return 'There is no command of that name.'
     if args == 'help':
-        return '\n'.join(content) + '\nCommands: ' + ', '.join(commands) 
+        return '\n'.join(content) + '\nCommands: ' + ', '.join(set(commands)) 
     return '\n'.join(content)
 
 def read_file(filename, path='~/vattu/'):
