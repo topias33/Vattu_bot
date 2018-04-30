@@ -22,8 +22,7 @@ def handle(msg):
     
     user_id = msg['from']['id']
     permissions = read_file('permissions', '~/Desktop/').split('\n')
-    print(user_id)
-    print(permissions)
+    
     if  str(user_id) in permissions:
         permission = True
     else:
@@ -64,21 +63,36 @@ def handle(msg):
     print ("Args: %s" % args)
     
     if tag in ["/bash","/b"]:
-        bot.sendMessage(chat_id, bash(args))
+        if permission:
+            bot.sendMessage(chat_id, bash(args))
+        else:
+            bot.sendMessage(chat_id, 'You do not have permission.')
+            
+    elif tag in ['/permission','/perm']:
+        if permission:
+            bot.sendMessage(chat_id, perm(args))
+        else:
+            bot.sendMessage(chat_id, 'You do not have permission.')
+            
     elif tag in ["/math","/m"]:
         bot.sendMessage(chat_id, math(args))
+        
     elif tag == "/hello":
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
+        
     elif tag == "/hi":
         bot.sendMessage(chat_id, 'Miten menee?')
+        
     elif tag == "/time":
         bot.sendMessage(chat_id, bash("date"))
+        
     elif tag in ['/bashjoke','/bjoke','/bj']:
         joke, answer = bash_joke(args)
         bot.sendMessage(chat_id, joke)
         if answer:
             time.sleep(3)
             bot.sendMessage(chat_id, answer)
+            
     elif tag in ["/joke", "/j","/addjoke","/aj","/givejoke",'/gj']:
         if tag == '/joke' or tag =='/j':
             jokeX=joke.readrandomJoke()
@@ -91,8 +105,10 @@ def handle(msg):
         elif tag == '/givejoke' or tag == '/gj':
             jokeList=joke.readSpecificJoke(args)
             jokeee(jokeList)
+            
     elif tag in ["/wiki", "/wikipedia"]:
         bot.sendMessage(chat_id, wiki(args))
+        
     elif tag == '/quiz':
         quiz_bool = not quiz_bool
         if quiz_bool:
@@ -108,9 +124,14 @@ def handle(msg):
         else:
             print('quiz ends')
             bot.sendMessage(chat_id, 'Quiz has ended.')
+            
     else:
         print('quiz ends')
         bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
+        
+def perm(args):
+    
+    add_to_file('permissions', id, '~/Desktop/')
 
 def jokeee(jokeList):
     print(jokeList)
