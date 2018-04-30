@@ -85,7 +85,7 @@ def handle(msg):
             elif flagday[1]==None:
                 fdString="Today there is no flag day xD"
             else:
-                fdString=flagday[0]+'\n'+flagday[1]
+                fdString=flagday[0]+'\n\n'+flagday[1]
             
         else:
             flagday=flagDayyy.flagDay(args)
@@ -94,7 +94,7 @@ def handle(msg):
             elif flagday[1]==None:
                 fdString="Today there is no flag day xD"
             else:
-                fdString=flagday[0]+'\n'+flagday[1] 
+                fdString=flagday[0]+'\n\n'+flagday[1] 
         if not fdString:
             fdString = 'Hello'
         bot.sendMessage(chat_id,fdString) 
