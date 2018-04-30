@@ -37,6 +37,10 @@ for lineHeadline in range(len(titles)):
     lineHeadline+=1
 
 def flagDay(datee):
+    dot=datee.find('.')
+    x=int(datee[0:dot])
+    y=int(datee[dot+1:dot+3])
+    datee=(str(x)+'.'+str(y))
     flagDateList=[]
     
     if datee[-1]!='.':
