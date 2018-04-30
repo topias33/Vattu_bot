@@ -105,25 +105,12 @@ def handle(msg):
     elif tag == "/time":
         bot.sendMessage(chat_id, bash("date"))
         
-    elif tag in ['/bashjoke','/bjoke','/bj']:
+    elif tag in ['/joke','/j']:
         joke, answer = bash_joke(args)
         bot.sendMessage(chat_id, joke)
         if answer:
             time.sleep(3)
             bot.sendMessage(chat_id, answer)
-            
-    elif tag in ["/joke", "/j","/addjoke","/aj","/givejoke",'/gj']:
-        if tag == '/joke' or tag =='/j':
-            jokeX=joke.readrandomJoke()
-            bot.sendMessage(chat_id,jokeX)
-            jokeee(jokeX)
-        elif tag == '/addjoke' or tag == '/aj':
-            jokeList=joke.makeJoke(args)
-            joke.addJoke(jokeList[1],jokeList[0])
-            bot.sendMessage(chat_id,'Joke has been added')
-        elif tag == '/givejoke' or tag == '/gj':
-            jokeList=joke.readSpecificJoke(args)
-            jokeee(jokeList)
             
     elif tag in ["/wiki", "/wikipedia"]:
         bot.sendMessage(chat_id, wiki(args))
@@ -148,29 +135,6 @@ def handle(msg):
         bot.sendMessage(chat_id, help(args))
     else:
         bot.sendMessage(chat_id, help('help'))
-
-def jokeee(jokeList):
-    print(jokeList)
-    if not jokeList:
-        return
-    jokeName=jokeList[0]
-    jokeJoke=jokeList[1]
-    jokeAwnser=jokeList[2]
-    sleeping=5
-    if jokeName or jokeName=='noName' or jokeAwnser==None:
-        if jokeName or jokeName=='noName':
-            bot.sendMessage(chat_id,jokeJoke)
-            time.sleep(sleeping)
-            bot.sendMessage(chat_id,jokeAwnser)
-        elif jokeAwnser==None:
-            joke=jokeName+'\n'+jokeJoke
-            bot.sendMessage(chat_id,joke)
-        else:
-            bot.sendMessage(chat_id,jokeJoke)
-    else:      
-        joke=jokeName+'\n'+jokeJoke
-        time.sleep(sleeping)
-        bot.sendMessage(chat_id,jokeAwnser)
         
 def bash(args, output_bool=True):
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
