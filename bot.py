@@ -123,6 +123,7 @@ def handle(msg):
         bot.sendMessage(chat_id, help(args))
     else:
         bot.sendMessage(chat_id, help('help'))
+        bot.sendMessage(chat_id, help('commands'))
 
 def jokeee(jokeList):
     print(jokeList)
