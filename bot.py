@@ -88,7 +88,7 @@ def handle(msg):
                 fdString=flagday[0]+'\n'+flagday[1]
             
         else:
-            flagday=flagDayyy(args)
+            flagday=flagDayyy.flagDay(args)
             if flagday[0]==None:
                 fdString=flagday[1]
             elif flagday[1]==None:
