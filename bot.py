@@ -189,7 +189,8 @@ def help(name):
     file = read_file('help')
     files = file.split('\n')
     name = name.upper()
-    content = commands = []
+    content = []
+    commands = []
     for line in files:
         line_list = line.split(' . ', 1)
         if line_list[0] == name:
