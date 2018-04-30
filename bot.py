@@ -95,7 +95,8 @@ def handle(msg):
                 fdString="Today there is no flag day xD"
             else:
                 fdString=flagday[0]+'\n'+flagday[1] 
-        
+        if not fdString:
+            fdString = 'Hello'
         bot.sendMessage(chat_id,fdString) 
        
     elif tag == "/hi":
