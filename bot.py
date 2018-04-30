@@ -195,7 +195,8 @@ def help(name):
         line_list = line.split(' . ', 1)
         if line_list[0] == name:
             content.append(line_list[1])
-        commands.append(line_list[0])
+        if line_list[0]:    
+            commands.append(line_list[0])
     if not content:
         return 'There is no command of that name.'
     if name == 'HELP':
