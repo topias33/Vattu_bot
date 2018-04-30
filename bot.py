@@ -24,7 +24,7 @@ def handle(msg):
     permissions = read_file('permissions', '~/Desktop/').split('\n')
     print(user_id)
     print(permissions)
-    if  user_id in permissions:
+    if  str(user_id) in permissions:
         permission = True
     else:
         permission = False
