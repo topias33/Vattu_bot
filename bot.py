@@ -118,10 +118,11 @@ def handle(msg):
         else:
             print('quiz ends')
             bot.sendMessage(chat_id, 'Quiz has ended.')
-            
+    
+    elif tag == '/help' and args:
+        bot.sendMessage(chat_id, help(args))
     else:
-        print('quiz ends')
-        bot.sendMessage(chat_id, bash("cat ~/vattu/help"))
+        bot.sendMessage(chat_id, help('help'))
 
 def jokeee(jokeList):
     print(jokeList)
@@ -183,6 +184,19 @@ def bash_joke(args):
     if len(joke_list) > 1:
         return joke, joke_list[1]
     return joke, ''
+
+def help(args):
+    file = read_file('help')
+    files = file.split('\n')
+    name = args.upper()
+    for line in files:
+        line_list = line.split(' . ', 1)
+        if line_list[0] == name:
+            content.append(line_list[1])
+    if not content:
+        return 'There is no command of that name.'
+    
+    return '\n'.join(content)
 
 def read_file(filename, path='~/vattu/'):
     return bash('cat '+path+filename, False)
