@@ -53,7 +53,7 @@ def flagDay(datee):
     
     for x in range(len(summaryList)-1):
         
-        if datee in summaryList[x]:
+        if datee in summaryList[x][0:len(datee)]:
             flagD=summaryList[x]
             #print(summaryList[x])
             break;
