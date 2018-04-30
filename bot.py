@@ -25,7 +25,7 @@ def handle(msg):
     else:
         permission = False
         
-    print('Permission: '+permission)
+    print('Permission: '+str(permission))
     
     chat_id = msg['chat']['id']
     command = msg['text']
