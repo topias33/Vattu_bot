@@ -9,6 +9,7 @@ from nsp import Nsp
 import joke
 import quiz
 from random import shuffle
+import flagDayyy
 
 #when running pass in the token as the first parameter e.g. python3.4 file.py token
 TOKEN = sys.argv[1] 
@@ -73,7 +74,29 @@ def handle(msg):
         
     elif tag == "/hello":
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
+    elif tag == '/fd':
+        if args=='':
+            today=datetime.datetime.now()
+            todaydate=today.strftime('%d.%m')
+            flagday=flagDayyy.flagDay(todaydate)
+            
+            if flagday[0]==None:
+                fgString=flagday[1]
+            elif flagday[1]==None:
+                fgString="Today there is no flag day xD"
+            else:
+                fgString=flagday[0]+'\n'+flagday[1]
+            
+        else:
+            flagday=flagDayyy(args)
+            if flagday[0]==None:
+                fgString=flagday[1]
+            elif flagday[1]==None:
+                fgString="Today there is no flag day xD"
+            else:
+                fgString=flagday[0]+'\n'+flagday[1] 
         
+        bot.sendMessage(chat_id,fgString)    
     elif tag == "/hi":
         bot.sendMessage(chat_id, 'Miten menee?')
         
