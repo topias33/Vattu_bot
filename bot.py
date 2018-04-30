@@ -123,7 +123,6 @@ def handle(msg):
         bot.sendMessage(chat_id, help(args))
     else:
         bot.sendMessage(chat_id, help('help'))
-        bot.sendMessage(chat_id, help('commands'))
 
 def jokeee(jokeList):
     print(jokeList)
@@ -186,19 +185,19 @@ def bash_joke(args):
         return joke, joke_list[1]
     return joke, ''
 
-def help(args):
+def help(name):
     file = read_file('help')
     files = file.split('\n')
-    name = args.upper()
+    name = name.upper()
     content = commands = []
     for line in files:
         line_list = line.split(' . ', 1)
         if line_list[0] == name:
             content.append(line_list[1])
-            commands.append(line_list[0])
+        commands.append(line_list[0])
     if not content:
         return 'There is no command of that name.'
-    if args == 'help':
+    if name == 'HELP':
         return '\n'.join(content) + '\nCommands: ' + ', '.join(set(commands)) 
     return '\n'.join(content)
 
