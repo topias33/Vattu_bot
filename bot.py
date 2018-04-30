@@ -196,7 +196,7 @@ def help(name):
         if line_list[0] == name:
             content.append(line_list[1])
         if line_list[0]:    
-            commands.append(line_list[0])
+            commands.append(line_list[0].capitalize())
     if not content:
         return 'There is no command of that name.'
     if name == 'HELP':
