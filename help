@@ -1,14 +1,9 @@
-Help: () = optional 
-
-/bash 'command' => run normal commands in Raspberry Pi and show the output.
-
-/math 'equation' => solves common math equations.
-
-/wiki ( .en, .fi, .ru etc. ) 'search' => search from wikipedia
-
-/time => Tells current time according to the server
-
-/joke => tells random joke
-/joke 'name' => tells joke called 'name'
-/joke 'name' 'joke' => saves new joke called 'name'
-
+HELP . /help = Shows this message.
+HELP . /help 'command name' = Shows more info about the command.
+BASH . /bash 'command' = Run normal commands in Raspberry Pi and show the output.
+MATH . /math 'equation' = Solves common math equations.
+WIKI . /wiki ( .en, .fi, .ru etc. ) 'search' = Search from wikipedia
+TIME . /time = Tells current time according to the server
+JOKE . /joke = Tells random joke
+JOKE . /joke 'name' = Tells joke called 'name'
+JOKE . /joke 'name' 'your joke' = Saves new joke called 'name'
