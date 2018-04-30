@@ -8,3 +8,5 @@ JOKE . /joke = Tells random joke.
 JOKE . /joke 'name' = Tells joke called 'name'.
 JOKE . /joke 'name' 'your joke' = Saves new joke called 'name'.
 QUIZ . /quiz = Starts the quiz and ends it if needed.
+FDAY . /fd = Shows what flagday is currently if any.
+FDAY . /fd 'date' = Shows what flagday is at given date if any.
