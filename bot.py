@@ -60,7 +60,7 @@ def handle(msg):
         if process is None:
             if args == 'start':
                 os.chdir('/home/pi/test')
-                exe = 'java -Xmx512M -Xms512M -jar ~/test/server.jar nogui'
+                exe = 'java -Xmx512M -Xms512M -jar server.jar nogui'
                 process = Popen(shlex.split(exe), stdin=PIPE, stdout=PIPE)
             else:
                 bot.sendMessage(chat_id, 'Server is not running.')
