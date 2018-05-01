@@ -67,7 +67,10 @@ def handle(msg):
             line = process.stdout.readline()
             print(line)
         else:
+            process.stdout.flush()
             server_command(args)
+            print(process.stdout.readline())
+            
     
     elif tag in ["/math","/m"]:
         bot.sendMessage(chat_id, math(args))
