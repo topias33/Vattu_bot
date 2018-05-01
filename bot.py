@@ -21,7 +21,6 @@ quiz_guesses = 1
 
 process = None
 
-
 def handle(msg):
     print("\n")
     
@@ -64,8 +63,9 @@ def handle(msg):
                 process = Popen(shlex.split(exe), stdin=PIPE, stdout=PIPE)
             else:
                 bot.sendMessage(chat_id, 'Server is not running.')
-        else:
+        elif not args:
             print(process.stdout.read())
+        else:
             server_command(args)
     
     elif tag in ["/math","/m"]:
