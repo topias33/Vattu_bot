@@ -60,17 +60,12 @@ def handle(msg):
             if args == 'start':
                 os.chdir('/home/pi/test')
                 exe = 'java -Xmx512M -Xms512M -jar server.jar nogui'
-                process = Popen(shlex.split(exe), stdin=PIPE, stdout=PIPE)
+                process = Popen(shlex.split(exe), stdin=PIPE, stdout=PIPE, stderr=PIPE)
             else:
                 bot.sendMessage(chat_id, 'Server is not running.')
         elif not args:
-            while True:
-                line = process.stdout.readline()
-                if line != '':
-                    #the real code does filtering here
-                    print("test:", line.rstrip())
-                else:
-                    break
+            line = process.stdout.readline()
+            print(line)
         else:
             server_command(args)
     
