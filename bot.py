@@ -3,7 +3,7 @@ import time
 import random
 import datetime
 import telepot
-from subprocess import check_output, Popen, PIPE, STDIN, STDOUT
+from subprocess import check_output, Popen, PIPE, STDOUT
 import shlex
 from nsp import Nsp
 import joke
