@@ -119,6 +119,7 @@ def handle(msg):
 
 def server_command(cmd):
     global process
+    print(cmd, file=process.stdin)
     process.stdin.write(bytes(cmd + '\n', 'UTF-8'))
 
 def bash(args, output_bool=True):
