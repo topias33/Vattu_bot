@@ -11,7 +11,6 @@ import quiz
 from random import shuffle
 import flagDayyy
 import os
-import io
 
 #when running pass in the token as the first parameter e.g. python3.4 file.py token
 TOKEN = sys.argv[1] 
@@ -63,13 +62,10 @@ def handle(msg):
                 process = Popen(shlex.split(exe), stdin=PIPE, stdout=PIPE, stderr=PIPE)
             else:
                 bot.sendMessage(chat_id, 'Server is not running.')
-        elif not args:
-            line = process.stdout.readline()
-            print(line)
         else:
             process.stdout.flush()
             server_command(args)
-            print(process.stdout.readline())
+            print(process.stdout.read())
             
     
     elif tag in ["/math","/m"]:
