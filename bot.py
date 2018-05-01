@@ -3,7 +3,7 @@ import time
 import random
 import datetime
 import telepot
-import subprocess
+from subprocess import check_output, Popen, PIPE, STDIN, STDOUT
 import shlex
 from nsp import Nsp
 import joke
@@ -11,6 +11,7 @@ import quiz
 from random import shuffle
 import flagDayyy
 import os
+
 
 #when running pass in the token as the first parameter e.g. python3.4 file.py token
 TOKEN = sys.argv[1] 
@@ -59,8 +60,12 @@ def handle(msg):
         if process is None:
             if args == 'start':
                 os.chdir('/home/pi/test')
-                process = subprocess.Popen('java -Xmx512M -Xms512M -jar ~/test/server.jar nogui', stdin=subprocess.PIPE, shell=True)
+                exe = 'java -Xmx512M -Xms512M -jar ~/test/server.jar nogui'
+                process = Popen(shlex.split(exe), stdin=PIPE, stdout=PIPE)
+            else:
+                bot.sendMessage(chat_id, 'Server is not running.')
         else:
+            print(process.stdout.read())
             server_command(args)
     
     elif tag in ["/math","/m"]:
@@ -123,7 +128,7 @@ def server_command(cmd):
     process.stdin.flush()
 
 def bash(args, output_bool=True):
-    output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
+    output = check_output(args, stderr=STDOUT, shell=True)
     if output:
         output = str(output, 'utf8')
         if output_bool:
