@@ -97,7 +97,7 @@ def handle(msg):
         bot.sendMessage(chat_id, wiki(args))
         
     elif tag == '/quiz':
-        quiz_game(chat_id, tag)
+        quiz_game(chat_id, command)
     
     elif tag == '/help' and args:
         bot.sendMessage(chat_id, help(args))
@@ -215,14 +215,14 @@ def quiz_game(chat_id, command):
         quiz_bool = True
         print('quiz starts')
         quiz_guesses = 0
-        quiz.quiz_start(read_file('quiz_questions'), args)
+        quiz.quiz_start(read_file('quiz_questions'), command.split()[1])
         next = quiz.quiz_next()
         if next:
             bot.sendMessage(chat_id, next)
         else:
             quiz_bool = False
             bot.sendMessage(chat_id, 'Quiz has ended.')
-    elif command == '/quiz':
+    elif command.split()[1] == '/quiz':
         print('quiz ends')
         bot.sendMessage(chat_id, 'Quiz has ended.')
     else:
