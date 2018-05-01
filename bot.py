@@ -215,7 +215,10 @@ def quiz_game(chat_id, command):
         quiz_bool = True
         print('quiz starts')
         quiz_guesses = 0
-        quiz.quiz_start(read_file('quiz_questions'), command.split()[1])
+        try:
+            quiz.quiz_start(read_file('quiz_questions'), command.split()[1])
+        except:
+            quiz.quiz_start(read_file('quiz_questions'))
         next = quiz.quiz_next()
         if next:
             bot.sendMessage(chat_id, next)
