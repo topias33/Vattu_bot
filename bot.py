@@ -58,7 +58,7 @@ def handle(msg):
         global process
         if process is None:
             if args == 'start':
-                os.chdir('cd ~/test')
+                os.chdir('/home/pi/test')
                 process = subprocess.Popen('java -Xmx512M -Xms512M -jar ~/test/server.jar nogui', stdin=subprocess.PIPE, shell=True)
         else:
             server_command(args)
