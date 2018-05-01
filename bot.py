@@ -10,12 +10,17 @@ import joke
 import quiz
 from random import shuffle
 import flagDayyy
+import rpyc
 
 #when running pass in the token as the first parameter e.g. python3.4 file.py token
 TOKEN = sys.argv[1] 
 
 quiz_bool = False
 quiz_guesses = 1
+
+conn = rpyc.classic.connect("192.168.1.83", port=25565)
+rsys = conn.modules.sys
+minidom = conn.modules["xml.dom.minidom"]
 
 def handle(msg):
     print("\n")
@@ -49,7 +54,10 @@ def handle(msg):
             bot.sendMessage(chat_id, bash(args))
         else:
             bot.sendMessage(chat_id, 'You do not have permission.')
-            
+    
+    elif tag == "/mc":
+        print("Hello World!", file=conn.modules.sys.stdout)
+    
     elif tag in ["/math","/m"]:
         bot.sendMessage(chat_id, math(args))
         
