@@ -51,7 +51,7 @@ def handle(msg):
                 bot.sendMessage(chat_id, 'Quiz has ended.')
         else:
             quiz_guesses += 1
-            bot.sendMessage(chat_id, command + ' is Incorrect.\nYou have '+3-quiz_guesses+' left.')
+            bot.sendMessage(chat_id, command + ' is Incorrect.\nYou have '+str(3-quiz_guesses)+' left.')
             
     
     if command[0] is not '/':
