@@ -15,7 +15,7 @@ import flagDayyy
 TOKEN = sys.argv[1] 
 
 quiz_bool = False
-quiz_guesses = 0
+quiz_guesses = 1
 
 def handle(msg):
     print("\n")
@@ -34,27 +34,8 @@ def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
     
-    global quiz_bool, quiz_guesses
-    
-    if quiz_bool and command[0] is not '/':
-        skip = command.lower() in ['skip'] or quiz_guesses >= 3
-        if quiz.quiz_check(command) or skip:
-            if not skip:
-                bot.sendMessage(chat_id, command + ' is correct')
-            next = quiz.quiz_next()
-            if next:
-                quiz_guesses = 0
-                bot.sendMessage(chat_id, next)
-            else:
-                quiz_bool = False
-                print('quiz ends')
-                bot.sendMessage(chat_id, 'Quiz has ended.')
-        else:
-            quiz_guesses += 1
-            bot.sendMessage(chat_id, command + ' is Incorrect.\nYou have '+str(3-quiz_guesses)+' left.')
-            
-    
     if command[0] is not '/':
+        quiz(chat_id, command)
         return
     
     tag = command.split()[0]
@@ -116,20 +97,7 @@ def handle(msg):
         bot.sendMessage(chat_id, wiki(args))
         
     elif tag == '/quiz':
-        quiz_bool = not quiz_bool
-        if quiz_bool:
-            print('quiz starts')
-            quiz_guesses = 0
-            quiz.quiz_start(read_file('quiz_questions'), args)
-            next = quiz.quiz_next()
-            if next:
-                bot.sendMessage(chat_id, next)
-            else:
-                quiz_bool = False
-                bot.sendMessage(chat_id, 'Quiz has ended.')
-        else:
-            print('quiz ends')
-            bot.sendMessage(chat_id, 'Quiz has ended.')
+        quiz(chat_id, tag)
     
     elif tag == '/help' and args:
         bot.sendMessage(chat_id, help(args))
@@ -241,15 +209,38 @@ def arguments(command):
     args = ' '.join(args)
     return args
 
-def quiz_game(chat_id):
+def quiz(chat_id, command):
     global quiz_bool
-    next = quiz.quiz_next()
-    if next:
-        bot.sendMessage(chat_id, next)
-    else:
-        quiz_bool = False
+    if not quiz_bool:
+        quiz_bool = True
+        print('quiz starts')
+        quiz_guesses = 0
+        quiz.quiz_start(read_file('quiz_questions'), args)
+        next = quiz.quiz_next()
+        if next:
+            bot.sendMessage(chat_id, next)
+        else:
+            quiz_bool = False
+            bot.sendMessage(chat_id, 'Quiz has ended.')
+    elif command = '/quiz':
+        print('quiz ends')
         bot.sendMessage(chat_id, 'Quiz has ended.')
-            
+    else:
+        skip = command.lower() in ['skip'] or quiz_guesses >= 3
+        if quiz.quiz_check(command) or skip:
+            if not skip:
+                bot.sendMessage(chat_id, command + ' is correct')
+            next = quiz.quiz_next()
+            if next:
+                quiz_guesses = 1
+                bot.sendMessage(chat_id, next)
+            else:
+                quiz_bool = False
+                print('quiz ends')
+                bot.sendMessage(chat_id, 'Quiz has ended.')
+        else:
+            quiz_guesses += 1
+            bot.sendMessage(chat_id, command + ' is Incorrect.\nYou have '+str(3-quiz_guesses)+' guesses left.')            
 
 bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
