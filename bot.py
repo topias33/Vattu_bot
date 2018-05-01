@@ -119,8 +119,8 @@ def handle(msg):
 
 def server_command(cmd):
     global process
-    print(bytes(cmd+'\n','UTF-8'), file=process.stdin)
-    #process.stdin.write(bytes(cmd + '\n', 'UTF-8'))
+    process.stdin.write(bytes(cmd+'\n', 'UTF-8'))
+    process.stdin.flush()
 
 def bash(args, output_bool=True):
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
