@@ -222,7 +222,7 @@ def quiz(chat_id, command):
         else:
             quiz_bool = False
             bot.sendMessage(chat_id, 'Quiz has ended.')
-    elif command = '/quiz':
+    elif command == '/quiz':
         print('quiz ends')
         bot.sendMessage(chat_id, 'Quiz has ended.')
     else:
