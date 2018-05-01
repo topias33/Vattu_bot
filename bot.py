@@ -11,7 +11,7 @@ import quiz
 from random import shuffle
 import flagDayyy
 import os
-
+import io
 
 #when running pass in the token as the first parameter e.g. python3.4 file.py token
 TOKEN = sys.argv[1] 
@@ -64,7 +64,8 @@ def handle(msg):
             else:
                 bot.sendMessage(chat_id, 'Server is not running.')
         elif not args:
-            print(process.stdout.read())
+            for line in io.TextIOWrapper(process.stdout, encoding="utf-8"):
+                print(line)
         else:
             server_command(args)
     
