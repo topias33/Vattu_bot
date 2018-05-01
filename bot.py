@@ -10,7 +10,6 @@ import joke
 import quiz
 from random import shuffle
 import flagDayyy
-import rpyc
 
 #when running pass in the token as the first parameter e.g. python3.4 file.py token
 TOKEN = sys.argv[1] 
@@ -18,9 +17,8 @@ TOKEN = sys.argv[1]
 quiz_bool = False
 quiz_guesses = 1
 
-conn = rpyc.classic.connect("192.168.1.83", port=25565)
-rsys = conn.modules.sys
-minidom = conn.modules["xml.dom.minidom"]
+process = None
+
 
 def handle(msg):
     print("\n")
@@ -56,7 +54,12 @@ def handle(msg):
             bot.sendMessage(chat_id, 'You do not have permission.')
     
     elif tag == "/mc":
-        print("Hello World!", file=conn.modules.sys.stdout)
+        global process
+        if process is None:
+            if args == 'start':
+                process = Popen('java -Xmx512M -Xms512M -jar server.jar nogui', stdin=PIPE, shell=True)
+        else:
+            server_command(args)
     
     elif tag in ["/math","/m"]:
         bot.sendMessage(chat_id, math(args))
@@ -111,7 +114,11 @@ def handle(msg):
         bot.sendMessage(chat_id, help(args))
     else:
         bot.sendMessage(chat_id, help('help'))
-        
+
+def server_command(cmd):
+    global process
+    process.stdin.write(bytes(cmd + '\n', 'ascii'))
+
 def bash(args, output_bool=True):
     output = subprocess.check_output(args, stderr=subprocess.STDOUT, shell=True)
     if output:
