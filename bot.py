@@ -58,7 +58,7 @@ def handle(msg):
         if process is None:
             if args == 'start':
                 bash('cd ~/test', False)
-                process = Popen('java -Xmx512M -Xms512M -jar server.jar nogui', stdin=PIPE, shell=True)
+                process = subprocess.Popen('java -Xmx512M -Xms512M -jar server.jar nogui', stdin=subprocess.PIPE, shell=True)
         else:
             server_command(args)
     
