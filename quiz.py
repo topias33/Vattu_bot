@@ -25,7 +25,7 @@ def quiz_next():
     return ''
 
 def quiz_check(guess):
-    whitelist = string.letters + string.digits + ' '
+    whitelist = string.ascii_letters + string.digits + ' '
     answer = ''.join(char for char in answer if char in whitelist).lower()
     guess = ''.join(char for char in guess if char in whitelist).lower()
     return guess == answer
