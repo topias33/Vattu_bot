@@ -64,8 +64,13 @@ def handle(msg):
             else:
                 bot.sendMessage(chat_id, 'Server is not running.')
         elif not args:
-            for line in io.TextIOWrapper(process.stdout, encoding="utf-8"):
-                print(line)
+            while True:
+                line = process.stdout.readline()
+                if line != '':
+                    #the real code does filtering here
+                    print("test:", line.rstrip())
+                else:
+                    break
         else:
             server_command(args)
     
