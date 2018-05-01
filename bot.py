@@ -35,7 +35,7 @@ def handle(msg):
     command = msg['text']
     
     if command[0] is not '/':
-        quiz(chat_id, command)
+        quiz_game(chat_id, command)
         return
     
     tag = command.split()[0]
@@ -97,7 +97,7 @@ def handle(msg):
         bot.sendMessage(chat_id, wiki(args))
         
     elif tag == '/quiz':
-        quiz(chat_id, tag)
+        quiz_game(chat_id, tag)
     
     elif tag == '/help' and args:
         bot.sendMessage(chat_id, help(args))
@@ -209,7 +209,7 @@ def arguments(command):
     args = ' '.join(args)
     return args
 
-def quiz(chat_id, command):
+def quiz_game(chat_id, command):
     global quiz_bool
     if not quiz_bool:
         quiz_bool = True
