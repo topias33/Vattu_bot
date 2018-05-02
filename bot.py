@@ -12,6 +12,8 @@ from random import shuffle
 import flagDayyy
 import os
 
+import wikiCall
+
 #when running pass in the token as the first parameter e.g. python3.4 file.py token
 TOKEN = sys.argv[1] 
 
@@ -100,7 +102,18 @@ def handle(msg):
        
     elif tag == "/hi":
         bot.sendMessage(chat_id, 'Miten menee?')
-        
+    
+    elif tag =='fwiki':
+        codes=wikiCall.getAbbreviation()
+        argsS=args.split(' ')
+        if argsS[0] in codes:
+            code=argsS[0]
+            searchS=' '.join(argsS[1:len(argsS)])
+        else:
+            code='en'
+            searchS=args
+        bot.sendMessage(chat_id, wikiCall.wikiSearch(searchS, code))    
+    
     elif tag == "/time":
         bot.sendMessage(chat_id, bash("date"))
         
