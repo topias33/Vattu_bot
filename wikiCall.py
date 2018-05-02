@@ -31,10 +31,10 @@ def wikiSearch(searchString,languageString=None):
             language='en'
         try:
             source = requests.get('https://'+language+'.wikipedia.org/wiki/'+search).text
-            soup = BeautifulSoup(source, 'lxml')
+            soup = BeautifulSoup(source, 'html.parser')
         except:
             source = requests.get('https://en.wikipedia.org/wiki/'+search).text
-            soup = BeautifulSoup(source, 'lxml')
+            soup = BeautifulSoup(source, 'html.parser')
         
         mainP=soup.find('p').text
         removeList=[]
