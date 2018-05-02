@@ -91,7 +91,7 @@ def handle(msg):
         else:
             if args =='all':
                 for i in range(len(dayTimes)):
-                    weatherString+=str(days[i])+' klo '+ str(dayTimes[i]) +' =>'+str(dayTemp[i])+' C'+daySymb[i]+'\n'
+                    weatherString+=str(days[i])+' klo '+ str(dayTimes[i]) +' =>'+str(dayTemp[i])+'C '+daySymb[i]+'\n'
                 bot.sendMessage(chat_id, weatherString)
             if args =='sun':
                 weatherString+=str(sunRise[0])+' ja '+str(sunRise[1])
