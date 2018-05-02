@@ -108,8 +108,8 @@ def handle(msg):
         print('helloo')
         codes=wikiCall.getAbbreviation()
         argsS=args.split(' ')
-        if argsS[0] in codes:
-            code=argsS[0]
+        if argsS[0].lower() in codes:
+            code=argsS[0].lower()
             searchS=' '.join(argsS[1:len(argsS)])
         else:
             code='en'
