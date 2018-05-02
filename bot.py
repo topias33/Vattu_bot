@@ -13,6 +13,7 @@ import flagDayyy
 import os
 
 import wikiCall
+import callWeather
 
 #when running pass in the token as the first parameter e.g. python3.4 file.py token
 TOKEN = sys.argv[1] 
@@ -75,6 +76,26 @@ def handle(msg):
         
     elif tag == "/hello":
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
+    elif tag == "/weather":
+        weather=callWeather.weather()
+        sunRise=callWeather.sunRisee()
+        days=weather[0]
+        dayTimes=weather[1]
+        dayTemp=weather[2]
+        daySymb=weather[4]
+        
+        weatherString=''
+        if args=='':
+            bot.sendMessage(chat_id,weather[3])
+            
+        else:
+            if args =='all':
+                for i in range(len(dayTimes)):
+                    weatherString+=str(days[i])+' klo '+ str(dayTimes[i]) +' =>'+str(dayTemp[i])+'C'+daySymb[i]+'\n'
+                bot.sendMessage(chat_id, weatherString)
+            if args =='sun'
+                weatherString+=str(sunRise[0])+' ja '+str(sunRise[1])
+                bot.sendMessage(chat_id,weatherString)
     elif tag == '/fd':
         if args=='':
             today=datetime.datetime.now()
