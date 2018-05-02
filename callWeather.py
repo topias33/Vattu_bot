@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 
 source = requests.get('http://ilmatieteenlaitos.fi/paikallissaa').text
-soup = BeautifulSoup(source, 'html_parse')
+soup = BeautifulSoup(source, 'html.parser')
 
 row1=soup.find('div', class_='mid local-weather-forecast meteogram selected table-responsive')
 
