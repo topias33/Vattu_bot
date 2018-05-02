@@ -1,5 +1,6 @@
-import sys
 import telepot
+import sys
+import time
 
 # Pass in the token as the first parameter. 
 # e.g. python3.4 file.py token
