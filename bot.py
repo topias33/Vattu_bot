@@ -103,7 +103,7 @@ def handle(msg):
     elif tag == "/hi":
         bot.sendMessage(chat_id, 'Miten menee?')
     
-    elif tag == 'fwiki':
+    elif tag == '/fwiki':
         print(args)
         print('helloo')
         codes=wikiCall.getAbbreviation()
