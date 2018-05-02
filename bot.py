@@ -103,14 +103,14 @@ def handle(msg):
     elif tag == "/hi":
         bot.sendMessage(chat_id, 'Miten menee?')
     
-    elif tag =='fwiki':
+    elif tag == 'fwiki':
         print(args)
         print('helloo')
         codes=wikiCall.getAbbreviation()
         argsS=args.split(' ')
-        if argsS[1] in codes:
-            code=argsS[1]
-            searchS=' '.join(argsS[2:len(argsS)])
+        if argsS[0] in codes:
+            code=argsS[0]
+            searchS=' '.join(argsS[1:len(argsS)])
         else:
             code='en'
             searchS=args
