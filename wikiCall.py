@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 def getAbbreviation():
     source = requests.get('http://sustainablesources.com/resources/country-abbreviations/').text
-    soup = BeautifulSoup(source, 'lxml')
+    soup = BeautifulSoup(source, 'html.parser')
     countryCodeSoup=soup.find('div',class_="post-bodycopy clearfix")
     codes=[]
     codesX=[]
