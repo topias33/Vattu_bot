@@ -11,7 +11,5 @@ def handle(msg):
 bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
 
-print ('I am listening...')
-
 while 1:
     time.sleep(10)
