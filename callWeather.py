@@ -53,7 +53,7 @@ def weather():
         if int(lastTime[0])<=int(atTime[0]):
             daysAccurate.append(days[dayValue])
             if xxx==0:
-                todays+='klo '+str(atTime)+' =>'+str(temperatures[x])+str(symbols[x])+'\n'
+                todays+='klo '+str(atTime)+' =>'+str(temperatures[x])+' C'+str(symbols[x])+'\n'
             #infoDays[days[dayValue]]=[atTime,temperatures[x]]
             
         else:
