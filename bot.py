@@ -106,9 +106,9 @@ def handle(msg):
     elif tag =='fwiki':
         codes=wikiCall.getAbbreviation()
         argsS=args.split(' ')
-        if argsS[0] in codes:
-            code=argsS[0]
-            searchS=' '.join(argsS[1:len(argsS)])
+        if argsS[1] in codes:
+            code=argsS[1]
+            searchS=' '.join(argsS[2:len(argsS)])
         else:
             code='en'
             searchS=args
