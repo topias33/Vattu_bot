@@ -104,8 +104,6 @@ def handle(msg):
         bot.sendMessage(chat_id, 'Miten menee?')
     
     elif tag == '/fwiki':
-        print(args)
-        print('helloo')
         codes=wikiCall.getAbbreviation()
         argsS=args.split(' ')
         if argsS[0].lower() in codes:
