@@ -27,7 +27,9 @@ def translate(args):
 
     soup = BeautifulSoup(webpage, "html.parser")
     soup = soup.find("span",{"id": "result_box"})
+    print(soup)
     soup = soup.find("span")
+    print(soup)
     text = soup.get_text()
     
     if text:
