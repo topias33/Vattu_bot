@@ -1,5 +1,5 @@
 from urllib.request import Request, urlopen
-from urllib import quote_plus
+import urllib
 from bs4 import BeautifulSoup
 '''
 def translate(to_translate, to_language="auto", from_language="auto"):
@@ -47,7 +47,7 @@ def translate(args):
     
     url = 'http://translate.google.com/m?hl={0:s}&sl={1:s}&q={2:s}'
     
-    sentence = quote_plus(sentence)
+    sentence = urllib.quote_plus(sentence)
     link = url.format(to_language, from_language, sentence)
     request = Request(link, headers=agent)
     web_byte = urlopen(request).read()
