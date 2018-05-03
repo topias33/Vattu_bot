@@ -36,8 +36,52 @@ def wikiSearch(searchString,languageString=None):
             source = requests.get('https://en.wikipedia.org/wiki/'+search).text
             soup = BeautifulSoup(source, 'html.parser')
         
-        mainP=soup.find('p').text
-        removeList=[]
+        #mainP=soup.find('p').text
+        pS=[]
+        
+        for a in soup.find_all('p'):
+            if len(a.text)>30:
+                for e in a.text:
+                    if e == '.':
+                        pS.append(a.text)
+                        
+        count=0
+        counts=[]
+        
+        for b in pS:
+            for c in b:
+                if c =='.':
+                    count+=1
+            counts.append(count)
+            count=0
+        pos=0
+        for d in counts:
+            if d>1:
+                newpS=pS[pos]
+                break;
+            pos+=1
+        #print('counts',counts)
+        #print('pos',pos)
+        
+        #print(newpS)        
+        if counts[0]>1:
+            mainP=pS[0]
+        else:
+            mainP=pS[0]+' '+pS[1]
+        
+        removeList=['()']
+        #print('MAINP',mainP)
+        #print(pS)
+        y=re.sub(r"([/]).*?\1(.*)",'\\2',mainP,0)
+        
+        howManySlahes=0
+        for i in mainP:
+            if i=="/":
+                howManySlahes+=1
+        
+        for ii in range(howManySlahes):
+            y=re.sub(r"([/]).*?\1(.*)",'\\2',y,0)
+        mainP=y
         
         for i in range(100):
             ii="["+str(i)+"]"
@@ -45,7 +89,9 @@ def wikiSearch(searchString,languageString=None):
         
         for item in removeList:
             mainP=mainP.replace(item,'')
-        print(len(mainP))
+        #remove double space
+        mainP=re.sub(' +',' ',mainP)
+        #print(len(mainP))
     except:
         mainP=''   
     
@@ -56,4 +102,5 @@ def wikiSearch(searchString,languageString=None):
         
     
     return mainP
+
 
