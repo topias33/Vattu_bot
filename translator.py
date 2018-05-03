@@ -46,7 +46,7 @@ def translate(args):
     
     url = 'http://translate.google.com/m?hl={0:s}&sl={1:s}&q={2:s}'
     
-    sentence = urllib.quote_plus(sentence)
+    sentence = quote_plus(sentence)
     link = url.format(to_language, from_language, sentence)
     request = Request(link, headers=agent)
     web_byte = urlopen(request).read()
