@@ -25,7 +25,7 @@ def translate(args):
     
     soup = BeautifulSoup(webpage, "html.parser")
     text = soup.get_text()
-    print text
+    print(text)
     return 'aa'
     
     soup = soup.find("span", {'id': 'result_box'})
