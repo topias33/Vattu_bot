@@ -52,7 +52,6 @@ def translate(args):
     web_byte = urlopen(request).read()
     webpage = web_byte.decode('utf-8')
     soup = BeautifulSoup(webpage, "html.parser")
-    <div dir="ltr" class="t0">Hey</div>
     soup = soup.find("div", {'class': 't0'})
     print(soup)
     text = soup.get_text()
