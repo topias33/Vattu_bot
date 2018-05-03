@@ -1,11 +1,12 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
+import unicodedata
 
 def translate(args):
     if args:
         args = args.split()
     else:
-        return "Use /translate ( en, fi, ru etc. )>( en, fi, ru etc. ) sentence\ne.g. /translate >ru how are you"
+        return "Use /translate .( en, fi, ru etc. ) >( en, fi, ru etc. ) sentence\ne.g. /translate >ru how are you"
     
     i = 0
     
@@ -22,7 +23,7 @@ def translate(args):
         to_language = "auto"
         
     sentence = '+'.join(args[i:])
-    sentence = sentence.decode('iso-8859-1').encode('utf8')
+    sentence = unicodedata.normalize('NFKD', sentence).encode('ascii','ignore')
     url = 'http://translate.google.com/m?hl={0:s}&sl={1:s}&q={2:s}'
     link = url.format(to_language, from_language, sentence)
     request = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
