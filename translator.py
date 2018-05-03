@@ -45,7 +45,7 @@ def translate(args):
     sentence = '+'.join(args[i:])
     url = 'http://translate.google.com/m?hl={0:s}&sl={1:s}&q={2:s}'
     link = url.format(to_language, from_language, sentence)
-    request = Request(link, headers=agent)
+    request = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
     web_byte = urlopen(request).read()
     webpage = web_byte.decode('utf-8')
     soup = BeautifulSoup(webpage, "html.parser")
