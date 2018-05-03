@@ -33,11 +33,10 @@ def translate(args):
     webpage = web_byte.decode('utf-8')
     soup = BeautifulSoup(webpage, "html.parser")
     soup = soup.find("div", {'class': 't0'})
-    print(soup)
     text = soup.get_text()
     
     if text:
-        print('From: ' + text)
-        print('To: ' + ' '.join(args[i:]))
+        print('From: ' + ' '.join(args[i:]))
+        print('To: ' + text)
         return text
     return "I Could not find anything from {0:s}".format(url)
