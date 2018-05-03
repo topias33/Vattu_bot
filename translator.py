@@ -1,18 +1,5 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
-from selenium import webdriver
-
-'''
-from bs4 import BeautifulSoup
-from selenium import webdriver
-
-url = "http://legendas.tv/busca/walking%20dead%20s03e02"
-browser = webdriver.PhantomJS()
-browser.get(url)
-html = browser.page_source
-soup = BeautifulSoup(html, 'lxml')
-a = soup.find('section', 'wrapper')
-'''
 
 def translate(args):
     if args:
@@ -32,16 +19,14 @@ def translate(args):
     url = 'https://translate.google.fi/?hl=fi#fi/{0:s}/{1:s}'.format(language, search)
     print(url)
     
-    browser = webdriver.PhantomJS()
-    browser.get(url)
-    html = browser.page_source
-    
-    
     req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     web_byte = urlopen(req).read()
     webpage = web_byte.decode('utf-8')
     
-    soup = BeautifulSoup(html, "html.parser")
+    soup = BeautifulSoup(webpage, "html.parser")
+    text = soup.get_text()
+    return 'text'
+    
     soup = soup.find("span", {'id': 'result_box'})
     print(soup)
     children = soup.findChildren()
