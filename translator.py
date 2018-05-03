@@ -27,7 +27,7 @@ def translate(args):
     text = soup.get_text()
     
     if text:
-        print('From: '+text)
-        print('To: ' '.join(args[i:]))
+        print('From: ' + text)
+        print('To: ' + ' '.join(args[i:]))
         return text
     return "I Could not find anything from {0:s}".format(url)
