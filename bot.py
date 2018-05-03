@@ -58,7 +58,7 @@ def handle(msg):
         else:
             bot.sendMessage(chat_id, 'You do not have permission.')
             
-    elif tag == '/translate':
+    elif tag in ['/translate','/tr']:
         bot.sendMessage(chat_id, translate(args))
     
     elif tag == "/mc":
