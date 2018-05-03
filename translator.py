@@ -1,6 +1,7 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 import unicodedata
+import re
 
 def translate(args):
     if args:
@@ -23,7 +24,12 @@ def translate(args):
         to_language = "auto"
         
     sentence = '+'.join(args[i:])
-    sentence = unicodedata.normalize('NFKD', sentence).encode('ascii','ignore')
+    
+    rep = {'ä':'a','ö':'o','å':'a'}
+    rep = dict((re.escape(k), v) for k, v in rep.iteritems())
+    pattern = re.compile("|".join(rep.keys()))
+    sentence = pattern.sub(lambda m: rep[re.escape(m.group(0))], sentence)
+    
     url = 'http://translate.google.com/m?hl={0:s}&sl={1:s}&q={2:s}'
     link = url.format(to_language, from_language, sentence)
     request = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
