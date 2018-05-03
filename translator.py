@@ -1,4 +1,6 @@
 import urllib
+from urllib.request import Request, urlopen
+url="https://stackoverflow.com/search?q=html+error+403"
 
 def translate(args):
     if args:
@@ -17,13 +19,14 @@ def translate(args):
     search = '%20'.join(args[i:])
     url = 'https://translate.google.fi/?hl=fi#fi/{0:s}/{1:s}'.format(language, search)
     print(url)
+    
+    req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
 
-    fp = urllib.request.urlopen(url)
-    mybytes = fp.read()
-    content = mybytes.decode("utf8")
-    fp.close()
+    web_byte = urlopen(req).read()
 
-    soup = BeautifulSoup(content, "html.parser")
+    webpage = web_byte.decode('utf-8')
+
+    soup = BeautifulSoup(webpage, "html.parser")
     soup = soup.find("span",{"id": "result_box"})
     soup = soup.find("span")
     text = soup.get_text()
