@@ -15,6 +15,8 @@ import os
 import wikiCall
 import callWeather
 
+from translator import translate
+
 #when running pass in the token as the first parameter e.g. python3.4 file.py token
 TOKEN = sys.argv[1] 
 
@@ -55,6 +57,9 @@ def handle(msg):
             bot.sendMessage(chat_id, bash(args))
         else:
             bot.sendMessage(chat_id, 'You do not have permission.')
+            
+    elif tag == '/translate':
+-        bot.sendMessage(chat_id, translate(args))
     
     elif tag == "/mc":
         global process
