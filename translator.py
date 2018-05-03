@@ -1,5 +1,5 @@
-#from urllib.request import Request, urlopen
-import urllib
+from urllib.request import Request, urlopen
+from urllib import quote_plus
 from bs4 import BeautifulSoup
 '''
 def translate(to_translate, to_language="auto", from_language="auto"):
