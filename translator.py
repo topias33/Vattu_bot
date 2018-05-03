@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 
 def translate(args):
     if args:
+        args = args.encode("utf-8")
         args = args.split()
     else:
         return "Use /translate ( en, fi, ru etc. )>( en, fi, ru etc. ) sentence\ne.g. /translate >ru how are you"
