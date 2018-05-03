@@ -1,4 +1,5 @@
-from urllib.request import Request, urlopen
+#from urllib.request import Request, urlopen
+import urllib
 from bs4 import BeautifulSoup
 '''
 def translate(to_translate, to_language="auto", from_language="auto"):
