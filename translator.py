@@ -1,3 +1,5 @@
+import urllib
+
 def translate(args):
     if args:
         args = args.split()
