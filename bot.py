@@ -59,7 +59,7 @@ def handle(msg):
             bot.sendMessage(chat_id, 'You do not have permission.')
             
     elif tag == '/translate':
--        bot.sendMessage(chat_id, translate(args))
+        bot.sendMessage(chat_id, translate(args))
     
     elif tag == "/mc":
         global process
