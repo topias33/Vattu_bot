@@ -1,6 +1,5 @@
-import urllib
 from urllib.request import Request, urlopen
-url="https://stackoverflow.com/search?q=html+error+403"
+from bs4 import BeautifulSoup
 
 def translate(args):
     if args:
