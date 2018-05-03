@@ -66,9 +66,11 @@ def handle(msg):
             else:
                 bot.sendMessage(chat_id, 'Server is not running.')
         else:
-            process.stdout.flush()
-            server_command(args)
-            print(process.stdout.read())
+            #process.stdout.flush()
+            #print(process.stdout.readline())
+            process.stdin.write(bytes(cmd+'\n', 'UTF-8'))
+            process.stdin.flush()
+            
             
     
     elif tag in ["/math","/m"]:
@@ -76,6 +78,7 @@ def handle(msg):
         
     elif tag == "/hello":
         bot.sendMessage(chat_id, 'Hello World from githubbbb')
+        
     elif tag == "/weather":
         weather=callWeather.weather()
         sunRise=callWeather.sunRisee()
@@ -96,6 +99,7 @@ def handle(msg):
             if args =='sun':
                 weatherString+=str(sunRise[0])+' ja '+str(sunRise[1])
                 bot.sendMessage(chat_id,weatherString)
+                
     elif tag == '/fd':
         if args=='':
             today=datetime.datetime.now()
@@ -155,11 +159,6 @@ def handle(msg):
         bot.sendMessage(chat_id, help(args))
     else:
         bot.sendMessage(chat_id, help('help'))
-
-def server_command(cmd):
-    global process
-    process.stdin.write(bytes(cmd+'\n', 'UTF-8'))
-    process.stdin.flush()
 
 def bash(args, output_bool=True):
     output = check_output(args, stderr=STDOUT, shell=True)
@@ -309,6 +308,8 @@ print ('I am listening...')
 
 while 1:
     time.sleep(10)
+    if process is not None:
+        print(process.stdout.readline())
         
 #https://docs.python.org/3/library/subprocess.html
 #https://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
