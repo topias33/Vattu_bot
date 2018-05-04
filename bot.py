@@ -57,7 +57,10 @@ def handle(msg):
             bot_print('You do not have permission.')
     
     elif tag == '/log':
-        bot_print(read_file('log' + str(chat_id)))
+        full_log = read_file('log' + str(chat_id))
+        for line in full_log.splitlines():
+            line = line[:60]
+        bot_print(full_log)
     
     elif tag in ['/translate','/tr']:
         bot_print(translate(args))
@@ -217,10 +220,10 @@ def bot_print(msg):
 def log(username, msg):
     time = '*'+ bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() +'*'
     msg = '_' + msg.replace("\n","\\n") + '_'
-    log = ' '.join[time,username,msg]
+    logString = ' '.join[time,username,msg]
     global chat_id
-    add_to_file('log' + str(chat_id), [log])
-    return log
+    add_to_file('log' + str(chat_id), [logString])
+    return logString
 
 def help(name):
     file = read_file('help')
