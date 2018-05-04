@@ -219,9 +219,9 @@ def bot_print(msg):
     
     msg = '```'+msg+'```'
     
-    msg = "```block_language\npre-formatted fixed-width code block\n```"
+    #msg = "```block_language\npre-formatted fixed-width code block\n```"
     
-    bot.sendMessage(chat_id, msg)
+    bot.sendMessage(chat_id, msg, 'markdown')
 
 def help(name):
     file = read_file('help')
