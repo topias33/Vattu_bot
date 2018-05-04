@@ -62,7 +62,7 @@ def handle(msg):
             if len(line) > 48:
                 line = line[:48] + '..._'
             
-        bot_print(full_log, True)
+        bot_print(full_log)
     
     elif tag in ['/translate','/tr']:
         bot_print(translate(args))
@@ -214,17 +214,14 @@ def bash_joke(args):
         return joke, joke_list[1]
     return joke, ''
 
-def bot_print(msg, parser = False):
+def bot_print(msg):
     global chat_id
     log('Bot', msg)
-    if parser:
-        bot.sendMessage(chat_id, msg, 'html')
-    else:
-        bot.sendMessage(chat_id, msg)
+    bot.sendMessage(chat_id, msg)
     
 def log(username, msg):
-    time = '<b>'+ bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() +'<b>'
-    msg = '<i>' + msg.replace("\n","\\n") + '<i>'
+    time = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip()
+    msg = msg.replace("\n","\\n")
     logString = ' '.join([time,username,msg])
     global chat_id
     add_to_file('log' + str(chat_id), [logString], gap='\n>')
