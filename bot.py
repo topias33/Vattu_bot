@@ -217,8 +217,9 @@ def bot_print(msg):
     log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' Bot\t-\t' + msg
     add_to_file('log' + str(chat_id), [log])
     
-    #msg = msg.replace('\t', ' '*4)
     msg = '```'+msg+'```'
+    
+    msg = "```block_language\npre-formatted fixed-width code block\n```"
     
     bot.sendMessage(chat_id, msg)
 
