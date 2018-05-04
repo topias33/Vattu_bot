@@ -60,8 +60,8 @@ def handle(msg):
         full_log = read_file('log' + str(chat_id))
         short_log = []
         for line in full_log.split('\n>'):
-            if len(line) > 48:
-                line = line[:48] + '..._'
+            if len(line) > 49:
+                line = line[:49] + '...'
             short_log.append(line)
         bot_print('\n'.join(short_log))
     
