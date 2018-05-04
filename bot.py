@@ -222,8 +222,9 @@ def bot_print(msg):
     
 def log(username, msg):
     time = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip()
+    username = '{:10s}'.format(username) + ':'
     msg = msg.replace("\n"," n ")
-    logString = ' '.join([time,username,msg])
+    logString = '  '.join([time,username,msg])
     global chat_id
     add_to_file('log' + str(chat_id), [logString], gap='\n>')
     return logString
