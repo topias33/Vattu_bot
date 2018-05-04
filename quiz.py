@@ -7,7 +7,8 @@ answer = ''
 
 def quiz_start(questions, amount = 1):
     questions = questions.split('\n')
-    questions = filter(None, questions)
+    print('all:'+questions)
+    questions = list(filter(None, questions))
     shuffle(questions)
     global game_questions, i
     try:
