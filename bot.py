@@ -59,7 +59,9 @@ def handle(msg):
     elif tag == '/log':
         full_log = read_file('log' + str(chat_id))
         for line in full_log.splitlines():
-            line = line[:52]
+            if len(line) > 49:
+                line = line[:49] + '...'
+            
         bot_print(full_log)
     
     elif tag in ['/translate','/tr']:
