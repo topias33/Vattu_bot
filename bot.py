@@ -39,7 +39,7 @@ def handle(msg):
     else:
         permission = False
         
-    log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' ' + username + ': ' + repr(command)
+    log = '_' + bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + '_ *' + username + '*: `' + command.replace("\n","\\n") + '`'
     add_to_file('log' + str(chat_id), [log])
     
     print(log)
@@ -213,9 +213,9 @@ def bash_joke(args):
 def bot_print(msg):
     global chat_id
     
-    bot.sendMessage(chat_id, msg)
+    bot.sendMessage(chat_id, msg, 'markdown')
     
-    log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' Bot: ' + repr(msg)
+    log = '_' + bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + '_ *Bot*: `' + msg.replace("\n","\\n") + '`'
     add_to_file('log' + str(chat_id), [log])
     
     
