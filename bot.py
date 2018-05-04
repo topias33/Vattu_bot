@@ -30,29 +30,29 @@ def handle(msg):
     
     username = msg['from']['username']
     permissions = read_file('permissions', '~/Desktop/').split('\n')
+    chat_id = msg['chat']['id']
+    command = msg['text']
     
     if  str(username) in permissions:
         permission = True
     else:
         permission = False
-        
-    print('User: '+username)   
-    print('Permission: '+str(permission))
     
-    chat_id = msg['chat']['id']
-    command = msg['text']
-    print(username + ' . ' + str(permission) + ' : ' + command)
-    add_to_file('log' + str(chat_id), [(username + ' . ' + str(permission) + ' : ' + command)])
+    log = bash("date \'+%Y-%m-%d %H:%M:%S\'") + username + ' . ' + str(permission) + ' : ' + command
+    print('log: ' + log)
+    add_to_file('log' + str(chat_id), [log])
     
     if command[0] is not '/':
-        quiz_game(chat_id, command)
+        #quiz_game(chat_id, command)
         return
     
     tag = command.split()[0]
     args = arguments(command)
     
+    print('User: '+username)   
+    print('Permission: '+str(permission))
     print ('Command: %s' % tag)
-    print ("Args: %s" % args)
+    print ('Args: %s' % args)
     
     if tag in ["/bash","/b"]:
         if permission:
