@@ -38,7 +38,7 @@ def handle(msg):
     else:
         permission = False
     
-    log = bash("date \'+%Y-%m-%d %H:%M:%S\'") + username + ' . ' + str(permission) + ' : ' + command
+    log = bash("date \'+%Y-%m-%d %H:%M:%S\'").rstrip() + ' ' + username + ' ' + str(permission) + ' ' + command
     print('log: ' + log)
     add_to_file('log' + str(chat_id), [log])
     
