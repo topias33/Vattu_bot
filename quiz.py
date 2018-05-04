@@ -19,9 +19,9 @@ def quiz_start(questions, amount = 1):
 def quiz_next():
     global game_questions, i, answer
     if i < len(game_questions):
-        question, answer = game_questions[i].rsplit('?',1)
+        question, answer = game_questions[i].rsplit(' ? ',1)
         i += 1
-        return question+'?'
+        return question
     return ''
 
 def quiz_check(guess):
