@@ -214,12 +214,10 @@ def bash_joke(args):
 def bot_print(msg):
     global chat_id
     
-    print(msg)
-    
     log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' Bot\t-\t' + msg
     add_to_file('log' + str(chat_id), [log])
     
-    bot.sendMessage(chat_id, msg)
+    bot.sendMessage(chat_id, msg, 'markdown')
 
 def help(name):
     file = read_file('help')
