@@ -1,4 +1,4 @@
-HELP . /... = Shows this message.
+HELP . /help = Shows this message.
 HELP . /help 'command name' = Shows more info about the command.
 BASH . /bash 'command' = Run normal commands in Raspberry Pi and show the output.
 MATH . /math 'equation' = Solves common math equations.
