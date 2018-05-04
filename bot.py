@@ -168,7 +168,7 @@ def handle(msg):
         bot_print(wiki(args))
         
     elif tag == '/quiz':
-        qbool = quiz_bool.get(chat_id, False)
+        qbool = quiz_bool.get(chat_id, [False, 0])[0]
         if not qbool:
             qbool = True
             print('quiz starts')
@@ -188,7 +188,7 @@ def handle(msg):
             print('quiz ends')
             bot_print('Quiz has ended.')
             
-        quiz_bool[chat_id] = qbool
+        quiz_bool[chat_id] = [qbool, 0]
         
         
     
@@ -323,24 +323,24 @@ def arguments(command):
 
 def quiz_game(command):
     global quiz_bool, chat_id
-    qbool = quiz_bool.get(chat_id, False)
+    qbool, qguesses = quiz_bool.get(chat_id, [False, 0])
     if qbool:
-        skip = command.lower() in ['skip'] or quiz_guesses >= 3
+        skip = command.lower() in ['skip'] or qguesses >= 3
         if quiz.quiz_check(command) or skip:
             if not skip:
                 bot_print(command + ' is correct')
             next = quiz.quiz_next()
             if next:
-                quiz_guesses = 1
+                qguesses = 1
                 bot_print(next)
             else:
                 qbool = False
                 print('quiz ends')
                 bot_print('Quiz has ended.')
         else:
-            quiz_guesses += 1
-            bot_print(command + ' is Incorrect.\nYou have '+str(3-quiz_guesses)+' guesses left.')
-        quiz_bool[chat_id] = qbool
+            qguesses += 1
+            bot_print(command + ' is Incorrect.\nYou have '+str(3-qguesses)+' guesses left.')
+        quiz_bool[chat_id] = [qbool, qguesses]
 
 bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
