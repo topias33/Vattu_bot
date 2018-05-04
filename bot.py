@@ -214,17 +214,17 @@ def bash_joke(args):
         return joke, joke_list[1]
     return joke, ''
 
-def bot_print(msg, mark = False):
+def bot_print(msg, parser = False):
     global chat_id
     log('Bot', msg)
-    if mark:
-        bot.sendMessage(chat_id, msg, 'markdown')
+    if parser:
+        bot.sendMessage(chat_id, msg, 'html')
     else:
         bot.sendMessage(chat_id, msg)
     
 def log(username, msg):
-    time = '*'+ bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() +'*'
-    msg = '_' + msg.replace("\n","\\n") + '_'
+    time = '<b>'+ bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() +'<b>'
+    msg = '<i>' + msg.replace("\n","\\n") + '<i>'
     logString = ' '.join([time,username,msg])
     global chat_id
     add_to_file('log' + str(chat_id), [logString], gap='\n>')
