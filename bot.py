@@ -42,7 +42,7 @@ def handle(msg):
     chat_id = msg['chat']['id']
     command = msg['text']
     
-    add_to_file('log' + chat_id, [(username + ' . ' + str(permission) + ' : ' + command)])
+    add_to_file('log' + str(chat_id), [(username + ' . ' + str(permission) + ' : ' + command)])
     
     if command[0] is not '/':
         quiz_game(chat_id, command)
@@ -61,7 +61,7 @@ def handle(msg):
             bot.sendMessage(chat_id, 'You do not have permission.')
     
     elif tag == '/log':
-        bot.sendMessage(chat_id, read_file('log' + chat_id))
+        bot.sendMessage(chat_id, read_file('log' + str(chat_id)))
     
     elif tag in ['/translate','/tr']:
         bot.sendMessage(chat_id, translate(args))
