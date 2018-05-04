@@ -39,10 +39,9 @@ def handle(msg):
     else:
         permission = False
         
-    log = '_' + bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + '_ *' + username + '*: `' + command.replace("\n","\\n") + '`'
-    add_to_file('log' + str(chat_id), [log])
+    logString = log(username, command)
     
-    print(log)
+    print(logString)
     
     if command[0] is not '/':
         #quiz_game(chat_id, command)
@@ -212,13 +211,16 @@ def bash_joke(args):
 
 def bot_print(msg):
     global chat_id
-    
+    log('Bot', msg)
     bot.sendMessage(chat_id, msg, 'markdown')
     
-    log = '_' + bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + '_ *Bot*: `' + msg.replace("\n","\\n") + '`'
+def log(username, msg):
+    time = '*'+ bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() +'*'
+    msg = '_' + msg.replace("\n","\\n") + '_'
+    log = ' '.join[time,username,msg]
+    global chat_id
     add_to_file('log' + str(chat_id), [log])
-    
-    
+    return log
 
 def help(name):
     file = read_file('help')
