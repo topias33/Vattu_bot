@@ -44,7 +44,7 @@ def handle(msg):
     print(logString)
     
     if command[0] is not '/':
-        quiz_game(command)
+        quiz_game(command, username)
         return
     
     tag = command.split()[0]
@@ -168,27 +168,17 @@ def handle(msg):
         bot_print(wiki(args))
         
     elif tag == '/quiz':
-        qbool = quiz_bool.get(chat_id, [False, 0])[0]
-        if not qbool:
-            qbool = True
-            print('quiz starts')
-            quiz_guesses = 0
-            try:
-                quiz.quiz_start(read_file('quiz_questions'), command.split()[1])
-            except:
-                quiz.quiz_start(read_file('quiz_questions'))
-            next = quiz.quiz_next()
-            if next:
-                bot_print(next)
+        if args:
+            num_rounds = int(args[0])
+            if len(args)>1:
+                num_players = int(args[1])
             else:
-                qbool = False
-                bot_print('Quiz has ended.')
+                num_players = 0
         else:
-            qbool = False
-            print('quiz ends')
-            bot_print('Quiz has ended.')
+            num_rounds = 1
+            num_players = 0
             
-        quiz_bool[chat_id] = [qbool, 0]
+        
         
         
     
@@ -320,27 +310,95 @@ def arguments(command):
     args.pop(0) # .pop(0) removes ex. '/bash'
     args = ' '.join(args)
     return args
+'''
+        qbool, userdict = quiz_bool.get(chat_id, [False, {}])
+        
+        gen = (key for key, value in userdict.items() if value)
+        if gen:
+            players = [for key in gen]
+        else:
+            players = []
+            
+        if len(players) >= num_players:
+            if not qbool:
+                qbool = True
+                print('quiz starts')
+                quiz.quiz_start(read_file('quiz_questions'), num_rounds)
+                next = quiz.quiz_next()
+                if next:
+                    bot_print(next)
+                else:
+                    qbool = False
+                    bot_print('Quiz has ended.')
+            else:
+                qbool = False
+                print('quiz ends')
+                bot_print('Quiz has ended.')
 
-def quiz_game(command):
-    global quiz_bool, chat_id
-    qbool, qguesses = quiz_bool.get(chat_id, [False, 0])
-    if qbool:
-        skip = command.lower() in ['skip'] or qguesses >= 3
-        if quiz.quiz_check(command) or skip:
-            if not skip:
-                bot_print(command + ' is correct')
+            quiz_bool[chat_id][0] = qbool
+        else:
+            bot_print('Player #' + str(len(players) + 1) + ' say hello!') #or anything else
+'''
+def quiz_game(guess, user):
+    global quiz_bool, chat_id    
+    qbool, userdict = quiz_bool.get(chat_id, [False, {}])
+    qguesses, correct = userdict.get(user, [1,0])
+    
+    ready = False
+    
+    gen = (key for key, value in userdict.items() if value)
+    if gen:
+        players = [for key in gen]
+    else:
+        players = []
+        
+    if not qbool:
+        if len(players) >= num_players:
+            qbool = ready = True
+            print('quiz starts')
+            quiz.quiz_start(read_file('quiz_questions'), num_rounds)
             next = quiz.quiz_next()
             if next:
-                qguesses = 1
+                bot_print(next)
+            else:
+                qbool = False
+                bot_print('Quiz has ended.')
+        else:
+            bot_print('Player #' + str(len(players) + 1) + ' say hello!') #or anything else
+    
+    elif guess == '/quiz':
+        qbool = False
+        print('quiz ends')
+        bot_print('Quiz has ended.')
+    
+    if qbool:
+        if not ready:
+            if quiz.quiz_check(guess):
+                bot_print(guess + ' is correct')
+                ready = True
+            else:
+                qguesses -= 1
+                gen = (key for key, value in userdict.items() if value and key not user)
+                if gen:
+                    users = ', '.join([for key in gen])
+                    bot_print(guess + ' is Incorrect.\n'+users+' may still have a try.')
+                else:
+                    bot_print(guess + ' is Incorrect.')
+                    ready = True
+                
+        if ready:
+            next = quiz.quiz_next()
+            if next:
+                for key, value in userdict.items():
+                    userdict[key][0] = 1
                 bot_print(next)
             else:
                 qbool = False
                 print('quiz ends')
                 bot_print('Quiz has ended.')
-        else:
-            qguesses += 1
-            bot_print(command + ' is Incorrect.\nYou have '+str(3-qguesses)+' guesses left.')
-        quiz_bool[chat_id] = [qbool, qguesses]
+                
+        userdict[user] = [qguesses, correct]
+        quiz_bool[chat_id] = [qbool, userdict]
 
 bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
