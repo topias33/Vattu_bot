@@ -58,7 +58,7 @@ def handle(msg):
     
     elif tag == '/log':
         full_log = read_file('log' + str(chat_id))
-        for line in full_log.splitlines():
+        for line in full_log.split('\n>'):
             if len(line) > 48:
                 line = line[:48] + '..._'
             
@@ -224,7 +224,7 @@ def log(username, msg):
     msg = '_' + msg.replace("\n","\\n") + '_'
     logString = ' '.join([time,username,msg])
     global chat_id
-    add_to_file('log' + str(chat_id), [logString])
+    add_to_file('log' + str(chat_id), [logString], gap='\n>')
     return logString
 
 def help(name):
