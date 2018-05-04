@@ -28,6 +28,7 @@ process = None
 def handle(msg):
     print("\n")
     
+    global chat_id
     username = msg['from']['username']
     permissions = read_file('permissions', '~/Desktop/').split('\n')
     chat_id = msg['chat']['id']
@@ -58,10 +59,10 @@ def handle(msg):
     
     elif tag == '/log':
         logfile = read_file('log' + str(chat_id))
-        bot.sendMessage(chat_id, 'Timestamp:\t\t\tUsername:\tPermission:\tMessage:\n' + logfile)
+        bot_print('Timestamp:\t\t\tUsername:\tPermission:\tMessage:\n' + logfile)
     
     elif tag in ['/translate','/tr']:
-        bot.sendMessage(chat_id, translate(args))
+        bot_print(translate(args))
     
     elif tag == "/mc":
         global process
@@ -209,6 +210,16 @@ def bash_joke(args):
     if len(joke_list) > 1:
         return joke, joke_list[1]
     return joke, ''
+
+def bot_print(msg):
+    global chat_id
+    
+    print(msg)
+    
+    log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' Bot\t-\t' + msg
+    add_to_file('log' + str(chat_id), [log])
+    
+    bot.sendMessage(chat_id, msg)
 
 def help(name):
     file = read_file('help')
