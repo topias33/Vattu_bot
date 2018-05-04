@@ -216,6 +216,9 @@ def bot_print(msg):
     log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' Bot: ' + msg
     add_to_file('log' + str(chat_id), [log])
     
+    msg = msg.replace('\n',' | ')
+    msg = msg.rstrip()
+    
     bot.sendMessage(chat_id, msg)
 
 def help(name):
