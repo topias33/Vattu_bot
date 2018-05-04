@@ -171,7 +171,12 @@ def handle(msg):
         bot.sendMessage(chat_id, help('help'))
 
 def bash(args, output_bool=True):
-    output = check_output(args, stderr=STDOUT, shell=True)
+    try:
+        output = check_output(args, stderr=STDOUT, shell=True)
+    except:
+        if output_bool:
+            return 'No return'
+        return ''
     if output:
         output = str(output, 'utf8')
         if output_bool:
