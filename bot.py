@@ -41,14 +41,14 @@ def handle(msg):
     log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' ' + username + '\t' + str(permission) + '\t' + command
     add_to_file('log' + str(chat_id), [log])
     
+    print(log)
+    
     if command[0] is not '/':
         #quiz_game(chat_id, command)
         return
     
     tag = command.split()[0]
     args = arguments(command)
-    
-    print(log)
     
     if tag in ["/bash","/b"]:
         if permission:
