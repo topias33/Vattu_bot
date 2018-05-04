@@ -175,7 +175,7 @@ def bash(args, output_bool=True):
         output = check_output(args, stderr=STDOUT, shell=True)
     except:
         if output_bool:
-            return 'No return'
+            return 'No return for '+args
         return ''
     if output:
         output = str(output, 'utf8')
