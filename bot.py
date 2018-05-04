@@ -41,7 +41,7 @@ def handle(msg):
     
     chat_id = msg['chat']['id']
     command = msg['text']
-    
+    print(username + ' . ' + str(permission) + ' : ' + command)
     add_to_file('log' + str(chat_id), [(username + ' . ' + str(permission) + ' : ' + command)])
     
     if command[0] is not '/':
