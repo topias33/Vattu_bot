@@ -217,6 +217,8 @@ def bot_print(msg):
     log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' Bot\t-\t' + msg
     add_to_file('log' + str(chat_id), [log])
     
+    msg = '`inline fixed-width code`' + msg
+    
     bot.sendMessage(chat_id, msg, 'markdown')
 
 def help(name):
