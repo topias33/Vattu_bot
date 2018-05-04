@@ -48,7 +48,7 @@ def handle(msg):
     tag = command.split()[0]
     args = arguments(command)
     
-    print('log: ' + log)
+    print(log)
     
     if tag in ["/bash","/b"]:
         if permission:
@@ -57,7 +57,8 @@ def handle(msg):
             bot.sendMessage(chat_id, 'You do not have permission.')
     
     elif tag == '/log':
-        bot.sendMessage(chat_id, read_file('log' + str(chat_id)))
+        logfile = read_file('log' + str(chat_id))
+        bot.sendMessage(chat_id, 'Timestamp:\t\t\tUsername:\tPermission:\tMessage:\n' + logfile)
     
     elif tag in ['/translate','/tr']:
         bot.sendMessage(chat_id, translate(args))
