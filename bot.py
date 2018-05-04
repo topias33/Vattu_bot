@@ -38,8 +38,7 @@ def handle(msg):
     else:
         permission = False
     
-    log = bash("date \'+%Y-%m-%d %H:%M:%S\'").rstrip() + ' ' + username + ' ' + str(permission) + ' ' + command
-    print('log: ' + log)
+    log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' ' + username + '\t' + str(permission) + '\t' + command
     add_to_file('log' + str(chat_id), [log])
     
     if command[0] is not '/':
@@ -49,10 +48,7 @@ def handle(msg):
     tag = command.split()[0]
     args = arguments(command)
     
-    print('User: '+username)   
-    print('Permission: '+str(permission))
-    print ('Command: %s' % tag)
-    print ('Args: %s' % args)
+    print('log: ' + log)
     
     if tag in ["/bash","/b"]:
         if permission:
