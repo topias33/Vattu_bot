@@ -39,7 +39,7 @@ def handle(msg):
     else:
         permission = False
     
-    log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' ' + username + '\t' + str(permission) + '\t' + command
+    log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' ' + username + ': ' + command
     add_to_file('log' + str(chat_id), [log])
     
     print(log)
@@ -53,13 +53,12 @@ def handle(msg):
     
     if tag in ["/bash","/b"]:
         if permission:
-            bot.sendMessage(chat_id, bash(args))
+            bot_print(bash(args))
         else:
-            bot.sendMessage(chat_id, 'You do not have permission.')
+            bot_print('You do not have permission.')
     
     elif tag == '/log':
-        logfile = read_file('log' + str(chat_id))
-        bot_print('Timestamp:\t\t\tUsername:\tPermission:\tMessage:\n' + logfile)
+        bot_print(read_file('log' + str(chat_id)))
     
     elif tag in ['/translate','/tr']:
         bot_print(translate(args))
@@ -72,7 +71,7 @@ def handle(msg):
                 exe = 'java -Xmx512M -Xms512M -jar server.jar nogui'
                 process = Popen(shlex.split(exe), stdin=PIPE, stdout=PIPE, stderr=PIPE)
             else:
-                bot.sendMessage(chat_id, 'Server is not running.')
+                bot_print('Server is not running.')
         else:
             #process.stdout.flush()
             #print(process.stdout.readline())
@@ -82,10 +81,10 @@ def handle(msg):
             
     
     elif tag in ["/math","/m"]:
-        bot.sendMessage(chat_id, math(args))
+        bot_print(math(args))
         
     elif tag == "/hello":
-        bot.sendMessage(chat_id, 'Hello World from githubbbb')
+        bot_print('Hello World from githubbbb')
         
     elif tag == "/weather":
         weather=callWeather.weather()
@@ -97,16 +96,16 @@ def handle(msg):
         
         weatherString=''
         if args=='':
-            bot.sendMessage(chat_id,weather[3])
+            bot_print(weather[3])
             
         else:
             if args =='all':
                 for i in range(len(dayTimes)):
                     weatherString+=str(days[i])+' klo '+ str(dayTimes[i]) +' =>'+str(dayTemp[i])+'C '+daySymb[i]+'\n'
-                bot.sendMessage(chat_id, weatherString)
+                bot_print(weatherString)
             if args =='sun':
                 weatherString+=str(sunRise[0])+' ja '+str(sunRise[1])
-                bot.sendMessage(chat_id,weatherString)
+                bot_print(weatherString)
                 
     elif tag == '/fd':
         if args=='':
@@ -131,10 +130,10 @@ def handle(msg):
                 fdString=flagday[0]+'\n\n'+flagday[1] 
         if not fdString:
             fdString = 'That day isnt flag day'
-        bot.sendMessage(chat_id,fdString) 
+        bot_print(fdString) 
        
     elif tag == "/hi":
-        bot.sendMessage(chat_id, 'Miten menee?')
+        bot_print('Miten menee?')
     
     elif tag == '/fwiki':
         codes=wikiCall.getAbbreviation()
@@ -145,28 +144,28 @@ def handle(msg):
         else:
             code='en'
             searchS=args
-        bot.sendMessage(chat_id, wikiCall.wikiSearch(searchS, code))    
+        bot_print(wikiCall.wikiSearch(searchS, code))    
     
     elif tag == "/time":
-        bot.sendMessage(chat_id, bash("date"))
+        bot_print(bash("date"))
         
     elif tag in ['/joke','/j']:
         joke, answer = bash_joke(args)
-        bot.sendMessage(chat_id, joke)
+        bot_print(joke)
         if answer:
             time.sleep(3)
-            bot.sendMessage(chat_id, answer)
+            bot_print(answer)
             
     elif tag in ["/wiki", "/wikipedia"]:
-        bot.sendMessage(chat_id, wiki(args))
+        bot_print(wiki(args))
         
     elif tag == '/quiz':
         quiz_game(chat_id, command)
     
     elif tag == '/help' and args:
-        bot.sendMessage(chat_id, help(args))
+        bot_print(help(args))
     else:
-        bot.sendMessage(chat_id, help('help'))
+        bot_print(help('help'))
 
 def bash(args, output_bool=True):
     try:
@@ -214,12 +213,10 @@ def bash_joke(args):
 def bot_print(msg):
     global chat_id
     
-    log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' Bot\t-\t' + msg
+    log = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip() + ' Bot: ' + msg
     add_to_file('log' + str(chat_id), [log])
     
-    msg = '`'+msg+'`'
-    
-    bot.sendMessage(chat_id, msg, 'markdown')
+    bot.sendMessage(chat_id, msg)
 
 def help(name):
     file = read_file('help')
@@ -300,29 +297,29 @@ def quiz_game(chat_id, command):
             quiz.quiz_start(read_file('quiz_questions'))
         next = quiz.quiz_next()
         if next:
-            bot.sendMessage(chat_id, next)
+            bot_print(next)
         else:
             quiz_bool = False
-            bot.sendMessage(chat_id, 'Quiz has ended.')
+            bot_print('Quiz has ended.')
     elif command.split()[1] == '/quiz':
         print('quiz ends')
-        bot.sendMessage(chat_id, 'Quiz has ended.')
+        bot_print('Quiz has ended.')
     else:
         skip = command.lower() in ['skip'] or quiz_guesses >= 3
         if quiz.quiz_check(command) or skip:
             if not skip:
-                bot.sendMessage(chat_id, command + ' is correct')
+                bot_print(command + ' is correct')
             next = quiz.quiz_next()
             if next:
                 quiz_guesses = 1
-                bot.sendMessage(chat_id, next)
+                bot_print(next)
             else:
                 quiz_bool = False
                 print('quiz ends')
-                bot.sendMessage(chat_id, 'Quiz has ended.')
+                bot_print('Quiz has ended.')
         else:
             quiz_guesses += 1
-            bot.sendMessage(chat_id, command + ' is Incorrect.\nYou have '+str(3-quiz_guesses)+' guesses left.')            
+            bot_print(command + ' is Incorrect.\nYou have '+str(3-quiz_guesses)+' guesses left.')            
 
 bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
