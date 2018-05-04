@@ -11,4 +11,4 @@ QUIZ . /quiz = Starts the quiz and ends it if needed.
 FD . /fd = Shows what flagday is currently if any.
 FD . /fd 'date' = Shows what flagday is at given date if any.
 TRANSLATE . /translate .(en, fi, ru etc.) >(en, fi, ru etc.) 'sentence' = Translates from language to language whatever sentence you give it.
-LOG . /log (f) = Shows chat log. 'f' = full log. 
+LOG . /log (f) = Shows chat log. 'f' = full.
