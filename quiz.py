@@ -7,6 +7,7 @@ answer = ''
 
 def quiz_start(questions, amount = 1):
     questions = questions.split('\n')
+    questions = filter(None, questions)
     shuffle(questions)
     global game_questions, i
     try:
@@ -14,12 +15,12 @@ def quiz_start(questions, amount = 1):
     except:
         amount = 1
     game_questions = questions[:amount]
+    print('Questions: ' + game_questions)
     i = 0
 
 def quiz_next():
     global game_questions, i, answer
     if i < len(game_questions):
-        print(game_questions)
         question, answer = game_questions[i].rsplit(' ? ',1)
         i += 1
         return question
