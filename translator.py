@@ -5,6 +5,7 @@ import unicodedata
 from wikiCall import getAbbreviation
 
 abbrev = getAbbreviation()
+abbrev.append('ja')
 
 def translate(args):
     
