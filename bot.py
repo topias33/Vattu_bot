@@ -395,7 +395,7 @@ def quiz_game(guess, user):
         ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(the_real_math.floor(n/10)%10!=1)*(n%10<4)*n%10::4])
         for u in sorted_userdict:
             scoreboard += '\n' + ordinal(i) + ' ' + u[0] + ' - ' + str(u[1][1])
-            i += 0
+            i += 1
         bot_print(scoreboard)
 
 bot = telepot.Bot(TOKEN)
