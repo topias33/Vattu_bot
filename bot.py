@@ -347,7 +347,7 @@ def quiz_game(guess, user):
     
     if qbool:
         if not ready and qguesses:
-            if quiz.quiz_check(guess, gameList[2]):
+            if quiz.quiz_check(guess, gameList[3]):
                 correct += 1
                 bot_print(guess + ' is correct.')
                 ready = True
@@ -376,7 +376,8 @@ def quiz_game(guess, user):
                     
         if ready:
             time.sleep(3)
-            next = quiz.quiz_next(*gameList)
+            gameList = quiz.quiz_next(*gameList)
+            next = gameList[2]
             if next:
                 for key, value in userdict.items():
                     userdict[key][0] = 1
