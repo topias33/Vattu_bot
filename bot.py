@@ -17,6 +17,8 @@ import callWeather
 
 from translator import translate
 
+import operator
+
 #when running pass in the token as the first parameter e.g. python3.4 file.py token
 TOKEN = sys.argv[1] 
 
@@ -340,10 +342,12 @@ def quiz_game(guess, user):
         qbool = False
         print('quiz forced to end')
         bot_print('Quiz has been forced to end.')
+        show_leaderboard = True
     
     if qbool:
         if not ready:
             if quiz.quiz_check(guess):
+                correct += 1
                 bot_print(guess + ' is correct')
                 ready = True
             else:
@@ -366,9 +370,17 @@ def quiz_game(guess, user):
                 qbool = False
                 print('quiz ends')
                 bot_print('Quiz has ended.')
+                show_leaderboard = True
                 
     userdict[user] = [qguesses, correct]
     quiz_bool[chat_id] = [qbool, userdict, num_rounds, num_players]
+    
+    if show_leaderboard:
+        userdict = quiz_bool.get(chat_id)[1]
+        sorted_userdict = sorted(userdict.items(), key=operator.itemgetter(1))
+        print(userdict)
+        print(sorted_userdict)
+            
 
 bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
