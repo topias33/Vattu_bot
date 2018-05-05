@@ -356,7 +356,7 @@ def quiz_game(guess, user):
                     bot_print(guess + ' is Incorrect.')
                     ready = True
                 
-        else:
+        if ready:
             next = quiz.quiz_next()
             if next:
                 for key, value in userdict.items():
