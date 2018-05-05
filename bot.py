@@ -45,6 +45,7 @@ def handle(msg):
     if command[0] is not '/':
         if quiz_bool.get(chat_id, [0])[0]:
             quiz_game(command, username)
+            print('huloo')
         return
     
     tag = command.split()[0]
