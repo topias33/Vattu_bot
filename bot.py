@@ -110,18 +110,18 @@ def handle(msg):
         weatherString=''
         if args=='':
             weatherString=weather[3]
-            weatherStringEn=translate('.fi >en '+weatherString)
+            weatherStringEn=translate('en '+weatherString)
             bot_print(weatherStringEn)
             
         else:
             if args =='all':
                 for i in range(len(dayTimes)):
                     weatherString+=str(days[i])+' klo '+ str(dayTimes[i]) +' =>'+str(dayTemp[i])+'C '+daySymb[i]+'\n'
-                weatherStringEn=translate('.en '+weatherString)
+                weatherStringEn=translate('en '+weatherString)
                 bot_print(weatherStringEn)
             if args =='sun':
                 weatherString+=str(sunRise[0])+' ja '+str(sunRise[1])
-                weatherStringEn=translate('.fi >en '+weatherString)
+                weatherStringEn=translate('en '+weatherString)
                 bot_print(weatherStringEn)
                 
     elif tag == '/fd':
@@ -147,7 +147,7 @@ def handle(msg):
                 fdString=flagday[0]+'\n\n'+flagday[1] 
         if not fdString:
             fdString = 'That day isnt flag day'
-        bot_print(fdString) 
+        bot_print(translate('en ' + fdString) 
        
     elif tag == "/hi":
         bot_print('Hello! How are you? I am feeling ' + str(random.choice(mood)+ "."))
