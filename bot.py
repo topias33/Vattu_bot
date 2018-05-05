@@ -334,6 +334,8 @@ def quiz_game(guess, user):
         qbool = True
         ready = True
         bot_print('Quiz started')
+        bot_print('Rounds: '+num_rounds)
+        bot_print('Players: '+num_players)
         quiz.quiz_start(read_file('quiz_questions'), num_rounds)
     
     elif guess == 'stop':
@@ -359,7 +361,7 @@ def quiz_game(guess, user):
                     if len(players) < num_players:
                         players_not_guessed = num_players - players_not_guessed
                     
-                    if players_not_guessed < len(players):
+                    if players_not_guessed:
                         bot_print(guess + ' is incorrect.\n'+players_not_guessed+' may still have a try.')
                     else:
                         bot_print(guess + ' is incorrect.')
