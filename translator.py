@@ -25,6 +25,11 @@ def translate(args):
     else:
         to_language = "en"
         
+    if i == 1:
+        to_language = from_language
+        from_language = "auto"
+        
+        
     sentence = '+'.join(args[i:])
     
     sentence = unicodedata.normalize('NFKD', sentence).encode('ascii','ignore').decode('utf8')
