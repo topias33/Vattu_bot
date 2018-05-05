@@ -356,7 +356,7 @@ def quiz_game(guess, user):
                     bot_print(guess + ' is incorrect.')
                     ready = True
                 else:
-                    players_guessed = len(list(key for key, value in userdict.items() if not value[0])) + 1
+                    players_guessed = len(list(key for key, value in userdict.items() if not value[0]))
                     
                     players_not_guessed = len(players) - players_guessed
                     if len(players) < num_players:
