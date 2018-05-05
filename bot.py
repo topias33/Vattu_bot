@@ -147,7 +147,7 @@ def handle(msg):
                 fdString=flagday[0]+'\n\n'+flagday[1] 
         if not fdString:
             fdString = 'That day isnt flag day'
-        bot_print(translate('en ' + fdString) 
+        bot_print(translate('en ' + fdString)) 
        
     elif tag == "/hi":
         bot_print('Hello! How are you? I am feeling ' + str(random.choice(mood)+ "."))
