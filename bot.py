@@ -384,7 +384,7 @@ def quiz_game(guess, user):
         scoreboard = 'Scoreboard:'
         ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(the_real_math.floor(n/10)%10!=1)*(n%10<4)*n%10::4])
         for u in sorted_userdict:
-            scoreboard += '\n' + ordinal(i) + '. ' + u[0] + ' - ' + str(u[1][1])
+            scoreboard += '\n' + ordinal(i) + ' ' + u[0] + ' - ' + str(u[1][1])
             i += 0
         bot_print(scoreboard)
 
