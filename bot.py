@@ -326,6 +326,7 @@ def quiz_game(guess, user):
     qguesses, correct = userdict.get(user, [1,0])
     
     ready = False
+    show_leaderboard = False
     
     players = list(key for key, value in userdict.items())
         
