@@ -30,5 +30,4 @@ def quiz_check(guess):
     global answer
     answer = ''.join(char for char in answer if char in whitelist).lower()
     guess = ''.join(char for char in guess if char in whitelist).lower()
-    print('Guess: '+guess+'\nAnswer: '+answer)
     return guess == answer
