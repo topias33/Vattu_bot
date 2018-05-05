@@ -62,14 +62,14 @@ def handle(msg):
     elif tag == '/log':
         full_log = read_file('log' + str(chat_id))
         if args == 'f':
-            bot_print(full_log)
+            bot_print('>'+full_log)
         else:
             short_log = []
             for line in full_log.split('\n>'):
                 if len(line) > 49:
                     line = line[:49] + '...'
                 short_log.append(line)
-            bot_print('\n'.join(short_log))
+            bot_print('\n>'.join(short_log))
     
     elif tag in ['/translate','/tr']:
         bot_print(translate(args))
@@ -246,7 +246,7 @@ def log(username, msg):
     logString = ' '.join([time,username,msg])
     global chat_id
     add_to_file('log' + str(chat_id), [logString], gap='\n>')
-    return '> '+logString
+    return '>'+logString
 
 def help(name):
     file = read_file('help')
