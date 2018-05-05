@@ -338,7 +338,7 @@ def quiz_game(guess, user):
         else:
             bot_print('Player #' + str(len(players) + 1) + ' say hello!') #or anything else
     
-    elif guess == '/quiz':
+    elif guess == 'stop':
         qbool = False
         print('quiz forced to end')
         bot_print('Quiz has been forced to end.')
