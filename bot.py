@@ -21,14 +21,13 @@ from translator import translate
 TOKEN = sys.argv[1] 
 
 quiz_bool = {}
-quiz_guesses = 1
 
 process = None
 
 def handle(msg):
     print("\n")
     
-    global chat_id
+    global chat_id, quiz_bool
     username = msg['from']['username']
     permissions = read_file('permissions', '~/Desktop/').split('\n')
     chat_id = msg['chat']['id']
@@ -44,7 +43,9 @@ def handle(msg):
     print(logString)
     
     if command[0] is not '/':
-        quiz_game(command, username)
+        qbool = quiz_bool.get(chat_id)[0]
+        if qbool:
+            quiz_game(command, username)
         return
     
     tag = command.split()[0]
