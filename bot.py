@@ -146,7 +146,7 @@ def handle(msg):
         bot_print(fdString) 
        
     elif tag == "/hi":
-        bot_print('Hello! How are you? I am feeling ' + str(random.choice(mood)))
+        bot_print('Hello! How are you? I am feeling ' + str(random.choice(mood)+ "."))
     
     elif tag == '/fwiki':
         codes=wikiCall.getAbbreviation()
