@@ -15,7 +15,7 @@ def quiz_next(game_questions, i):
     if i < len(game_questions):
         question, answer = game_questions[i].rsplit(' ? ',1)
         i += 1
-        return [game_questions, i, question, answer]
+        return question, [game_questions, i, answer]
     return []
 
 def quiz_check(guess, answer):
