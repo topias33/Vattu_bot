@@ -109,16 +109,20 @@ def handle(msg):
         
         weatherString=''
         if args=='':
-            bot_print(weather[3])
+            weatherString=weather[3]
+            weatherStringEn=translate('.en',weatherString)
+            bot_print(weatherStringEn)
             
         else:
             if args =='all':
                 for i in range(len(dayTimes)):
                     weatherString+=str(days[i])+' klo '+ str(dayTimes[i]) +' =>'+str(dayTemp[i])+'C '+daySymb[i]+'\n'
-                bot_print(weatherString)
+                weatherStringEn=translate('.en',weatherString)
+                bot_print(weatherStringEn)
             if args =='sun':
                 weatherString+=str(sunRise[0])+' ja '+str(sunRise[1])
-                bot_print(weatherString)
+                weatherStringEn=translate('.en',weatherString)
+                bot_print(weatherStringEn)
                 
     elif tag == '/fd':
         if args=='':
@@ -148,7 +152,7 @@ def handle(msg):
     elif tag == "/hi":
         bot_print('Hello! How are you? I am feeling ' + str(random.choice(mood)+ "."))
     
-    elif tag == '/fwiki':
+    elif tag in ["/wiki", "/wikipedia"]:
         codes=wikiCall.getAbbreviation()
         argsS=args.split(' ')
         if argsS[0].lower() in codes:
@@ -158,6 +162,7 @@ def handle(msg):
             code='en'
             searchS=args
         bot_print(wikiCall.wikiSearch(searchS, code))    
+    
     
     elif tag == "/time":
         bot_print(bash("date"))
@@ -169,7 +174,7 @@ def handle(msg):
             time.sleep(3)
             bot_print(answer)
             
-    elif tag in ["/wiki", "/wikipedia"]:
+    elif tag in ["/lwiki", "/lwikipedia"]:
         bot_print(wiki(args))
         
     elif tag == '/quiz':
