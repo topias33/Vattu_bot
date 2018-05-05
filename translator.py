@@ -33,6 +33,7 @@ def translate(args):
         
         
     sentences = '+'.join(args[i:]).split('\n')
+    sentences = list(filter(None, sentences))
     textList = []
     for sentence in sentences:
         sentence = unicodedata.normalize('NFKD', sentence).encode('ascii','ignore').decode('utf8')
