@@ -4,13 +4,14 @@ import unicodedata
 
 from wikiCall import getAbbreviation
 
+abbrev = getAbbreviation()
+
 def translate(args):
     if args:
         args = args.split()
     else:
         return "Use /translate .( en, fi, ru etc. ) >( en, fi, ru etc. ) sentence\ne.g. /translate >ru how are you"
     
-    abbrev = getAbbreviation()
     i = 0
     
     if args[i] in abbrev:
