@@ -175,10 +175,10 @@ def handle(msg):
             if len(args)>1:
                 num_players = int(args[1])
             else:
-                num_players = 0
+                num_players = 1
         else:
             num_rounds = 1
-            num_players = 0
+            num_players = 1
             
         userdict = {}    
         userdict[username] = [1, 0]
@@ -329,15 +329,10 @@ def quiz_game(guess, user):
         
     if not qbool:
         if len(players) >= num_players:
-            qbool = ready = True
+            qbool = True
+            ready = True
             print('quiz starts')
             quiz.quiz_start(read_file('quiz_questions'), num_rounds)
-            next = quiz.quiz_next()
-            if next:
-                bot_print(next)
-            else:
-                qbool = False
-                bot_print('Quiz has ended.')
         else:
             bot_print('Player #' + str(len(players) + 1) + ' say hello!') #or anything else
     
@@ -346,7 +341,7 @@ def quiz_game(guess, user):
         print('quiz forced to end')
         bot_print('Quiz has been forced to end.')
     
-    else:
+    if qbool:
         if not ready:
             if quiz.quiz_check(guess):
                 bot_print(guess + ' is correct')
@@ -361,7 +356,7 @@ def quiz_game(guess, user):
                     bot_print(guess + ' is Incorrect.')
                     ready = True
                 
-        if ready:
+        else:
             next = quiz.quiz_next()
             if next:
                 for key, value in userdict.items():
@@ -372,8 +367,8 @@ def quiz_game(guess, user):
                 print('quiz ends')
                 bot_print('Quiz has ended.')
                 
-        userdict[user] = [qguesses, correct]
-        quiz_bool[chat_id] = [qbool, userdict, num_rounds, num_players]
+    userdict[user] = [qguesses, correct]
+    quiz_bool[chat_id] = [qbool, userdict, num_rounds, num_players]
 
 bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
