@@ -333,15 +333,16 @@ def quiz_game(guess, user):
         if len(players) >= num_players:
             qbool = True
             ready = True
-            print('quiz starts')
+            print('Quiz started')
+            bot_print('Quiz started')
             quiz.quiz_start(read_file('quiz_questions'), num_rounds)
         else:
             bot_print('Player #' + str(len(players) + 1) + ' say hello!') #or anything else
     
     elif guess == 'stop':
         qbool = False
-        print('quiz forced to end')
-        bot_print('Quiz has been forced to end.')
+        print('Quiz stopped')
+        bot_print('Quiz stopped')
         show_scoreboard = True
     
     if qbool:
