@@ -65,11 +65,11 @@ def handle(msg):
             bot_print(full_log)
         else:
             short_log = []
-            for line in full_log.split('\n>'):
+            for line in full_log.split('\n>>'):
                 if len(line) > 49:
                     line = line[:49] + '...'
                 short_log.append(line)
-            bot_print('\n'.join(short_log))
+            bot_print('\n>>'.join(short_log))
     
     elif tag in ['/translate','/tr']:
         bot_print(translate(args))
@@ -185,10 +185,6 @@ def handle(msg):
         userdict[username] = [1, 0]
         quiz_bool[chat_id] = [False, userdict, num_rounds, num_players]    
         quiz_game(tag, username)
-            
-        
-        
-        
     
     elif tag == '/help' and args:
         bot_print(help(args))
@@ -247,9 +243,9 @@ def log(username, msg):
     time = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip()
     username += ':'
     msg = msg.replace("\n"," n ")
-    logString = '  '.join([time,username,msg])
+    logString = '>>'+'  '.join([time,username,msg])
     global chat_id
-    add_to_file('log' + str(chat_id), ['>'+logString], gap='\n')
+    add_to_file('log' + str(chat_id), [logString], gap='\n')
     return logString
 
 def help(name):
