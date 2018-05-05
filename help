@@ -26,6 +26,6 @@ TRANSLATE . /translate = Show all languages.
 
 LOG . /log (f) = Shows chat log. 'f' = full.
 
-QUIZ . /quiz (number of rounds) (number of players at start) = Starts the quiz. 
-QUIZ . More players may join at any point.
-QUIZ . 'stop' = Stops quiz if needed.
+QUIZ . /quiz (rounds) (players at start) = Starts the quiz. 
+QUIZ . More players may join at any time.
+QUIZ . Say 'stop' to stop game while running.
