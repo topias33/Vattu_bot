@@ -192,7 +192,7 @@ def handle(msg):
             
         userdict = {}    
         userdict[username] = [1, 0]
-        quiz_bool[chat_id] = [False, userdict, num_rounds, num_players]    
+        quiz_bool[chat_id] = [False, userdict, num_rounds, num_players, []]    
         quiz_game(tag, username)
     
     elif tag == '/help' and args:
@@ -323,7 +323,7 @@ def arguments(command):
 
 def quiz_game(guess, user):
     global quiz_bool, chat_id    
-    qbool, userdict, num_rounds, num_players = quiz_bool.get(chat_id)
+    qbool, userdict, num_rounds, num_players, gameList = quiz_bool.get(chat_id)
     qguesses, correct = userdict.get(user, [1,0])
     
     ready = False
@@ -337,7 +337,7 @@ def quiz_game(guess, user):
         bot_print('Quiz started')
         bot_print('Rounds: '+str(num_rounds))
         bot_print('Players: '+str(num_players))
-        quiz.quiz_start(read_file('quiz_questions'), num_rounds)
+        gameList = quiz.quiz_start(read_file('quiz_questions'), num_rounds)
     
     elif guess == 'stop':
         qbool = False
@@ -346,7 +346,7 @@ def quiz_game(guess, user):
     
     if qbool:
         if not ready and qguesses:
-            if quiz.quiz_check(guess):
+            if quiz.quiz_check(guess, gameList[2]):
                 correct += 1
                 bot_print(guess + ' is correct.')
                 ready = True
@@ -374,7 +374,7 @@ def quiz_game(guess, user):
                         ready = True
                     
         if ready:
-            next = quiz.quiz_next()
+            next = quiz.quiz_next(*gameList)
             if next:
                 for key, value in userdict.items():
                     userdict[key][0] = 1
@@ -385,7 +385,7 @@ def quiz_game(guess, user):
                 show_scoreboard = True
                 
     userdict[user] = [qguesses, correct]
-    quiz_bool[chat_id] = [qbool, userdict, num_rounds, num_players]
+    quiz_bool[chat_id] = [qbool, userdict, num_rounds, num_players, gameList]
     
     if show_scoreboard:
         userdict = quiz_bool.get(chat_id)[1]
