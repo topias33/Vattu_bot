@@ -326,7 +326,7 @@ def quiz_game(guess, user):
     qguesses, correct = userdict.get(user, [1,0])
     
     ready = False
-    show_leaderboard = False
+    show_scoreboard = False
     
     players = list(key for key, value in userdict.items())
         
@@ -343,7 +343,7 @@ def quiz_game(guess, user):
         qbool = False
         print('quiz forced to end')
         bot_print('Quiz has been forced to end.')
-        show_leaderboard = True
+        show_scoreboard = True
     
     if qbool:
         if not ready:
@@ -371,17 +371,20 @@ def quiz_game(guess, user):
                 qbool = False
                 print('quiz ends')
                 bot_print('Quiz has ended.')
-                show_leaderboard = True
+                show_scoreboard = True
                 
     userdict[user] = [qguesses, correct]
     quiz_bool[chat_id] = [qbool, userdict, num_rounds, num_players]
     
-    if show_leaderboard:
+    if show_scoreboard:
         userdict = quiz_bool.get(chat_id)[1]
-        sorted_userdict = sorted(userdict.items(), key=operator.itemgetter(1))
-        print(userdict)
-        print(sorted_userdict)
-            
+        sorted_userdict = sorted(userdict.items(), key=lambda i: i[1][1], reverse=True)
+        i = 1
+        scoreboard = 'Scoreboard:'
+        for u in sorted_userdict:
+            scoreboard += '\n' + i + '. ' + u[0] + ' ' + u[1][1]
+            i += 0
+        bot_print(scoreboard)
 
 bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
