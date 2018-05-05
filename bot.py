@@ -363,12 +363,12 @@ def quiz_game(guess, user):
                         players_not_guessed = num_players - players_not_guessed
                     
                     if players_not_guessed:
-                        aString = guess + ' is incorrect.\nBut '+str(players_not_guessed)+' player{s} may still have a try.'
+                        aString = guess + ' is incorrect.\nBut '+str(players_not_guessed)+' player{} may still have a try.'
                         if players_not_guessed > 1:
-                            multiple = 's'
+                            bot_print(aString.format('s'))
                         else:
-                            multiple = ''
-                        bot_print(aString.format(multiple))
+                            bot_print(aString.format(''))
+                        
                     else:
                         bot_print(guess + ' is incorrect.')
                         ready = True
