@@ -200,8 +200,6 @@ def bash(args, output_bool=True):
         return ''
     if output:
         output = str(output, 'utf8')
-        if output_bool:
-            print("Output: %s" % output.replace('\n','\n\t'))
         return output
     return "Done"    
 
@@ -226,7 +224,7 @@ def bash_joke(args):
         else:
             if joke.split(' . ', 1)[0] == name:
                 return 'Name is allready in use.', ''
-            print(add_to_file('jokes.txt', [args]))
+            add_to_file('jokes.txt', [args])
             return 'done', ''
     joke_list = joke.replace(' . ', '\n', 1).rsplit(' : ', 1)
     joke = joke_list[0]
@@ -298,7 +296,6 @@ def wiki(args):
     search = '_'.join(args[i:])
     
     url = "https://{0:s}.wikipedia.org/w/index.php?search={1:s}".format(language, search)
-    print("URL: " + url)
     return url    
 
 def math(args):
@@ -306,7 +303,6 @@ def math(args):
     args = args.replace(' ','')
     result = nsp.eval(args)
     result = "{0:s} = {1:g}".format(args,result)
-    print (result)
     return result
     
 def arguments(command):
