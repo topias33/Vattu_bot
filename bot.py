@@ -179,6 +179,7 @@ def handle(msg):
         
     elif tag == '/quiz':
         if args:
+            args = args.split()
             num_rounds = int(args[0])
             if len(args)>1:
                 num_players = int(args[1])
