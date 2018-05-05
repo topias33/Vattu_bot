@@ -10,7 +10,7 @@ def translate(args):
     if args:
         args = args.split()
     else:
-        return "Use /translate .( en, fi, ru etc. ) >( en, fi, ru etc. ) sentence\ne.g. /translate >ru how are you"
+        return "Use /translate ( en, fi, ru etc. ) ( en, fi, ru etc. ) sentence\ne.g. /translate ru how are you"
     
     i = 0
     
