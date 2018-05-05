@@ -110,7 +110,7 @@ def handle(msg):
         weatherString=''
         if args=='':
             weatherString=weather[3]
-            weatherStringEn=translate('.en',weatherString)
+            weatherStringEn=translate('.en'+weatherString)
             bot_print(weatherStringEn)
             
         else:
