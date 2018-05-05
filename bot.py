@@ -18,6 +18,7 @@ import callWeather
 from translator import translate
 
 import operator
+import math
 
 #when running pass in the token as the first parameter e.g. python3.4 file.py token
 TOKEN = sys.argv[1] 
@@ -381,8 +382,9 @@ def quiz_game(guess, user):
         sorted_userdict = sorted(userdict.items(), key=lambda i: i[1][1], reverse=True)
         i = 1
         scoreboard = 'Scoreboard:'
+        ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(math.floor(n/10)%10!=1)*(n%10<4)*n%10::4])
         for u in sorted_userdict:
-            scoreboard += '\n' + str(i) + '. ' + u[0] + ' - ' + str(u[1][1])
+            scoreboard += '\n' + ordinal(i) + '. ' + u[0] + ' - ' + str(u[1][1])
             i += 0
         bot_print(scoreboard)
 
