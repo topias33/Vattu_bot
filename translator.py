@@ -34,7 +34,7 @@ def translate(args):
         
     sentences = '+'.join(args[i:]).split('\n')
     textList = []
-    foreach sentence in sentences:
+    for sentence in sentences:
         sentence = unicodedata.normalize('NFKD', sentence).encode('ascii','ignore').decode('utf8')
     
         url = 'http://translate.google.com/m?hl={0:s}&sl={1:s}&q={2:s}'
