@@ -34,7 +34,7 @@ def translate(args):
         
     sentences = '+'.join(args[i:]).split('\n')
     textList = []
-    for sentence in sentences:
+    foreach sentence in sentences:
         sentence = unicodedata.normalize('NFKD', sentence).encode('ascii','ignore').decode('utf8')
     
         url = 'http://translate.google.com/m?hl={0:s}&sl={1:s}&q={2:s}'
@@ -44,6 +44,7 @@ def translate(args):
         webpage = web_byte.decode('utf-8')
         soup = BeautifulSoup(webpage, "html.parser")
         soup = soup.find("div", {'class': 't0'})
+        
         textList.append(soup.get_text())
     
     text = '\n'.join(textList)
