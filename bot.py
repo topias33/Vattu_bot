@@ -43,8 +43,7 @@ def handle(msg):
     print(logString)
     
     if command[0] is not '/':
-        qbool = quiz_bool.get(chat_id)[0]
-        if qbool:
+        if quiz_bool.get(chat_id, [0])[0]:
             quiz_game(command, username)
         return
     
