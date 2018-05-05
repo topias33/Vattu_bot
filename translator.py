@@ -2,21 +2,24 @@ from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 import unicodedata
 
+from wikiCall import getAbbreviation
+
 def translate(args):
     if args:
         args = args.split()
     else:
         return "Use /translate .( en, fi, ru etc. ) >( en, fi, ru etc. ) sentence\ne.g. /translate >ru how are you"
     
+    abbrev = getAbbreviation()
     i = 0
     
-    if len(args[i]) == 2:
+    if args[i] in abbrev:
         from_language = args[i]
         i += 1
     else:
         from_language = "auto"
     
-    if len(args[i]) == 2:
+    if args[i] in abbrev:
         to_language = args[i]
         i += 1
     else:
