@@ -251,6 +251,7 @@ def log(username, msg):
 def help(name):
     file = read_file('help')
     files = file.split('\n')
+    files = list(filter(None, files))
     name = name.upper()
     content = []
     commands = []
