@@ -178,6 +178,7 @@ def handle(msg):
             num_rounds = 1
             num_players = 0
             
+        userdict = {}    
         userdict[username] = [1, 0]
         quiz_bool[chat_id] = [False, userdict, num_rounds, num_players]    
         quiz_game(tag, username)
