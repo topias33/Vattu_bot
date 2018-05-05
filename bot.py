@@ -110,18 +110,18 @@ def handle(msg):
         weatherString=''
         if args=='':
             weatherString=weather[3]
-            weatherStringEn=translate('.en'+weatherString)
+            weatherStringEn=translate('.en '+weatherString)
             bot_print(weatherStringEn)
             
         else:
             if args =='all':
                 for i in range(len(dayTimes)):
                     weatherString+=str(days[i])+' klo '+ str(dayTimes[i]) +' =>'+str(dayTemp[i])+'C '+daySymb[i]+'\n'
-                weatherStringEn=translate('.en',weatherString)
+                weatherStringEn=translate('.en '+weatherString)
                 bot_print(weatherStringEn)
             if args =='sun':
                 weatherString+=str(sunRise[0])+' ja '+str(sunRise[1])
-                weatherStringEn=translate('.en',weatherString)
+                weatherStringEn=translate('.en '+weatherString)
                 bot_print(weatherStringEn)
                 
     elif tag == '/fd':
