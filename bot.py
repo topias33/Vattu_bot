@@ -382,7 +382,7 @@ def quiz_game(guess, user):
         i = 1
         scoreboard = 'Scoreboard:'
         for u in sorted_userdict:
-            scoreboard += '\n' + i + '. ' + u[0] + ' ' + u[1][1]
+            scoreboard += '\n' + str(i) + '. ' + u[0] + ' ' + str(u[1][1])
             i += 0
         bot_print(scoreboard)
 
