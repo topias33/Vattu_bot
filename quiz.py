@@ -11,11 +11,11 @@ def quiz_start(questions, amount = 1):
         amount = 1
     return [questions[:amount], 0]
 
-def quiz_next(game_questions, i, a = '', b = ''):
+def quiz_next(game_questions, i):
     if i < len(game_questions):
         question, answer = game_questions[i].rsplit(' ? ',1)
         i += 1
-        return [question, answer, a, b]
+        return [game_questions, i, question, answer]
     return []
 
 def quiz_check(guess, answer):
