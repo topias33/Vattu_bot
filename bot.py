@@ -27,6 +27,8 @@ quiz_bool = {}
 
 process = None
 
+mood = ['hungry', 'happy', 'tired', 'sad','good','amused','anxious','bored','energetic', 'excited','joyful','playful','cheerful','blissful', 'dreamy'];
+
 def handle(msg):
     print("\n")
     
@@ -144,7 +146,7 @@ def handle(msg):
         bot_print(fdString) 
        
     elif tag == "/hi":
-        bot_print('Miten menee?')
+        bot_print('Hello! How are you? I am feeling ' + str(random.choice(mood)))
     
     elif tag == '/fwiki':
         codes=wikiCall.getAbbreviation()
