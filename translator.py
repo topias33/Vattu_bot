@@ -11,7 +11,7 @@ def translate(args):
     if args:
         args = args.split(' ')
     else:
-        return ', '.join(abbrev)
+        return 'All languages: ' + ', '.join(abbrev)
     
     i = 0
     
