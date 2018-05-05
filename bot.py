@@ -363,7 +363,7 @@ def quiz_game(guess, user):
                         players_not_guessed = num_players - players_not_guessed
                     
                     if players_not_guessed:
-                        bot_print(guess + ' is incorrect.\n'+players_not_guessed+' may still have a try.')
+                        bot_print(guess + ' is incorrect.\n'+str(players_not_guessed)+' may still have a try.')
                     else:
                         bot_print(guess + ' is incorrect.')
                         ready = True
