@@ -110,7 +110,7 @@ def handle(msg):
         weatherString=''
         if args=='':
             weatherString=weather[3]
-            weatherStringEn=translate('.en '+weatherString)
+            weatherStringEn=translate('.fi >en '+weatherString)
             bot_print(weatherStringEn)
             
         else:
@@ -121,7 +121,7 @@ def handle(msg):
                 bot_print(weatherStringEn)
             if args =='sun':
                 weatherString+=str(sunRise[0])+' ja '+str(sunRise[1])
-                weatherStringEn=translate('.en '+weatherString)
+                weatherStringEn=translate('.fi >en '+weatherString)
                 bot_print(weatherStringEn)
                 
     elif tag == '/fd':
