@@ -350,7 +350,7 @@ def quiz_game(guess, user):
                 ready = True
             else:
                 qguesses -= 1
-                gen = (key for key, value in userdict.items() if value[0] and key not user)
+                gen = (key for key, value in userdict.items() if value[0] and key != user)
                 if gen:
                     users = ', '.join(gen)
                     bot_print(guess + ' is Incorrect.\n'+users+' may still have a try.')
