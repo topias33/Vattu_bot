@@ -10,17 +10,17 @@ def translate(args):
     
     i = 0
     
-    if args[i][0]=='.':
-        from_language = args[i][1:]
+    if len(args[i]) == 2:
+        from_language = args[i]
         i += 1
     else:
         from_language = "auto"
     
-    if args[i][0]=='>':
-        to_language = args[i][1:]
+    if len(args[i]) == 2:
+        to_language = args[i]
         i += 1
     else:
-        to_language = "auto"
+        to_language = "en"
         
     sentence = '+'.join(args[i:])
     
