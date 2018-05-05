@@ -376,7 +376,7 @@ def quiz_game(guess, user):
                     
         if ready:
             time.sleep(3)
-            gameList = quiz.quiz_next(*gameList)
+            gameList = quiz.quiz_next(*gameList[:2])
             next = gameList[2]
             if next:
                 for key, value in userdict.items():
