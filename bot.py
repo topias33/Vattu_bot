@@ -240,7 +240,7 @@ def bash_joke(args):
 
 def bot_print(msg):
     global chat_id
-    log('Bot', msg)
+    print(log('Bot', msg))
     bot.sendMessage(chat_id, msg)
     
 def log(username, msg):
@@ -333,7 +333,6 @@ def quiz_game(guess, user):
         if len(players) >= num_players:
             qbool = True
             ready = True
-            print('Quiz started')
             bot_print('Quiz started')
             quiz.quiz_start(read_file('quiz_questions'), num_rounds)
         else:
@@ -341,24 +340,23 @@ def quiz_game(guess, user):
     
     elif guess == 'stop':
         qbool = False
-        print('Quiz stopped')
-        bot_print('Quiz stopped')
+        bot_print('Quiz stopped.')
         show_scoreboard = True
     
     if qbool:
         if not ready:
             if quiz.quiz_check(guess):
                 correct += 1
-                bot_print(guess + ' is correct')
+                bot_print(guess + ' is correct.')
                 ready = True
             else:
                 qguesses -= 1
                 gen = list(key for key, value in userdict.items() if value[0] and key != user)
                 if gen:
                     users = ', '.join(gen)
-                    bot_print(guess + ' is Incorrect.\n'+users+' may still have a try.')
+                    bot_print(guess + ' is incorrect.\n'+users+' may still have a try.')
                 else:
-                    bot_print(guess + ' is Incorrect.')
+                    bot_print(guess + ' is incorrect.')
                     ready = True
                 
         if ready:
@@ -369,7 +367,6 @@ def quiz_game(guess, user):
                 bot_print(next)
             else:
                 qbool = False
-                print('quiz ends')
                 bot_print('Quiz has ended.')
                 show_scoreboard = True
                 
@@ -393,7 +390,7 @@ bot.message_loop(handle)
 print ('I am listening...')
 
 while 1:
-    time.sleep(10)
+    time.sleep(3)
     if process is not None:
         print(process.stdout.readline())
         
