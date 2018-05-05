@@ -345,7 +345,7 @@ def quiz_game(guess, user):
         show_scoreboard = True
     
     if qbool:
-        if not ready:
+        if not ready and qguesses:
             if quiz.quiz_check(guess):
                 correct += 1
                 bot_print(guess + ' is correct.')
