@@ -29,6 +29,8 @@ process = None
 
 mood = ['hungry', 'happy', 'tired', 'sad','good','amused','anxious','bored','energetic', 'excited','joyful','playful','cheerful','blissful', 'dreamy'];
 
+abbrevations = wikiCall.getAbbreviation()
+
 def handle(msg):
     print("\n")
     
@@ -152,10 +154,12 @@ def handle(msg):
     elif tag == "/hi":
         bot_print('Hello! How are you? I am feeling ' + str(random.choice(mood)+ "."))
     
+    elif tag in ["/lwiki", "/lwikipedia"]:
+        bot_print(wiki(args))
+    
     elif tag in ["/wiki", "/wikipedia"]:
-        codes=wikiCall.getAbbreviation()
         argsS=args.split(' ')
-        if argsS[0].lower() in codes:
+        if argsS[0].lower() in abbrevations:
             code=argsS[0].lower()
             searchS=' '.join(argsS[1:len(argsS)])
         else:
@@ -173,9 +177,6 @@ def handle(msg):
         if answer:
             time.sleep(3)
             bot_print(answer)
-            
-    elif tag in ["/lwiki", "/lwikipedia"]:
-        bot_print(wiki(args))
         
     elif tag == '/quiz':
         if args:
@@ -292,12 +293,12 @@ def wiki(args):
     if args:
         args = args.split()
     else:
-        return "Use /wiki ( .en, .fi, .ru etc. ) Your search\ne.g. /wiki .fi one punch man"
+        return 'All languages: ' + ', '.join(abbrevations)
     
     i = 0
     
-    if args[i][0]=='.':
-        language = args[i][1:]
+    if args[i] in abbrevations:
+        language = args[i]
         i += 1
     else:
         language = "en"
