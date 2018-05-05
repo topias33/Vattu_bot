@@ -338,7 +338,6 @@ def quiz_game(guess, user):
         bot_print('Rounds: '+str(num_rounds))
         bot_print('Players: '+str(num_players))
         gameList = quiz.quiz_start(read_file('quiz_questions'), num_rounds)
-        print(gameList)
     
     elif guess == 'stop':
         qbool = False
