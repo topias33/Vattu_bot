@@ -7,10 +7,11 @@ from wikiCall import getAbbreviation
 abbrev = getAbbreviation()
 
 def translate(args):
+    
     if args:
-        args = args.split()
+        args = args.split(' ')
     else:
-        return "Use /translate ( en, fi, ru etc. ) ( en, fi, ru etc. ) sentence\ne.g. /translate ru how are you"
+        return ', '.join(abbrev)
     
     i = 0
     
