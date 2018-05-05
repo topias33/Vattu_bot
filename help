@@ -21,7 +21,8 @@ WEATHER . /weather = show today's weather
 WEATHER . /weather all = show todays and next five days weather
 WEATHER . /weather sun = shows today's sunrise and sunset 
 
-TRANSLATE . /translate .(en, fi, ru etc.) >(en, fi, ru etc.) 'sentence' = Translates from language to language whatever sentence you give it.
+TRANSLATE . /translate ( en, fi, ru etc. ) ( en, fi, ru etc. ) sentence\ne.g. /translate ru how are you
+TRANSLATE . /translate = Show all languages.
 
 LOG . /log (f) = Shows chat log. 'f' = full.
 
