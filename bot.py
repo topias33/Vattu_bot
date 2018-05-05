@@ -330,13 +330,10 @@ def quiz_game(guess, user):
     players = list(key for key, value in userdict.items())
         
     if not qbool:
-        if len(players) >= num_players:
-            qbool = True
-            ready = True
-            bot_print('Quiz started')
-            quiz.quiz_start(read_file('quiz_questions'), num_rounds)
-        else:
-            bot_print('Player #' + str(len(players) + 1) + ' say hello!') #or anything else
+        qbool = True
+        ready = True
+        bot_print('Quiz started')
+        quiz.quiz_start(read_file('quiz_questions'), num_rounds)
     
     elif guess == 'stop':
         qbool = False
@@ -351,20 +348,28 @@ def quiz_game(guess, user):
                 ready = True
             else:
                 qguesses -= 1
-                gen = list(key for key, value in userdict.items() if value[0] and key != user)
-                if gen:
-                    users = ', '.join(gen)
-                    bot_print(guess + ' is incorrect.\n'+users+' may still have a try.')
-                else:
+                if len(players) == 1 and num_players == 1:
                     bot_print(guess + ' is incorrect.')
                     ready = True
-                
+                else:
+                    players_guessed = len(list(key for key, value in userdict.items() if not value[0])) + 1
+                    
+                    players_not_guessed = len(players) - players_guessed
+                    if len(players) < num_players:
+                        players_not_guessed = num_players - players_not_guessed
+                    
+                    if players_not_guessed < len(players)
+                        bot_print(guess + ' is incorrect.\n'+players_not_guessed+' may still have a try.')
+                    else:
+                        bot_print(guess + ' is incorrect.')
+                        ready = True
+                    
         if ready:
             next = quiz.quiz_next()
             if next:
                 for key, value in userdict.items():
                     userdict[key][0] = 1
-                bot_print(next)
+                bot_print('Question:\n\n'+next)
             else:
                 qbool = False
                 bot_print('Quiz has ended.')
