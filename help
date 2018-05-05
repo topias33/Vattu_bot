@@ -5,7 +5,8 @@ BASH . /bash 'command' = Run normal commands in Raspberry Pi and show the output
 
 MATH . /math 'equation' = Solves common math equations.
 
-WIKI . /wiki .(en, fi, ru etc.) 'search' = Search from wikipedia.
+WIKI . /wiki .(en, fi, ru etc.) 'search' = Search from wikipedia. Gives you link
+WIKI . /wiki (en, fi, ru etc.) 'search' = Search from wikipedia. Gives you text
 
 TIME . /time = Tells current time according to the server.
 
@@ -15,6 +16,10 @@ JOKE . /joke 'name' 'your joke' = Saves new joke called 'name'.
 
 FD . /fd = Shows what flagday is currently if any.
 FD . /fd 'date' = Shows what flagday is at given date if any.
+
+WEATHER . /weather = show today's weather
+WEATHER . /weather all = show todays and next five days weather
+WEATHER . /weather sun = shows today's sunrise and sunset 
 
 TRANSLATE . /translate .(en, fi, ru etc.) >(en, fi, ru etc.) 'sentence' = Translates from language to language whatever sentence you give it.
 
