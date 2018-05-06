@@ -15,6 +15,8 @@ JOKE . /joke 'name' = Tells joke called 'name'.
 JOKE . /joke list = Shows all available joke names.
 JOKE . /joke 'name' 'your joke' = Saves new joke called 'name'.
 
+HI . /hi = Bot greets the user and tells how he is feeling currently. 
+
 FD . /fd = Shows what flagday is currently if any.
 FD . /fd 'date' = Shows what flagday is at given date if any.
 
