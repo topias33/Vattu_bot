@@ -6,7 +6,6 @@ import telepot
 from subprocess import check_output, Popen, PIPE, STDOUT
 import shlex
 from nsp import Nsp
-import joke
 import quiz
 from random import shuffle
 import flagDayyy
@@ -17,7 +16,6 @@ import callWeather
 
 from translator import translate
 
-import operator
 import math as the_real_math
 
 #when running pass in the token as the first parameter e.g. python3.4 file.py token
@@ -45,7 +43,6 @@ def handle(msg, mcBool = False):
         command = msg['text']
     
     permissions = read_file('permissions', '~/Desktop/').split('\n')
-    
     
     if  str(username) in permissions:
         permission = True
@@ -447,8 +444,3 @@ while 1:
             time.sleep(3)    
     else:
         time.sleep(3)
-        
-#https://docs.python.org/3/library/subprocess.html
-#https://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
-
-#https://stackoverflow.com/questions/2371436/evaluating-a-mathematical-expression-in-a-string
