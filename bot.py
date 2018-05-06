@@ -214,9 +214,7 @@ def bash_joke(args):
     file = read_file('jokes.txt')
     files = file.split('\n')
     files = list(filter(None, files))
-    temp = args.partition(' . ')
-    args = temp[0].upper()+temp[1]+temp[2]
-    joke = ''
+    
     if not args:
         shuffle(files)
         joke = files[0]
@@ -227,6 +225,9 @@ def bash_joke(args):
                 commands.append(line_list[0].capitalize())
         return 'Jokes: ' + ', '.join(set(commands)), '' 
     else:
+        temp = args.partition(' . ')
+        args = temp[0].upper()+temp[1]+temp[2]
+        joke = ''
         name = args.split(' . ', 1)[0]
         for line in files:
             if line.split(' . ', 1)[0] == name:
