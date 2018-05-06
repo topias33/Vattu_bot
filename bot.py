@@ -357,7 +357,7 @@ def quiz_game(guess, user):
                     ready = True
                 else:
                     players_guessed = len(list(key for key, value in userdict.items() if not value[0]))
-                    
+                    print(players_guessed)
                     players_not_guessed = len(players) - players_guessed
                     if len(players) < num_players:
                         players_not_guessed = num_players - players_not_guessed
