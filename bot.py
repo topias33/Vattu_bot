@@ -373,7 +373,7 @@ def quiz_game(guess, user):
                         bot_print(guess + ' is incorrect.')
                         ready = True      
         if ready:
-            time.sleep(3)
+            time.sleep(1.5)
             next, gameList = quiz.quiz_next(*gameList[:2])
             if next:
                 for key, value in userdict.items():
