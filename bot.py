@@ -88,9 +88,7 @@ def handle(msg):
             else:
                 bot_print('Server is not running.')
         else:
-            #process.stdout.flush()
-            #print(process.stdout.readline())
-            process.stdin.write(bytes(cmd+'\n', 'UTF-8'))
+            process.stdin.write(bytes(args+'\n', 'UTF-8'))
             process.stdin.flush()
             
             
@@ -402,9 +400,16 @@ bot.message_loop(handle)
 print ('I am listening...')
 
 while 1:
-    time.sleep(3)
     if process is not None:
-        print(process.stdout.readline())
+        if process.stdout:
+            #Minecraft output
+            mc_log = process.stdout.readline().encode(utf8)
+            
+            print(mc_log) 
+        else:
+            time.sleep(3)    
+    else:
+        time.sleep(3)
         
 #https://docs.python.org/3/library/subprocess.html
 #https://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
