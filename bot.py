@@ -412,7 +412,7 @@ while 1:
     if process is not None:
         if process.stdout:
             #Minecraft output
-            mc_log = process.stdout.readline().encode(utf8)
+            mc_log = process.stdout.readline().decode(utf8)
             
             print(mc_log) 
         else:
