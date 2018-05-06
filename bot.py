@@ -213,6 +213,7 @@ def bash(args, output_bool=True):
 def bash_joke(args):
     file = read_file('jokes.txt')
     files = file.split('\n')
+    files = list(filter(None, files))
     temp = args.partition(' . ')
     args = temp[0].upper()+temp[1]+temp[2]
     joke = ''
