@@ -263,7 +263,7 @@ def bot_print(msg):
         msg_list = msg.split('\n')
         msg_list = list(filter(None, msg_list))
         for m in msg_list:
-            process.stdin.write(bytes('say '+msg+'\n', 'UTF-8'))
+            process.stdin.write(bytes('say '+m+'\n', 'UTF-8'))
             process.stdin.flush()
     else:
         bot.sendMessage(chat_id, msg)
