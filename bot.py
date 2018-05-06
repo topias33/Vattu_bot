@@ -417,7 +417,7 @@ while 1:
             if '[Server thread/INFO]: Done' in mc_log:
                 bot_print('Minecraft server running...')
             elif '[Server thread/INFO]: Stopping ' in mc_log:
-                #bot_print('Stopping Minecraft server...')
+                bot_print('Stopping Minecraft server...')
                 #process = None
         else:
             time.sleep(3)    
