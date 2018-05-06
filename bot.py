@@ -219,11 +219,12 @@ def bash_joke(args):
         shuffle(files)
         joke = files[0]
     elif args in ['list','l']:
+        jokes = []
         for line in files:
             line_list = line.split(' . ', 1)
             if line_list[0]:    
-                commands.append(line_list[0].capitalize())
-        return 'Jokes: ' + ', '.join(set(commands)), '' 
+                jokes.append(line_list[0].capitalize())
+        return 'Jokes: ' + ', '.join(set(jokes)), '' 
     else:
         temp = args.partition(' . ')
         args = temp[0].upper()+temp[1]+temp[2]
