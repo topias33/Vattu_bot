@@ -82,6 +82,7 @@ def handle(msg):
         global process
         if process is None:
             if args == 'start':
+                bot_print('Starting server...')
                 os.chdir('/home/pi/test')
                 exe = 'java -Xmx512M -Xms512M -jar server.jar nogui'
                 process = Popen(shlex.split(exe), stdin=PIPE, stdout=PIPE, stderr=PIPE)
@@ -412,7 +413,7 @@ while 1:
     if process is not None:
         if process.stdout:
             #Minecraft output
-            mc_log = process.stdout.readline().decode(utf8)
+            mc_log = process.stdout.readline().decode('utf8')
             
             print(mc_log) 
         else:
