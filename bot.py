@@ -260,7 +260,7 @@ def bot_print(msg):
     global chat_id, mc_bool
     print(log('Bot', msg))
     if mc_bool:
-        process.stdin.write(bytes(args+'\n', 'UTF-8'))
+        process.stdin.write(bytes('say '+msg+'\n', 'UTF-8'))
         process.stdin.flush()
     else:
         bot.sendMessage(chat_id, msg)
