@@ -415,10 +415,10 @@ while 1:
         if mc_log:
             print(mc_log)
             if '[Server thread/INFO]: Done' in mc_log:
-                bot_print('Minecraft server running...')
-            elif '[Server thread/INFO]: Stopping ' in mc_log:
-                bot_print('Stopping Minecraft server...')
-                #process = None
+                bot_print('Minecraft server is running...')
+            elif "[Server thread/INFO]: Saving chunks for level 'world'/the_end" in mc_log:
+                bot_print('Minecraft server has been stopped.')
+                process = None
         else:
             time.sleep(3)    
     else:
