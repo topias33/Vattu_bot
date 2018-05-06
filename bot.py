@@ -35,10 +35,17 @@ def handle(msg, mcBool = False):
     global chat_id, quiz_bool, mc_bool
     mc_bool = mcBool
     
-    username = msg['from']['username']
+    if mc_bool:
+        username = msg[0]
+        chat_id = 0
+        command = msg[1]
+    else:
+        username = msg['from']['username']
+        chat_id = msg['chat']['id']
+        command = msg['text']
+    
     permissions = read_file('permissions', '~/Desktop/').split('\n')
-    chat_id = msg['chat']['id']
-    command = msg['text']
+    
     
     if  str(username) in permissions:
         permission = True
@@ -426,12 +433,12 @@ while 1:
             elif "[Server thread/INFO]: Saving chunks for level 'world'/the_end" in mc_log:
                 bot_print('Minecraft server has been stopped.')
                 process = None
-            elif '[Server thread/INFO]: <' in mc_log:
+            elif '[Server thread/INFO]: <' in mc_log and ' pi ' in mc_log:
                 mc_cmd = mc_log.split('<', 1)
-                mc_temp = mc_cmd[1].split('>', 1)
-                mc_cmd = mc_temp.insert(0, mc_cmd[0])
+                mc_cmd = mc_cmd[1].split('> pi ', 1)
+                mc_msg = [mc_cmd[0], mc_cmd[1]]
                 handle(mc_msg, True)
-                mc_cmd = "[Server thread/INFO]: <topias33> hei"
+                #"[Server thread/INFO]: <topias33> hei"
                 
         else:
             time.sleep(3)    
