@@ -12,6 +12,7 @@ TIME . /time = Tells current time according to the server.
 
 JOKE . /joke = Tells random joke.
 JOKE . /joke 'name' = Tells joke called 'name'.
+JOKE . /joke list = Shows all available joke names.
 JOKE . /joke 'name' 'your joke' = Saves new joke called 'name'.
 
 FD . /fd = Shows what flagday is currently if any.
