@@ -220,6 +220,12 @@ def bash_joke(args):
     if not args:
         shuffle(files)
         joke = files[0]
+    elif args in ['list','l']:
+        for line in files:
+            line_list = line.split(' . ', 1)
+            if line_list[0]:    
+                commands.append(line_list[0].capitalize())
+        return 'Jokes: ' + ', '.join(set(commands)), '' 
     else:
         name = args.split(' . ', 1)[0]
         for line in files:
