@@ -29,10 +29,12 @@ mood = ['hungry', 'happy', 'tired', 'sad','good','amused','anxious','bored','ene
 
 abbrevations = wikiCall.getAbbreviation()
 
-def handle(msg):
+def handle(msg, mcBool = False):
     print("\n")
     
-    global chat_id, quiz_bool
+    global chat_id, quiz_bool, mc_bool
+    mc_bool = mcBool
+    
     username = msg['from']['username']
     permissions = read_file('permissions', '~/Desktop/').split('\n')
     chat_id = msg['chat']['id']
@@ -248,9 +250,13 @@ def bash_joke(args):
     return joke, ''
 
 def bot_print(msg):
-    global chat_id
+    global chat_id, mc_bool
     print(log('Bot', msg))
-    bot.sendMessage(chat_id, msg)
+    if mc_bool:
+        process.stdin.write(bytes(args+'\n', 'UTF-8'))
+        process.stdin.flush()
+    else:
+        bot.sendMessage(chat_id, msg)
     
 def log(username, msg):
     time = bash("date \'+%Y-%m-%d %H:%M:%S\'", False).rstrip()
@@ -406,6 +412,7 @@ bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
 
 process = None
+mc_bool = False
 
 print ('I am listening...')
 
@@ -419,6 +426,13 @@ while 1:
             elif "[Server thread/INFO]: Saving chunks for level 'world'/the_end" in mc_log:
                 bot_print('Minecraft server has been stopped.')
                 process = None
+            elif '[Server thread/INFO]: <' in mc_log:
+                mc_cmd = mc_log.split('<', 1)
+                mc_temp = mc_cmd[1].split('>', 1)
+                mc_cmd = mc_temp.insert(0, mc_cmd[0])
+                handle(mc_msg, True)
+                mc_cmd = "[Server thread/INFO]: <topias33> hei"
+                
         else:
             time.sleep(3)    
     else:
