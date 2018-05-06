@@ -411,10 +411,8 @@ print ('I am listening...')
 
 while 1:
     if process is not None:
-        if process.stdout:
-            #Minecraft output
-            mc_log = process.stdout.readline().decode('utf8')
-            
+        mc_log = process.stdout.readline().decode('utf8')
+        if mc_log:
             print(mc_log) 
         else:
             time.sleep(3)    
