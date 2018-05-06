@@ -324,7 +324,7 @@ def arguments(command):
 def quiz_game(guess, user):
     global quiz_bool, chat_id    
     qbool, userdict, num_rounds, num_players, gameList = quiz_bool.get(chat_id)
-    qguesses, correct = userdict.get(user, [1,0])
+    userdict.get(user, [1,0])
     
     ready = False
     show_scoreboard = False
@@ -345,13 +345,13 @@ def quiz_game(guess, user):
         show_scoreboard = True
     
     if qbool:
-        if not ready and qguesses:
+        if not ready and userdict[user][0]:
             if quiz.quiz_check(guess, gameList[2]):
-                correct += 1
+                userdict[user][1] += 1
                 bot_print(guess + ' is correct.')
                 ready = True
             else:
-                qguesses -= 1
+                userdict[user][0] -= 1
                 if len(players) == 1 and num_players == 1:
                     bot_print(guess + ' is incorrect.')
                     ready = True
@@ -371,8 +371,7 @@ def quiz_game(guess, user):
                         
                     else:
                         bot_print(guess + ' is incorrect.')
-                        ready = True
-                    
+                        ready = True      
         if ready:
             time.sleep(3)
             next, gameList = quiz.quiz_next(*gameList[:2])
@@ -385,7 +384,6 @@ def quiz_game(guess, user):
                 bot_print('Quiz has ended.')
                 show_scoreboard = True
                 
-    userdict[user] = [qguesses, correct]
     quiz_bool[chat_id] = [qbool, userdict, num_rounds, num_players, gameList]
     
     if show_scoreboard:
