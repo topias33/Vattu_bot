@@ -406,10 +406,6 @@ bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
 
 process = None
-if bash("ps aux | grep 'java -Xmx512M -Xms512M -jar server.jar nogui' | grep -v 'grep'"):
-    os.chdir('/home/pi/test')
-    exe = 'java -Xmx512M -Xms512M -jar server.jar nogui'
-    process = Popen(shlex.split(exe), stdin=PIPE, stdout=PIPE, stderr=PIPE)
 
 print ('I am listening...')
 
@@ -420,9 +416,9 @@ while 1:
             print(mc_log)
             if '[Server thread/INFO]: Done' in mc_log:
                 bot_print('Minecraft server running...')
-            elif ' Stopping ' in mc_log:
-                bot_print('Stopping Minecraft server...')
-                process = None
+            elif '[Server thread/INFO]: Stopping ' in mc_log:
+                #bot_print('Stopping Minecraft server...')
+                #process = None
         else:
             time.sleep(3)    
     else:
