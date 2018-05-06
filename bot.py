@@ -25,8 +25,6 @@ TOKEN = sys.argv[1]
 
 quiz_bool = {}
 
-process = None
-
 mood = ['hungry', 'happy', 'tired', 'sad','good','amused','anxious','bored','energetic', 'excited','joyful','playful','cheerful','blissful', 'dreamy'];
 
 abbrevations = wikiCall.getAbbreviation()
@@ -82,7 +80,7 @@ def handle(msg):
         global process
         if process is None:
             if args == 'start':
-                bot_print('Starting server...')
+                bot_print('Starting Minecraft server...')
                 os.chdir('/home/pi/test')
                 exe = 'java -Xmx512M -Xms512M -jar server.jar nogui'
                 process = Popen(shlex.split(exe), stdin=PIPE, stdout=PIPE, stderr=PIPE)
@@ -407,13 +405,21 @@ def quiz_game(guess, user):
 bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
 
+process = None
+#if bash()
+
 print ('I am listening...')
 
 while 1:
     if process is not None:
         mc_log = process.stdout.readline().decode('utf8')
         if mc_log:
-            print(mc_log) 
+            print(mc_log)
+            if ' Done (' in mc_log:
+                bot_print('Minecraft server running...')
+            elif ' Stopping ' in mc_log:
+                bot_print('Stopping Minecraft server...')
+                process = None
         else:
             time.sleep(3)    
     else:
