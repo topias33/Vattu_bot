@@ -32,3 +32,7 @@ LOG . /log (f) = Shows chat log. 'f' = full.
 QUIZ . /quiz (rounds) (players at start) = Starts the quiz. 
 QUIZ . More players may join at any time.
 QUIZ . Say 'stop' to stop game while running.
+
+MC . Works only with permission:
+MC . /mc start = starts the server.
+MC . /mc 'server command'
