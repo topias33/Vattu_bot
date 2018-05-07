@@ -83,18 +83,22 @@ def handle(msg, mcBool = False):
         bot_print(translate(args))
     
     elif tag == "/mc":
-        global process
-        if process is None:
-            if args == 'start':
-                bot_print('Starting Minecraft server...')
-                os.chdir('/home/pi/test')
-                exe = 'java -Xmx512M -Xms512M -jar server.jar nogui'
-                process = Popen(shlex.split(exe), stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        if permission:
+            global process
+            if process is None:
+                if args == 'start':
+                    bot_print('Starting Minecraft server...')
+                    os.chdir('/home/pi/test')
+                    exe = 'java -Xmx512M -Xms512M -jar server.jar nogui'
+                    process = Popen(shlex.split(exe), stdin=PIPE, stdout=PIPE, stderr=PIPE)
+                else:
+                    bot_print('Server is not running.')
             else:
-                bot_print('Server is not running.')
+                process.stdin.write(bytes(args+'\n', 'UTF-8'))
+                process.stdin.flush()
         else:
-            process.stdin.write(bytes(args+'\n', 'UTF-8'))
-            process.stdin.flush()
+            bot_print('You do not have permission.')
+        
             
             
     
